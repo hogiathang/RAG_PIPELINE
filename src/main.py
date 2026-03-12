@@ -8,7 +8,7 @@ Pipeline:
   4. In báo cáo markdown ra stdout
 """
 
-import sys, os
+import sys, os, json
 import argparse
 from pathlib import Path
 
@@ -59,7 +59,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def run_pipeline(code: str, is_analyzing_skills: bool = True) -> str:
+def run_pipeline(code: str, is_analyzing_skills: bool = True) -> json:
     """
     Thực thi toàn bộ RAG pipeline:
       Retrieve (Qdrant + Web Search) → Generate (Gemini)
@@ -129,7 +129,7 @@ def retrieval_pipeline(args) -> None:
 
         report = run_pipeline("\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 
-        output_path = os.path.join(OUTPUT_DIR, f"{package}_report.md")
+        output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
         save_report(report, output_path)
 
     
