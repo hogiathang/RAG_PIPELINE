@@ -17,21 +17,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.generation.generation import build_prompt_from_retrieve_similar_documents, build_prompt_from_retrive_similar_documents_for_skills_analysis
 
-
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
 ║          RAG-based Malware Analysis System           ║
 ║      JavaScript / Node.js Threat Intelligence        ║
 ╚══════════════════════════════════════════════════════╝
 
+Default: Retrieval Mode.
+To Switch to ingest-data mode, use the --ingest-data flag.
+
 User Guide:
     + Arguments:
-        -f, --file PATH       Path to a file containing the JavaScript/Node.js code snippet to analyze
-        -c, --code CODE       Inline code snippet string to analyze
-        -o, --output PATH     Save the Threat Intelligence report to a markdown file
-        --no-banner          Suppress the startup banner
         --ingest-data        Ingest sample data into Qdrant (for testing purposes)
-        --output PATH         Save the generated report to a markdown file
         --analyze-skills       Analyze agent's skills behavior
 """
 
@@ -46,11 +43,6 @@ def parse_args() -> argparse.Namespace:
 
     input_group = parser.add_mutually_exclusive_group()
 
-    input_group.add_argument(
-        "-d", "--src",
-        type=str,
-        help="Path to a file containing the JavaScript/Node.js/Skills code snippet to analyze"
-    )
 
     input_group.add_argument(
         "--analyze-skills",
@@ -59,9 +51,9 @@ def parse_args() -> argparse.Namespace:
     )
 
     input_group.add_argument(
-        "--output_dir", 
+        "--ingest-data",
         action="store_true",
-        help="Save the generated report to a markdown file"
+        help="Ingest sample data into Qdrant (for testing purposes)"
     )
 
     return parser.parse_args()
@@ -88,9 +80,6 @@ def run_pipeline(code: str) -> str:
 
 def save_report(report: str, output_path: str) -> None:
     """Lưu báo cáo ra file markdown."""
-    if not os.path.exists(os.path.dirname(output_path)):
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(report, encoding="utf-8")
@@ -110,11 +99,17 @@ def read_package(package_path: str) -> str:
 
     return contents
 
-def main() -> None:
-    args = parse_args()
+def retrieval_pipeline(args) -> None:
 
-    INPUT_DIR = args.src if args.src else "./data/samples"
-    OUTPUT_DIR = args.output_dir if args.output_dir else "./data/reports"
+    INPUT_DIR = input("Please enter the input directory path (containing JavaScript/Node.js packages): ").strip()
+    OUTPUT_DIR = input("Please enter the output directory path (to save markdown reports): ").strip()
+
+    if not os.path.exists(INPUT_DIR):
+        print(f"[ERROR] Input directory '{INPUT_DIR}' does not exist.", file=sys.stderr)
+        sys.exit(1)
+
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     analyzed_packages = []
     for file in os.listdir(OUTPUT_DIR):
@@ -135,6 +130,16 @@ def main() -> None:
 
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.md")
         save_report(report, output_path)
+
     
+def ingest_data_pipeline():
+    pass
+
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    print(BANNER)
+    
+    if args.ingest_data:
+        ingest_data_pipeline()
+    else:
+        retrieval_pipeline(args)
