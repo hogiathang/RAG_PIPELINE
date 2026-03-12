@@ -59,7 +59,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def run_pipeline(code: str) -> str:
+def run_pipeline(code: str, is_analyzing_skills: bool = True) -> str:
     """
     Thực thi toàn bộ RAG pipeline:
       Retrieve (Qdrant + Web Search) → Generate (Gemini)
@@ -69,7 +69,8 @@ def run_pipeline(code: str) -> str:
 
     print("[STEP 1/2] Run RAG Pipeline...")
 
-    report = build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
+    report = build_prompt_from_retrieve_similar_documents(code) if \
+        not is_analyzing_skills else build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
 
     if report is None:
         print("[ERROR] Pipeline returned no result. Check your API tokens and services.", file=sys.stderr)
@@ -126,7 +127,7 @@ def retrieval_pipeline(args) -> None:
 
         contents =  read_package(package_path)
 
-        report = run_pipeline("\n\n".join(contents))
+        report = run_pipeline("\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.md")
         save_report(report, output_path)
@@ -142,4 +143,9 @@ if __name__ == "__main__":
     if args.ingest_data:
         ingest_data_pipeline()
     else:
+        if args.analyze_skills:
+            print("[INFO] Running in Skills Analysis Mode...")
+        else:
+            print("[INFO] Running in Retrieval Mode...")
+
         retrieval_pipeline(args)
