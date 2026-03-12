@@ -127,7 +127,7 @@ def retrieval_pipeline(args) -> None:
 
         contents =  read_package(package_path)
 
-        report = run_pipeline("\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
+        report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
         with open(output_path, "w", encoding="utf-8") as f:

@@ -5,7 +5,8 @@
         {
             "tool": {
                 "driver": {
-                    "name": "Skill-Security-Analyzer"
+                    "name": "Thang's Agent Analyzer",
+                    "rules": []
                 }
             },
             "results": []
