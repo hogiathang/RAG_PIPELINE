@@ -1,8 +1,6 @@
 from src.common.gemini_agent import GeminiAgent
-import json, re, os
-import requests
 from threading import Lock
-from typing import List
+import os, re, json, requests
 
 TOKENS_FILE = "api_tokens/search_engine_api_keys.txt"
 
@@ -41,39 +39,6 @@ class WebSearchEngine:
                 if token:
                     tokens.append(token)
         return tokens
-
-    def validate_response(self, response: str) -> dict:
-            if not response:
-                raise ValueError("Empty response from Gemini Agent.")
-            
-            cleaned = response.strip()
-            cleaned = re.sub(r'^```(?:json)?', '', cleaned)
-            cleaned = re.sub(r'```$', '', cleaned).strip()
-
-            try:
-                parsed_data = json.loads(cleaned)
-            except json.JSONDecodeError as e:
-                raise ValueError(f"Can not parse JSON from Gemini response: {e}\nRaw: {response}")
-
-            required_keys = ["suspicion_level", "identified_behavior", "extracted_artifacts", "search_queries"]
-
-            for key in required_keys:
-                if key not in parsed_data:
-                    raise ValueError(f"Missing required key: '{key}' in Gemini output.")
-
-            if not parsed_data["search_queries"]:
-                parsed_data["search_queries"] = [f"No search query found for the provided snippet"] 
-            
-            return parsed_data
-
-    def _analyze_code_with_agent(self, code: str) -> dict:
-        print(f"[INFO] Task type: {self.task_type}")
-        gemini_response = self.agent.execute_task(
-            prompt=f"Analyze this code snippet and generate an optimized search query to find relevant information:\n\n{code}",
-            task_type=self.task_type
-        )
-
-        return self.validate_response(gemini_response)
 
     def _execute_web_search(self, query: str) -> dict:
 
@@ -137,70 +102,33 @@ class WebSearchEngine:
                 print(f"[ERROR] Exception during web search for query '{query}': {e}")
                 return {"results": []}
         
-    def analyze_code_and_search_web(self, source_code: str) -> list[str]:
+    def search(self, query: str) -> list[str]:
         """
         Analyze source code to generate optimized search queries,
         execute web searches, and aggregate enriched threat intelligence results.
         """
         try:
-            analysis_result = self._analyze_code_with_agent(source_code)
-            print(f"[INFO] Gemini analysis result: {analysis_result}")
-            generated_queries = analysis_result.get("search_queries", [])
-
-            print(f"[INFO] Generated search queries: {generated_queries}")
             aggregated_search_output = []
 
-            for query in generated_queries:
-                print(f"[INFO] Executing web search for query: '{query}'")
-                web_response = self._execute_web_search(query)
-                search_hits = web_response.get("results", [])
+            web_response = self._execute_web_search(query)
+            search_hits = web_response.get("results", [])
+            print(f"[INFO] Web search hits for query '{query}': {search_hits}")
 
-                print(f"[INFO] Web search hits for query '{query}': {search_hits}")
-                for hit in search_hits:
-                    url = hit.get("url")
-                    title = hit.get("title")
-                    content = hit.get("content")
-                    relevance_score = hit.get("score")
+            for hit in search_hits:
+                url = hit.get("url")
+                title = hit.get("title")
+                content = hit.get("content")
+                relevance_score = hit.get("score")
 
-                    aggregated_search_output.append(
-                        f"URL: {url}\n"
-                        f"Title: {title}\n"
-                        f"Content: {content}\n"
-                        f"Score: {relevance_score}\n\n"
-                    )
-
-            aggregated_search_output.extend(
-                analysis_result.get("identified_behavior", [])
-            )
-            aggregated_search_output.extend(
-                analysis_result.get("extracted_artifacts", [])
-            )
+                aggregated_search_output.append(
+                    f"URL: {url}\n"
+                    f"Title: {title}\n"
+                    f"Content: {content}\n"
+                    f"Score: {relevance_score}\n\n"
+                )
 
             return aggregated_search_output
 
         except Exception as error:
             print(f"[ERROR] Web search execution failed: {error}")
             return ["Web search execution failed due to an error."]
-
-
-if __name__ == "__main__":
-    js_code_slice = """
-    const fs = require('fs');
-    const { exec } = require('child_process');
-
-    function handleFileUpload(file) {
-        const filePath = `/tmp/${file.name}`;
-        fs.writeFileSync(filePath, file.data);
-        exec(`python3 process_file.py ${filePath}`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error processing file: ${error}`);
-                return;
-            }
-            console.log(`File processed successfully: ${stdout}`);
-        });
-    }
-    """
-
-    search_engine = WebSearchEngine()
-    results = search_engine.analyze_code_and_search_web(js_code_slice)
-    print(results)

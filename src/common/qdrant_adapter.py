@@ -43,7 +43,7 @@ class QdrantAdapter:
             print(f"Inserted batch {start} → {min(end, total)}")
 
 
-    def _search(self, question , top_k : int = 5):
+    def _search(self, question , top_k : int = 5) -> list[str]:
         query_vector = self.embedding_model.embed(question)
         results = self.client.query_points(
             collection_name=self.collection,
@@ -53,28 +53,23 @@ class QdrantAdapter:
         )
         points = results.points
         contexts: list[str] = []
-        sources = set()
         
         for r in points:
             payload = getattr(r,"payload",None) or {}
             text = payload.get("text", "")
             source = payload.get("source","")
             if text:
-                contexts.append(text)
-                sources.add(source)
+                contexts.append(f"[SOURCE: {source}]\n{text}")
 
-        return {"contexts": contexts, "sources": list(sources)}
+        return contexts
 
     def search(self,question: str, top_k : int = 5) -> list[str]:
         result = self._search(question, top_k)
         
         search_engine = WebSearchEngine()
-        web_searh_response = search_engine.analyze_code_and_search_web(question)
+        web_searh_response = search_engine.search(question)
 
-        print(f"Type of result['contexts']: {type(result['contexts'])}")
-        print(f"Type of web_searh_response: {type(web_searh_response)}")
-
-        return result["contexts"] + web_searh_response
+        return result + web_searh_response
 
     def delete(self):
         self.client.delete_collection(self.collection)

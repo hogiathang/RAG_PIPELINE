@@ -114,8 +114,8 @@ def retrieval_pipeline(args) -> None:
 
     analyzed_packages = []
     for file in os.listdir(OUTPUT_DIR):
-        if file.endswith("_report.md"):
-            analyzed_packages.append(file.replace("_report.md", ""))
+        if file.endswith("_report.json"):
+            analyzed_packages.append(file.replace("_report.json", ""))
 
     for package in os.listdir(INPUT_DIR):
 
@@ -130,7 +130,9 @@ def retrieval_pipeline(args) -> None:
         report = run_pipeline("\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
-        save_report(report, output_path)
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(report, f, indent=4)
+        print(f"[INFO] Report saved to: {output_path}\n{SEPARATOR}\n")
 
     
 def ingest_data_pipeline():
