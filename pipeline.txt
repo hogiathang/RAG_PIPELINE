@@ -1,784 +1,0 @@
-nohup: ignoring input
-[SKIP] Package 'codex-chat' already analyzed. Skipping...
-[SKIP] Package 'ccw-maven-setup' already analyzed. Skipping...
-[SKIP] Package 'adobesign' already analyzed. Skipping...
-[SKIP] Package 'nanobanana-base' already analyzed. Skipping...
-[SKIP] Package 'spotify' already analyzed. Skipping...
-[SKIP] Package 'codex-tools' already analyzed. Skipping...
-[SKIP] Package 'reuters' already analyzed. Skipping...
-[SKIP] Package 'gemini-image' already analyzed. Skipping...
-[SKIP] Package 'carfax' already analyzed. Skipping...
-[SKIP] Package 'page' already analyzed. Skipping...
-[SKIP] Package 'yaml-workflow-executor' already analyzed. Skipping...
-[SKIP] Package 'crunchyroll' already analyzed. Skipping...
-[SKIP] Package 'twitter_poster' already analyzed. Skipping...
-[SKIP] Package 'nextdoor' already analyzed. Skipping...
-[SKIP] Package 'autotrader' already analyzed. Skipping...
-[SKIP] Package 'apple-tv-plus' already analyzed. Skipping...
-[SKIP] Package 'runpod-ops' already analyzed. Skipping...
-[SKIP] Package 'vercel-deploy' already analyzed. Skipping...
-[SKIP] Package 'privilege-escalation-methods' already analyzed. Skipping...
-[SKIP] Package 'image-generator' already analyzed. Skipping...
-[SKIP] Package 'e2e-validator' already analyzed. Skipping...
-[SKIP] Package 'grubhub' already analyzed. Skipping...
-[SKIP] Package 'acorns' already analyzed. Skipping...
-[SKIP] Package 'audible' already analyzed. Skipping...
-[SKIP] Package 'sprout-social' already analyzed. Skipping...
-[SKIP] Package 'developer-growth-analysis' already analyzed. Skipping...
-[SKIP] Package 'hashnode' already analyzed. Skipping...
-[SKIP] Package 'analytics' already analyzed. Skipping...
-[SKIP] Package 'expedia' already analyzed. Skipping...
-[SKIP] Package 'notion-export' already analyzed. Skipping...
-[SKIP] Package 'vrbo' already analyzed. Skipping...
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:00, 17623.13it/s, Materializing param=embed_tokens.weight]Loading weights:   0%|          | 1/338 [00:00<00:00, 6523.02it/s, Materializing param=embed_tokens.weight] Loading weights:   1%|          | 2/338 [00:00<00:00, 7237.80it/s, Materializing param=layers.0.input_layernorm.weight]Loading weights:   1%|          | 2/338 [00:00<00:00, 6096.37it/s, Materializing param=layers.0.input_layernorm.weight]Loading weights:   1%|          | 3/338 [00:00<00:00, 7025.63it/s, Materializing param=layers.0.mlp.down_proj.weight]  Loading weights:   1%|          | 3/338 [00:00<00:00, 6351.80it/s, Materializing param=layers.0.mlp.down_proj.weight]Loading weights:   1%|          | 4/338 [00:00<00:00, 7197.43it/s, Materializing param=layers.0.mlp.gate_proj.weight]Loading weights:   1%|          | 4/338 [00:00<00:00, 6684.15it/s, Materializing param=layers.0.mlp.gate_proj.weight]Loading weights:   1%|▏         | 5/338 [00:00<00:00, 4777.11it/s, Materializing param=layers.0.mlp.up_proj.weight]  Loading weights:   1%|▏         | 5/338 [00:00<00:00, 4550.12it/s, Materializing param=layers.0.mlp.up_proj.weight]Loading weights:   2%|▏         | 6/338 [00:00<00:00, 5077.85it/s, Materializing param=layers.0.post_attention_layernorm.weight]Loading weights:   2%|▏         | 6/338 [00:00<00:00, 4895.12it/s, Materializing param=layers.0.post_attention_layernorm.weight]Loading weights:   2%|▏         | 7/338 [00:00<00:00, 5368.46it/s, Materializing param=layers.0.self_attn.k_proj.bias]          Loading weights:   2%|▏         | 7/338 [00:00<00:00, 5208.47it/s, Materializing param=layers.0.self_attn.k_proj.bias]Loading weights:   2%|▏         | 8/338 [00:00<00:00, 5633.72it/s, Materializing param=layers.0.self_attn.k_proj.weight]Loading weights:   2%|▏         | 8/338 [00:00<00:00, 5479.17it/s, Materializing param=layers.0.self_attn.k_proj.weight]Loading weights:   3%|▎         | 9/338 [00:00<00:00, 5001.82it/s, Materializing param=layers.0.self_attn.o_proj.weight]Loading weights:   3%|▎         | 9/338 [00:00<00:00, 4875.21it/s, Materializing param=layers.0.self_attn.o_proj.weight]Loading weights:   3%|▎         | 10/338 [00:00<00:00, 4514.37it/s, Materializing param=layers.0.self_attn.q_proj.bias] Loading weights:   3%|▎         | 10/338 [00:00<00:00, 4428.58it/s, Materializing param=layers.0.self_attn.q_proj.bias]Loading weights:   3%|▎         | 11/338 [00:00<00:00, 4712.22it/s, Materializing param=layers.0.self_attn.q_proj.weight]Loading weights:   3%|▎         | 11/338 [00:00<00:00, 4635.99it/s, Materializing param=layers.0.self_attn.q_proj.weight]Loading weights:   4%|▎         | 12/338 [00:00<00:00, 4907.53it/s, Materializing param=layers.0.self_attn.v_proj.bias]  Loading weights:   4%|▎         | 12/338 [00:00<00:00, 4833.54it/s, Materializing param=layers.0.self_attn.v_proj.bias]Loading weights:   4%|▍         | 13/338 [00:00<00:00, 5084.48it/s, Materializing param=layers.0.self_attn.v_proj.weight]Loading weights:   4%|▍         | 13/338 [00:00<00:00, 5010.66it/s, Materializing param=layers.0.self_attn.v_proj.weight]Loading weights:   4%|▍         | 14/338 [00:00<00:00, 4339.68it/s, Materializing param=layers.1.input_layernorm.weight] Loading weights:   4%|▍         | 14/338 [00:00<00:00, 4280.21it/s, Materializing param=layers.1.input_layernorm.weight]Loading weights:   4%|▍         | 15/338 [00:00<00:00, 4219.62it/s, Materializing param=layers.1.mlp.down_proj.weight]  Loading weights:   4%|▍         | 15/338 [00:00<00:00, 4170.39it/s, Materializing param=layers.1.mlp.down_proj.weight]Loading weights:   5%|▍         | 16/338 [00:00<00:00, 4356.02it/s, Materializing param=layers.1.mlp.gate_proj.weight]Loading weights:   5%|▍         | 16/338 [00:00<00:00, 4312.08it/s, Materializing param=layers.1.mlp.gate_proj.weight]Loading weights:   5%|▌         | 17/338 [00:00<00:00, 4493.80it/s, Materializing param=layers.1.mlp.up_proj.weight]  Loading weights:   5%|▌         | 17/338 [00:00<00:00, 4449.77it/s, Materializing param=layers.1.mlp.up_proj.weight]Loading weights:   5%|▌         | 18/338 [00:00<00:00, 4353.95it/s, Materializing param=layers.1.post_attention_layernorm.weight]Loading weights:   5%|▌         | 18/338 [00:00<00:00, 4060.31it/s, Materializing param=layers.1.post_attention_layernorm.weight]Loading weights:   6%|▌         | 19/338 [00:00<00:00, 4197.62it/s, Materializing param=layers.1.self_attn.k_proj.bias]          Loading weights:   6%|▌         | 19/338 [00:00<00:00, 4160.36it/s, Materializing param=layers.1.self_attn.k_proj.bias]Loading weights:   6%|▌         | 20/338 [00:00<00:00, 4309.59it/s, Materializing param=layers.1.self_attn.k_proj.weight]Loading weights:   6%|▌         | 20/338 [00:00<00:00, 4275.32it/s, Materializing param=layers.1.self_attn.k_proj.weight]Loading weights:   6%|▌         | 21/338 [00:00<00:00, 4421.71it/s, Materializing param=layers.1.self_attn.o_proj.weight]Loading weights:   6%|▌         | 21/338 [00:00<00:00, 4387.57it/s, Materializing param=layers.1.self_attn.o_proj.weight]Loading weights:   7%|▋         | 22/338 [00:00<00:00, 3611.82it/s, Materializing param=layers.1.self_attn.q_proj.bias]  Loading weights:   7%|▋         | 22/338 [00:00<00:00, 3583.48it/s, Materializing param=layers.1.self_attn.q_proj.bias]Loading weights:   7%|▋         | 23/338 [00:00<00:00, 3699.39it/s, Materializing param=layers.1.self_attn.q_proj.weight]Loading weights:   7%|▋         | 23/338 [00:00<00:00, 3676.83it/s, Materializing param=layers.1.self_attn.q_proj.weight]Loading weights:   7%|▋         | 24/338 [00:00<00:00, 3792.32it/s, Materializing param=layers.1.self_attn.v_proj.bias]  Loading weights:   7%|▋         | 24/338 [00:00<00:00, 3770.16it/s, Materializing param=layers.1.self_attn.v_proj.bias]Loading weights:   7%|▋         | 25/338 [00:00<00:00, 3883.47it/s, Materializing param=layers.1.self_attn.v_proj.weight]Loading weights:   7%|▋         | 25/338 [00:00<00:00, 3861.45it/s, Materializing param=layers.1.self_attn.v_proj.weight]Loading weights:   8%|▊         | 26/338 [00:00<00:00, 3972.75it/s, Materializing param=layers.2.input_layernorm.weight] Loading weights:   8%|▊         | 26/338 [00:00<00:00, 3945.58it/s, Materializing param=layers.2.input_layernorm.weight]Loading weights:   8%|▊         | 27/338 [00:00<00:00, 4052.03it/s, Materializing param=layers.2.mlp.down_proj.weight]  Loading weights:   8%|▊         | 27/338 [00:00<00:00, 4029.11it/s, Materializing param=layers.2.mlp.down_proj.weight]Loading weights:   8%|▊         | 28/338 [00:00<00:00, 4134.21it/s, Materializing param=layers.2.mlp.gate_proj.weight]Loading weights:   8%|▊         | 28/338 [00:00<00:00, 4111.49it/s, Materializing param=layers.2.mlp.gate_proj.weight]Loading weights:   9%|▊         | 29/338 [00:00<00:00, 3847.13it/s, Materializing param=layers.2.mlp.up_proj.weight]  Loading weights:   9%|▊         | 29/338 [00:00<00:00, 3824.15it/s, Materializing param=layers.2.mlp.up_proj.weight]Loading weights:   9%|▉         | 30/338 [00:00<00:00, 3916.98it/s, Materializing param=layers.2.post_attention_layernorm.weight]Loading weights:   9%|▉         | 30/338 [00:00<00:00, 3896.84it/s, Materializing param=layers.2.post_attention_layernorm.weight]Loading weights:   9%|▉         | 31/338 [00:00<00:00, 3989.18it/s, Materializing param=layers.2.self_attn.k_proj.bias]          Loading weights:   9%|▉         | 31/338 [00:00<00:00, 3970.18it/s, Materializing param=layers.2.self_attn.k_proj.bias]Loading weights:   9%|▉         | 32/338 [00:00<00:00, 4060.81it/s, Materializing param=layers.2.self_attn.k_proj.weight]Loading weights:   9%|▉         | 32/338 [00:00<00:00, 4041.97it/s, Materializing param=layers.2.self_attn.k_proj.weight]Loading weights:  10%|▉         | 33/338 [00:00<00:00, 4129.11it/s, Materializing param=layers.2.self_attn.o_proj.weight]Loading weights:  10%|▉         | 33/338 [00:00<00:00, 4109.62it/s, Materializing param=layers.2.self_attn.o_proj.weight]Loading weights:  10%|█         | 34/338 [00:00<00:00, 4186.67it/s, Materializing param=layers.2.self_attn.q_proj.bias]  Loading weights:  10%|█         | 34/338 [00:00<00:00, 4166.85it/s, Materializing param=layers.2.self_attn.q_proj.bias]Loading weights:  10%|█         | 35/338 [00:00<00:00, 3802.34it/s, Materializing param=layers.2.self_attn.q_proj.weight]Loading weights:  10%|█         | 35/338 [00:00<00:00, 3782.94it/s, Materializing param=layers.2.self_attn.q_proj.weight]Loading weights:  11%|█         | 36/338 [00:00<00:00, 3856.83it/s, Materializing param=layers.2.self_attn.v_proj.bias]  Loading weights:  11%|█         | 36/338 [00:00<00:00, 3839.57it/s, Materializing param=layers.2.self_attn.v_proj.bias]Loading weights:  11%|█         | 37/338 [00:00<00:00, 3913.09it/s, Materializing param=layers.2.self_attn.v_proj.weight]Loading weights:  11%|█         | 37/338 [00:00<00:00, 3896.00it/s, Materializing param=layers.2.self_attn.v_proj.weight]Loading weights:  11%|█         | 38/338 [00:00<00:00, 3968.42it/s, Materializing param=layers.3.input_layernorm.weight] Loading weights:  11%|█         | 38/338 [00:00<00:00, 3951.59it/s, Materializing param=layers.3.input_layernorm.weight]Loading weights:  12%|█▏        | 39/338 [00:00<00:00, 4023.16it/s, Materializing param=layers.3.mlp.down_proj.weight]  Loading weights:  12%|█▏        | 39/338 [00:00<00:00, 4006.51it/s, Materializing param=layers.3.mlp.down_proj.weight]Loading weights:  12%|█▏        | 40/338 [00:00<00:00, 3562.27it/s, Materializing param=layers.3.mlp.gate_proj.weight]Loading weights:  12%|█▏        | 40/338 [00:00<00:00, 3547.28it/s, Materializing param=layers.3.mlp.gate_proj.weight]Loading weights:  12%|█▏        | 41/338 [00:00<00:00, 3609.93it/s, Materializing param=layers.3.mlp.up_proj.weight]  Loading weights:  12%|█▏        | 41/338 [00:00<00:00, 3596.65it/s, Materializing param=layers.3.mlp.up_proj.weight]Loading weights:  12%|█▏        | 42/338 [00:00<00:00, 3658.81it/s, Materializing param=layers.3.post_attention_layernorm.weight]Loading weights:  12%|█▏        | 42/338 [00:00<00:00, 3645.18it/s, Materializing param=layers.3.post_attention_layernorm.weight]Loading weights:  13%|█▎        | 43/338 [00:00<00:00, 3613.82it/s, Materializing param=layers.3.self_attn.k_proj.bias]          Loading weights:  13%|█▎        | 43/338 [00:00<00:00, 3599.76it/s, Materializing param=layers.3.self_attn.k_proj.bias]Loading weights:  13%|█▎        | 44/338 [00:00<00:00, 3658.50it/s, Materializing param=layers.3.self_attn.k_proj.weight]Loading weights:  13%|█▎        | 44/338 [00:00<00:00, 3641.25it/s, Materializing param=layers.3.self_attn.k_proj.weight]Loading weights:  13%|█▎        | 45/338 [00:00<00:00, 3698.32it/s, Materializing param=layers.3.self_attn.o_proj.weight]Loading weights:  13%|█▎        | 45/338 [00:00<00:00, 3685.54it/s, Materializing param=layers.3.self_attn.o_proj.weight]Loading weights:  14%|█▎        | 46/338 [00:00<00:00, 3743.75it/s, Materializing param=layers.3.self_attn.q_proj.bias]  Loading weights:  14%|█▎        | 46/338 [00:00<00:00, 3731.37it/s, Materializing param=layers.3.self_attn.q_proj.bias]Loading weights:  14%|█▍        | 47/338 [00:00<00:00, 3787.36it/s, Materializing param=layers.3.self_attn.q_proj.weight]Loading weights:  14%|█▍        | 47/338 [00:00<00:00, 3774.53it/s, Materializing param=layers.3.self_attn.q_proj.weight]Loading weights:  14%|█▍        | 48/338 [00:00<00:00, 3831.14it/s, Materializing param=layers.3.self_attn.v_proj.bias]  Loading weights:  14%|█▍        | 48/338 [00:00<00:00, 3818.72it/s, Materializing param=layers.3.self_attn.v_proj.bias]Loading weights:  14%|█▍        | 49/338 [00:00<00:00, 3874.68it/s, Materializing param=layers.3.self_attn.v_proj.weight]Loading weights:  14%|█▍        | 49/338 [00:00<00:00, 3862.09it/s, Materializing param=layers.3.self_attn.v_proj.weight]Loading weights:  15%|█▍        | 50/338 [00:00<00:00, 3917.71it/s, Materializing param=layers.4.input_layernorm.weight] Loading weights:  15%|█▍        | 50/338 [00:00<00:00, 3905.24it/s, Materializing param=layers.4.input_layernorm.weight]Loading weights:  15%|█▌        | 51/338 [00:00<00:00, 3813.28it/s, Materializing param=layers.4.mlp.down_proj.weight]  Loading weights:  15%|█▌        | 51/338 [00:00<00:00, 3799.80it/s, Materializing param=layers.4.mlp.down_proj.weight]Loading weights:  15%|█▌        | 52/338 [00:00<00:00, 3850.57it/s, Materializing param=layers.4.mlp.gate_proj.weight]Loading weights:  15%|█▌        | 52/338 [00:00<00:00, 3838.77it/s, Materializing param=layers.4.mlp.gate_proj.weight]Loading weights:  16%|█▌        | 53/338 [00:00<00:00, 3889.66it/s, Materializing param=layers.4.mlp.up_proj.weight]  Loading weights:  16%|█▌        | 53/338 [00:00<00:00, 3877.72it/s, Materializing param=layers.4.mlp.up_proj.weight]Loading weights:  16%|█▌        | 54/338 [00:00<00:00, 3849.23it/s, Materializing param=layers.4.post_attention_layernorm.weight]Loading weights:  16%|█▌        | 54/338 [00:00<00:00, 3836.25it/s, Materializing param=layers.4.post_attention_layernorm.weight]Loading weights:  16%|█▋        | 55/338 [00:00<00:00, 3884.86it/s, Materializing param=layers.4.self_attn.k_proj.bias]          Loading weights:  16%|█▋        | 55/338 [00:00<00:00, 3873.44it/s, Materializing param=layers.4.self_attn.k_proj.bias]Loading weights:  17%|█▋        | 56/338 [00:00<00:00, 3922.53it/s, Materializing param=layers.4.self_attn.k_proj.weight]Loading weights:  17%|█▋        | 56/338 [00:00<00:00, 3911.10it/s, Materializing param=layers.4.self_attn.k_proj.weight]Loading weights:  17%|█▋        | 57/338 [00:00<00:00, 3786.79it/s, Materializing param=layers.4.self_attn.o_proj.weight]Loading weights:  17%|█▋        | 57/338 [00:00<00:00, 3775.07it/s, Materializing param=layers.4.self_attn.o_proj.weight]Loading weights:  17%|█▋        | 58/338 [00:00<00:00, 3820.67it/s, Materializing param=layers.4.self_attn.q_proj.bias]  Loading weights:  17%|█▋        | 58/338 [00:00<00:00, 3810.26it/s, Materializing param=layers.4.self_attn.q_proj.bias]Loading weights:  17%|█▋        | 59/338 [00:00<00:00, 3843.03it/s, Materializing param=layers.4.self_attn.q_proj.weight]Loading weights:  17%|█▋        | 59/338 [00:00<00:00, 3831.90it/s, Materializing param=layers.4.self_attn.q_proj.weight]Loading weights:  18%|█▊        | 60/338 [00:00<00:00, 3876.44it/s, Materializing param=layers.4.self_attn.v_proj.bias]  Loading weights:  18%|█▊        | 60/338 [00:00<00:00, 3865.90it/s, Materializing param=layers.4.self_attn.v_proj.bias]Loading weights:  18%|█▊        | 61/338 [00:00<00:00, 3749.91it/s, Materializing param=layers.4.self_attn.v_proj.weight]Loading weights:  18%|█▊        | 61/338 [00:00<00:00, 3735.89it/s, Materializing param=layers.4.self_attn.v_proj.weight]Loading weights:  18%|█▊        | 62/338 [00:00<00:00, 3776.57it/s, Materializing param=layers.5.input_layernorm.weight] Loading weights:  18%|█▊        | 62/338 [00:00<00:00, 3766.56it/s, Materializing param=layers.5.input_layernorm.weight]Loading weights:  19%|█▊        | 63/338 [00:00<00:00, 3808.83it/s, Materializing param=layers.5.mlp.down_proj.weight]  Loading weights:  19%|█▊        | 63/338 [00:00<00:00, 3799.41it/s, Materializing param=layers.5.mlp.down_proj.weight]Loading weights:  19%|█▉        | 64/338 [00:00<00:00, 3841.54it/s, Materializing param=layers.5.mlp.gate_proj.weight]Loading weights:  19%|█▉        | 64/338 [00:00<00:00, 3832.11it/s, Materializing param=layers.5.mlp.gate_proj.weight]Loading weights:  19%|█▉        | 65/338 [00:00<00:00, 3874.23it/s, Materializing param=layers.5.mlp.up_proj.weight]  Loading weights:  19%|█▉        | 65/338 [00:00<00:00, 3864.84it/s, Materializing param=layers.5.mlp.up_proj.weight]Loading weights:  20%|█▉        | 66/338 [00:00<00:00, 3786.66it/s, Materializing param=layers.5.post_attention_layernorm.weight]Loading weights:  20%|█▉        | 66/338 [00:00<00:00, 3776.02it/s, Materializing param=layers.5.post_attention_layernorm.weight]Loading weights:  20%|█▉        | 67/338 [00:00<00:00, 3725.01it/s, Materializing param=layers.5.self_attn.k_proj.bias]          Loading weights:  20%|█▉        | 67/338 [00:00<00:00, 3715.31it/s, Materializing param=layers.5.self_attn.k_proj.bias]Loading weights:  20%|██        | 68/338 [00:00<00:00, 3747.13it/s, Materializing param=layers.5.self_attn.k_proj.weight]Loading weights:  20%|██        | 68/338 [00:00<00:00, 3735.94it/s, Materializing param=layers.5.self_attn.k_proj.weight]Loading weights:  20%|██        | 69/338 [00:00<00:00, 3770.53it/s, Materializing param=layers.5.self_attn.o_proj.weight]Loading weights:  20%|██        | 69/338 [00:00<00:00, 3759.66it/s, Materializing param=layers.5.self_attn.o_proj.weight]Loading weights:  21%|██        | 70/338 [00:00<00:00, 3793.49it/s, Materializing param=layers.5.self_attn.q_proj.bias]  Loading weights:  21%|██        | 70/338 [00:00<00:00, 3782.60it/s, Materializing param=layers.5.self_attn.q_proj.bias]Loading weights:  21%|██        | 71/338 [00:00<00:00, 3724.35it/s, Materializing param=layers.5.self_attn.q_proj.weight]Loading weights:  21%|██        | 71/338 [00:00<00:00, 3712.88it/s, Materializing param=layers.5.self_attn.q_proj.weight]Loading weights:  21%|██▏       | 72/338 [00:00<00:00, 3644.49it/s, Materializing param=layers.5.self_attn.v_proj.bias]  Loading weights:  21%|██▏       | 72/338 [00:00<00:00, 3633.62it/s, Materializing param=layers.5.self_attn.v_proj.bias]Loading weights:  22%|██▏       | 73/338 [00:00<00:00, 3664.90it/s, Materializing param=layers.5.self_attn.v_proj.weight]Loading weights:  22%|██▏       | 73/338 [00:00<00:00, 3654.93it/s, Materializing param=layers.5.self_attn.v_proj.weight]Loading weights:  22%|██▏       | 74/338 [00:00<00:00, 3684.19it/s, Materializing param=layers.6.input_layernorm.weight] Loading weights:  22%|██▏       | 74/338 [00:00<00:00, 3654.01it/s, Materializing param=layers.6.input_layernorm.weight]Loading weights:  22%|██▏       | 75/338 [00:00<00:00, 3681.88it/s, Materializing param=layers.6.mlp.down_proj.weight]  Loading weights:  22%|██▏       | 75/338 [00:00<00:00, 3670.97it/s, Materializing param=layers.6.mlp.down_proj.weight]Loading weights:  22%|██▏       | 76/338 [00:00<00:00, 3700.87it/s, Materializing param=layers.6.mlp.gate_proj.weight]Loading weights:  22%|██▏       | 76/338 [00:00<00:00, 3691.31it/s, Materializing param=layers.6.mlp.gate_proj.weight]Loading weights:  23%|██▎       | 77/338 [00:00<00:00, 3722.25it/s, Materializing param=layers.6.mlp.up_proj.weight]  Loading weights:  23%|██▎       | 77/338 [00:00<00:00, 3712.84it/s, Materializing param=layers.6.mlp.up_proj.weight]Loading weights:  23%|██▎       | 78/338 [00:00<00:00, 3743.63it/s, Materializing param=layers.6.post_attention_layernorm.weight]Loading weights:  23%|██▎       | 78/338 [00:00<00:00, 3733.89it/s, Materializing param=layers.6.post_attention_layernorm.weight]Loading weights:  23%|██▎       | 79/338 [00:00<00:00, 3620.92it/s, Materializing param=layers.6.self_attn.k_proj.bias]          Loading weights:  23%|██▎       | 79/338 [00:00<00:00, 3610.97it/s, Materializing param=layers.6.self_attn.k_proj.bias]Loading weights:  24%|██▎       | 80/338 [00:00<00:00, 3639.27it/s, Materializing param=layers.6.self_attn.k_proj.weight]Loading weights:  24%|██▎       | 80/338 [00:00<00:00, 3630.33it/s, Materializing param=layers.6.self_attn.k_proj.weight]Loading weights:  24%|██▍       | 81/338 [00:00<00:00, 3659.08it/s, Materializing param=layers.6.self_attn.o_proj.weight]Loading weights:  24%|██▍       | 81/338 [00:00<00:00, 3650.32it/s, Materializing param=layers.6.self_attn.o_proj.weight]Loading weights:  24%|██▍       | 82/338 [00:00<00:00, 3679.17it/s, Materializing param=layers.6.self_attn.q_proj.bias]  Loading weights:  24%|██▍       | 82/338 [00:00<00:00, 3670.54it/s, Materializing param=layers.6.self_attn.q_proj.bias]Loading weights:  25%|██▍       | 83/338 [00:00<00:00, 3525.02it/s, Materializing param=layers.6.self_attn.q_proj.weight]Loading weights:  25%|██▍       | 83/338 [00:00<00:00, 3516.22it/s, Materializing param=layers.6.self_attn.q_proj.weight]Loading weights:  25%|██▍       | 84/338 [00:00<00:00, 3543.20it/s, Materializing param=layers.6.self_attn.v_proj.bias]  Loading weights:  25%|██▍       | 84/338 [00:00<00:00, 3535.20it/s, Materializing param=layers.6.self_attn.v_proj.bias]Loading weights:  25%|██▌       | 85/338 [00:00<00:00, 3562.52it/s, Materializing param=layers.6.self_attn.v_proj.weight]Loading weights:  25%|██▌       | 85/338 [00:00<00:00, 3554.71it/s, Materializing param=layers.6.self_attn.v_proj.weight]Loading weights:  25%|██▌       | 86/338 [00:00<00:00, 3581.85it/s, Materializing param=layers.7.input_layernorm.weight] Loading weights:  25%|██▌       | 86/338 [00:00<00:00, 3572.20it/s, Materializing param=layers.7.input_layernorm.weight]Loading weights:  26%|██▌       | 87/338 [00:00<00:00, 3597.92it/s, Materializing param=layers.7.mlp.down_proj.weight]  Loading weights:  26%|██▌       | 87/338 [00:00<00:00, 3590.02it/s, Materializing param=layers.7.mlp.down_proj.weight]Loading weights:  26%|██▌       | 88/338 [00:00<00:00, 3616.77it/s, Materializing param=layers.7.mlp.gate_proj.weight]Loading weights:  26%|██▌       | 88/338 [00:00<00:00, 3608.99it/s, Materializing param=layers.7.mlp.gate_proj.weight]Loading weights:  26%|██▋       | 89/338 [00:00<00:00, 3634.72it/s, Materializing param=layers.7.mlp.up_proj.weight]  Loading weights:  26%|██▋       | 89/338 [00:00<00:00, 3626.85it/s, Materializing param=layers.7.mlp.up_proj.weight]Loading weights:  27%|██▋       | 90/338 [00:00<00:00, 3653.43it/s, Materializing param=layers.7.post_attention_layernorm.weight]Loading weights:  27%|██▋       | 90/338 [00:00<00:00, 3645.42it/s, Materializing param=layers.7.post_attention_layernorm.weight]Loading weights:  27%|██▋       | 91/338 [00:00<00:00, 3671.53it/s, Materializing param=layers.7.self_attn.k_proj.bias]          Loading weights:  27%|██▋       | 91/338 [00:00<00:00, 3662.66it/s, Materializing param=layers.7.self_attn.k_proj.bias]Loading weights:  27%|██▋       | 92/338 [00:00<00:00, 3605.85it/s, Materializing param=layers.7.self_attn.k_proj.weight]Loading weights:  27%|██▋       | 92/338 [00:00<00:00, 3597.54it/s, Materializing param=layers.7.self_attn.k_proj.weight]Loading weights:  28%|██▊       | 93/338 [00:00<00:00, 3581.09it/s, Materializing param=layers.7.self_attn.o_proj.weight]Loading weights:  28%|██▊       | 93/338 [00:00<00:00, 3573.12it/s, Materializing param=layers.7.self_attn.o_proj.weight]Loading weights:  28%|██▊       | 94/338 [00:00<00:00, 3597.53it/s, Materializing param=layers.7.self_attn.q_proj.bias]  Loading weights:  28%|██▊       | 94/338 [00:00<00:00, 3590.16it/s, Materializing param=layers.7.self_attn.q_proj.bias]Loading weights:  28%|██▊       | 95/338 [00:00<00:00, 3614.96it/s, Materializing param=layers.7.self_attn.q_proj.weight]Loading weights:  28%|██▊       | 95/338 [00:00<00:00, 3607.73it/s, Materializing param=layers.7.self_attn.q_proj.weight]Loading weights:  28%|██▊       | 96/338 [00:00<00:00, 3632.15it/s, Materializing param=layers.7.self_attn.v_proj.bias]  Loading weights:  28%|██▊       | 96/338 [00:00<00:00, 3624.93it/s, Materializing param=layers.7.self_attn.v_proj.bias]Loading weights:  29%|██▊       | 97/338 [00:00<00:00, 3598.83it/s, Materializing param=layers.7.self_attn.v_proj.weight]Loading weights:  29%|██▊       | 97/338 [00:00<00:00, 3591.05it/s, Materializing param=layers.7.self_attn.v_proj.weight]Loading weights:  29%|██▉       | 98/338 [00:00<00:00, 3614.51it/s, Materializing param=layers.8.input_layernorm.weight] Loading weights:  29%|██▉       | 98/338 [00:00<00:00, 3607.40it/s, Materializing param=layers.8.input_layernorm.weight]Loading weights:  29%|██▉       | 99/338 [00:00<00:00, 3631.11it/s, Materializing param=layers.8.mlp.down_proj.weight]  Loading weights:  29%|██▉       | 99/338 [00:00<00:00, 3624.08it/s, Materializing param=layers.8.mlp.down_proj.weight]Loading weights:  30%|██▉       | 100/338 [00:00<00:00, 3622.87it/s, Materializing param=layers.8.mlp.gate_proj.weight]Loading weights:  30%|██▉       | 100/338 [00:00<00:00, 3615.25it/s, Materializing param=layers.8.mlp.gate_proj.weight]Loading weights:  30%|██▉       | 101/338 [00:00<00:00, 3541.89it/s, Materializing param=layers.8.mlp.up_proj.weight]  Loading weights:  30%|██▉       | 101/338 [00:00<00:00, 3514.48it/s, Materializing param=layers.8.mlp.up_proj.weight]Loading weights:  30%|███       | 102/338 [00:00<00:00, 3533.42it/s, Materializing param=layers.8.post_attention_layernorm.weight]Loading weights:  30%|███       | 102/338 [00:00<00:00, 3525.32it/s, Materializing param=layers.8.post_attention_layernorm.weight]Loading weights:  30%|███       | 103/338 [00:00<00:00, 3543.94it/s, Materializing param=layers.8.self_attn.k_proj.bias]          Loading weights:  30%|███       | 103/338 [00:00<00:00, 3536.22it/s, Materializing param=layers.8.self_attn.k_proj.bias]Loading weights:  31%|███       | 104/338 [00:00<00:00, 3556.38it/s, Materializing param=layers.8.self_attn.k_proj.weight]Loading weights:  31%|███       | 104/338 [00:00<00:00, 3548.91it/s, Materializing param=layers.8.self_attn.k_proj.weight]Loading weights:  31%|███       | 105/338 [00:00<00:00, 3569.24it/s, Materializing param=layers.8.self_attn.o_proj.weight]Loading weights:  31%|███       | 105/338 [00:00<00:00, 3561.74it/s, Materializing param=layers.8.self_attn.o_proj.weight]Loading weights:  31%|███▏      | 106/338 [00:00<00:00, 3581.76it/s, Materializing param=layers.8.self_attn.q_proj.bias]  Loading weights:  31%|███▏      | 106/338 [00:00<00:00, 3574.27it/s, Materializing param=layers.8.self_attn.q_proj.bias]Loading weights:  32%|███▏      | 107/338 [00:00<00:00, 3557.11it/s, Materializing param=layers.8.self_attn.q_proj.weight]Loading weights:  32%|███▏      | 107/338 [00:00<00:00, 3544.00it/s, Materializing param=layers.8.self_attn.q_proj.weight]Loading weights:  32%|███▏      | 108/338 [00:00<00:00, 3562.01it/s, Materializing param=layers.8.self_attn.v_proj.bias]  Loading weights:  32%|███▏      | 108/338 [00:00<00:00, 3554.58it/s, Materializing param=layers.8.self_attn.v_proj.bias]Loading weights:  32%|███▏      | 109/338 [00:00<00:00, 3391.23it/s, Materializing param=layers.8.self_attn.v_proj.weight]Loading weights:  32%|███▏      | 109/338 [00:00<00:00, 3373.74it/s, Materializing param=layers.8.self_attn.v_proj.weight]Loading weights:  33%|███▎      | 110/338 [00:00<00:00, 3388.24it/s, Materializing param=layers.9.input_layernorm.weight] Loading weights:  33%|███▎      | 110/338 [00:00<00:00, 3380.55it/s, Materializing param=layers.9.input_layernorm.weight]Loading weights:  33%|███▎      | 111/338 [00:00<00:00, 3397.56it/s, Materializing param=layers.9.mlp.down_proj.weight]  Loading weights:  33%|███▎      | 111/338 [00:00<00:00, 3390.56it/s, Materializing param=layers.9.mlp.down_proj.weight]Loading weights:  33%|███▎      | 112/338 [00:00<00:00, 3408.02it/s, Materializing param=layers.9.mlp.gate_proj.weight]Loading weights:  33%|███▎      | 112/338 [00:00<00:00, 3401.39it/s, Materializing param=layers.9.mlp.gate_proj.weight]Loading weights:  33%|███▎      | 113/338 [00:00<00:00, 3419.45it/s, Materializing param=layers.9.mlp.up_proj.weight]  Loading weights:  33%|███▎      | 113/338 [00:00<00:00, 3412.93it/s, Materializing param=layers.9.mlp.up_proj.weight]Loading weights:  34%|███▎      | 114/338 [00:00<00:00, 3431.22it/s, Materializing param=layers.9.post_attention_layernorm.weight]Loading weights:  34%|███▎      | 114/338 [00:00<00:00, 3424.53it/s, Materializing param=layers.9.post_attention_layernorm.weight]Loading weights:  34%|███▍      | 115/338 [00:00<00:00, 3442.40it/s, Materializing param=layers.9.self_attn.k_proj.bias]          Loading weights:  34%|███▍      | 115/338 [00:00<00:00, 3435.85it/s, Materializing param=layers.9.self_attn.k_proj.bias]Loading weights:  34%|███▍      | 116/338 [00:00<00:00, 3425.80it/s, Materializing param=layers.9.self_attn.k_proj.weight]Loading weights:  34%|███▍      | 116/338 [00:00<00:00, 3418.92it/s, Materializing param=layers.9.self_attn.k_proj.weight]Loading weights:  35%|███▍      | 117/338 [00:00<00:00, 3435.50it/s, Materializing param=layers.9.self_attn.o_proj.weight]Loading weights:  35%|███▍      | 117/338 [00:00<00:00, 3429.09it/s, Materializing param=layers.9.self_attn.o_proj.weight]Loading weights:  35%|███▍      | 118/338 [00:00<00:00, 3446.88it/s, Materializing param=layers.9.self_attn.q_proj.bias]  Loading weights:  35%|███▍      | 118/338 [00:00<00:00, 3440.68it/s, Materializing param=layers.9.self_attn.q_proj.bias]Loading weights:  35%|███▌      | 119/338 [00:00<00:00, 3458.46it/s, Materializing param=layers.9.self_attn.q_proj.weight]Loading weights:  35%|███▌      | 119/338 [00:00<00:00, 3452.22it/s, Materializing param=layers.9.self_attn.q_proj.weight]Loading weights:  36%|███▌      | 120/338 [00:00<00:00, 3469.93it/s, Materializing param=layers.9.self_attn.v_proj.bias]  Loading weights:  36%|███▌      | 120/338 [00:00<00:00, 3463.72it/s, Materializing param=layers.9.self_attn.v_proj.bias]Loading weights:  36%|███▌      | 121/338 [00:00<00:00, 3438.70it/s, Materializing param=layers.9.self_attn.v_proj.weight]Loading weights:  36%|███▌      | 121/338 [00:00<00:00, 3431.91it/s, Materializing param=layers.9.self_attn.v_proj.weight]Loading weights:  36%|███▌      | 122/338 [00:00<00:00, 3401.21it/s, Materializing param=layers.10.input_layernorm.weight]Loading weights:  36%|███▌      | 122/338 [00:00<00:00, 3394.73it/s, Materializing param=layers.10.input_layernorm.weight]Loading weights:  36%|███▋      | 123/338 [00:00<00:00, 3361.61it/s, Materializing param=layers.10.mlp.down_proj.weight]  Loading weights:  36%|███▋      | 123/338 [00:00<00:00, 3349.93it/s, Materializing param=layers.10.mlp.down_proj.weight]Loading weights:  37%|███▋      | 124/338 [00:00<00:00, 3363.02it/s, Materializing param=layers.10.mlp.gate_proj.weight]Loading weights:  37%|███▋      | 124/338 [00:00<00:00, 3356.09it/s, Materializing param=layers.10.mlp.gate_proj.weight]Loading weights:  37%|███▋      | 125/338 [00:00<00:00, 3337.82it/s, Materializing param=layers.10.mlp.up_proj.weight]  Loading weights:  37%|███▋      | 125/338 [00:00<00:00, 3331.16it/s, Materializing param=layers.10.mlp.up_proj.weight]Loading weights:  37%|███▋      | 126/338 [00:00<00:00, 3345.93it/s, Materializing param=layers.10.post_attention_layernorm.weight]Loading weights:  37%|███▋      | 126/338 [00:00<00:00, 3339.50it/s, Materializing param=layers.10.post_attention_layernorm.weight]Loading weights:  38%|███▊      | 127/338 [00:00<00:00, 3354.26it/s, Materializing param=layers.10.self_attn.k_proj.bias]          Loading weights:  38%|███▊      | 127/338 [00:00<00:00, 3348.42it/s, Materializing param=layers.10.self_attn.k_proj.bias]Loading weights:  38%|███▊      | 128/338 [00:00<00:00, 3363.39it/s, Materializing param=layers.10.self_attn.k_proj.weight]Loading weights:  38%|███▊      | 128/338 [00:00<00:00, 3357.60it/s, Materializing param=layers.10.self_attn.k_proj.weight]Loading weights:  38%|███▊      | 129/338 [00:00<00:00, 3372.61it/s, Materializing param=layers.10.self_attn.o_proj.weight]Loading weights:  38%|███▊      | 129/338 [00:00<00:00, 3366.86it/s, Materializing param=layers.10.self_attn.o_proj.weight]Loading weights:  38%|███▊      | 130/338 [00:00<00:00, 3382.31it/s, Materializing param=layers.10.self_attn.q_proj.bias]  Loading weights:  38%|███▊      | 130/338 [00:00<00:00, 3376.41it/s, Materializing param=layers.10.self_attn.q_proj.bias]Loading weights:  39%|███▉      | 131/338 [00:00<00:00, 3389.18it/s, Materializing param=layers.10.self_attn.q_proj.weight]Loading weights:  39%|███▉      | 131/338 [00:00<00:00, 3382.79it/s, Materializing param=layers.10.self_attn.q_proj.weight]Loading weights:  39%|███▉      | 132/338 [00:00<00:00, 3350.45it/s, Materializing param=layers.10.self_attn.v_proj.bias]  Loading weights:  39%|███▉      | 132/338 [00:00<00:00, 3342.20it/s, Materializing param=layers.10.self_attn.v_proj.bias]Loading weights:  39%|███▉      | 133/338 [00:00<00:00, 3354.56it/s, Materializing param=layers.10.self_attn.v_proj.weight]Loading weights:  39%|███▉      | 133/338 [00:00<00:00, 3348.25it/s, Materializing param=layers.10.self_attn.v_proj.weight]Loading weights:  40%|███▉      | 134/338 [00:00<00:00, 3361.77it/s, Materializing param=layers.11.input_layernorm.weight] Loading weights:  40%|███▉      | 134/338 [00:00<00:00, 3355.46it/s, Materializing param=layers.11.input_layernorm.weight]Loading weights:  40%|███▉      | 135/338 [00:00<00:00, 3367.24it/s, Materializing param=layers.11.mlp.down_proj.weight]  Loading weights:  40%|███▉      | 135/338 [00:00<00:00, 3359.31it/s, Materializing param=layers.11.mlp.down_proj.weight]Loading weights:  40%|████      | 136/338 [00:00<00:00, 3351.48it/s, Materializing param=layers.11.mlp.gate_proj.weight]Loading weights:  40%|████      | 136/338 [00:00<00:00, 3298.32it/s, Materializing param=layers.11.mlp.gate_proj.weight]Loading weights:  41%|████      | 137/338 [00:00<00:00, 3285.44it/s, Materializing param=layers.11.mlp.up_proj.weight]  Loading weights:  41%|████      | 137/338 [00:00<00:00, 3242.21it/s, Materializing param=layers.11.mlp.up_proj.weight]Loading weights:  41%|████      | 138/338 [00:00<00:00, 3249.37it/s, Materializing param=layers.11.post_attention_layernorm.weight]Loading weights:  41%|████      | 138/338 [00:00<00:00, 3227.90it/s, Materializing param=layers.11.post_attention_layernorm.weight]Loading weights:  41%|████      | 139/338 [00:00<00:00, 3237.73it/s, Materializing param=layers.11.self_attn.k_proj.bias]          Loading weights:  41%|████      | 139/338 [00:00<00:00, 3231.61it/s, Materializing param=layers.11.self_attn.k_proj.bias]Loading weights:  41%|████▏     | 140/338 [00:00<00:00, 3243.55it/s, Materializing param=layers.11.self_attn.k_proj.weight]Loading weights:  41%|████▏     | 140/338 [00:00<00:00, 3237.88it/s, Materializing param=layers.11.self_attn.k_proj.weight]Loading weights:  42%|████▏     | 141/338 [00:00<00:00, 3247.26it/s, Materializing param=layers.11.self_attn.o_proj.weight]Loading weights:  42%|████▏     | 141/338 [00:00<00:00, 3241.56it/s, Materializing param=layers.11.self_attn.o_proj.weight]Loading weights:  42%|████▏     | 142/338 [00:00<00:00, 3226.11it/s, Materializing param=layers.11.self_attn.q_proj.bias]  Loading weights:  42%|████▏     | 142/338 [00:00<00:00, 3217.34it/s, Materializing param=layers.11.self_attn.q_proj.bias]Loading weights:  42%|████▏     | 143/338 [00:00<00:00, 3228.07it/s, Materializing param=layers.11.self_attn.q_proj.weight]Loading weights:  42%|████▏     | 143/338 [00:00<00:00, 3222.59it/s, Materializing param=layers.11.self_attn.q_proj.weight]Loading weights:  43%|████▎     | 144/338 [00:00<00:00, 3234.66it/s, Materializing param=layers.11.self_attn.v_proj.bias]  Loading weights:  43%|████▎     | 144/338 [00:00<00:00, 3229.34it/s, Materializing param=layers.11.self_attn.v_proj.bias]Loading weights:  43%|████▎     | 145/338 [00:00<00:00, 3241.68it/s, Materializing param=layers.11.self_attn.v_proj.weight]Loading weights:  43%|████▎     | 145/338 [00:00<00:00, 3236.48it/s, Materializing param=layers.11.self_attn.v_proj.weight]Loading weights:  43%|████▎     | 146/338 [00:00<00:00, 3249.12it/s, Materializing param=layers.12.input_layernorm.weight] Loading weights:  43%|████▎     | 146/338 [00:00<00:00, 3243.77it/s, Materializing param=layers.12.input_layernorm.weight]Loading weights:  43%|████▎     | 147/338 [00:00<00:00, 3256.07it/s, Materializing param=layers.12.mlp.down_proj.weight]  Loading weights:  43%|████▎     | 147/338 [00:00<00:00, 3250.87it/s, Materializing param=layers.12.mlp.down_proj.weight]Loading weights:  44%|████▍     | 148/338 [00:00<00:00, 3262.93it/s, Materializing param=layers.12.mlp.gate_proj.weight]Loading weights:  44%|████▍     | 148/338 [00:00<00:00, 3257.75it/s, Materializing param=layers.12.mlp.gate_proj.weight]Loading weights:  44%|████▍     | 149/338 [00:00<00:00, 3269.87it/s, Materializing param=layers.12.mlp.up_proj.weight]  Loading weights:  44%|████▍     | 149/338 [00:00<00:00, 3264.89it/s, Materializing param=layers.12.mlp.up_proj.weight]Loading weights:  44%|████▍     | 150/338 [00:00<00:00, 3277.07it/s, Materializing param=layers.12.post_attention_layernorm.weight]Loading weights:  44%|████▍     | 150/338 [00:00<00:00, 3271.59it/s, Materializing param=layers.12.post_attention_layernorm.weight]Loading weights:  45%|████▍     | 151/338 [00:00<00:00, 3283.29it/s, Materializing param=layers.12.self_attn.k_proj.bias]          Loading weights:  45%|████▍     | 151/338 [00:00<00:00, 3278.24it/s, Materializing param=layers.12.self_attn.k_proj.bias]Loading weights:  45%|████▍     | 152/338 [00:00<00:00, 3230.65it/s, Materializing param=layers.12.self_attn.k_proj.weight]Loading weights:  45%|████▍     | 152/338 [00:00<00:00, 3223.50it/s, Materializing param=layers.12.self_attn.k_proj.weight]Loading weights:  45%|████▌     | 153/338 [00:00<00:00, 3224.13it/s, Materializing param=layers.12.self_attn.o_proj.weight]Loading weights:  45%|████▌     | 153/338 [00:00<00:00, 3218.59it/s, Materializing param=layers.12.self_attn.o_proj.weight]Loading weights:  46%|████▌     | 154/338 [00:00<00:00, 3227.69it/s, Materializing param=layers.12.self_attn.q_proj.bias]  Loading weights:  46%|████▌     | 154/338 [00:00<00:00, 3214.01it/s, Materializing param=layers.12.self_attn.q_proj.bias]Loading weights:  46%|████▌     | 155/338 [00:00<00:00, 3198.25it/s, Materializing param=layers.12.self_attn.q_proj.weight]Loading weights:  46%|████▌     | 155/338 [00:00<00:00, 3192.03it/s, Materializing param=layers.12.self_attn.q_proj.weight]Loading weights:  46%|████▌     | 156/338 [00:00<00:00, 3202.31it/s, Materializing param=layers.12.self_attn.v_proj.bias]  Loading weights:  46%|████▌     | 156/338 [00:00<00:00, 3197.55it/s, Materializing param=layers.12.self_attn.v_proj.bias]Loading weights:  46%|████▋     | 157/338 [00:00<00:00, 3209.26it/s, Materializing param=layers.12.self_attn.v_proj.weight]Loading weights:  46%|████▋     | 157/338 [00:00<00:00, 3204.84it/s, Materializing param=layers.12.self_attn.v_proj.weight]Loading weights:  47%|████▋     | 158/338 [00:00<00:00, 3216.87it/s, Materializing param=layers.13.input_layernorm.weight] Loading weights:  47%|████▋     | 158/338 [00:00<00:00, 3212.55it/s, Materializing param=layers.13.input_layernorm.weight]Loading weights:  47%|████▋     | 159/338 [00:00<00:00, 3222.37it/s, Materializing param=layers.13.mlp.down_proj.weight]  Loading weights:  47%|████▋     | 159/338 [00:00<00:00, 3203.90it/s, Materializing param=layers.13.mlp.down_proj.weight]Loading weights:  47%|████▋     | 160/338 [00:00<00:00, 3141.80it/s, Materializing param=layers.13.mlp.gate_proj.weight]Loading weights:  47%|████▋     | 160/338 [00:00<00:00, 3127.95it/s, Materializing param=layers.13.mlp.gate_proj.weight]Loading weights:  48%|████▊     | 161/338 [00:00<00:00, 3137.38it/s, Materializing param=layers.13.mlp.up_proj.weight]  Loading weights:  48%|████▊     | 161/338 [00:00<00:00, 3126.45it/s, Materializing param=layers.13.mlp.up_proj.weight]Loading weights:  48%|████▊     | 162/338 [00:00<00:00, 3132.85it/s, Materializing param=layers.13.post_attention_layernorm.weight]Loading weights:  48%|████▊     | 162/338 [00:00<00:00, 3128.07it/s, Materializing param=layers.13.post_attention_layernorm.weight]Loading weights:  48%|████▊     | 163/338 [00:00<00:00, 3139.09it/s, Materializing param=layers.13.self_attn.k_proj.bias]          Loading weights:  48%|████▊     | 163/338 [00:00<00:00, 3134.97it/s, Materializing param=layers.13.self_attn.k_proj.bias]Loading weights:  49%|████▊     | 164/338 [00:00<00:00, 3145.21it/s, Materializing param=layers.13.self_attn.k_proj.weight]Loading weights:  49%|████▊     | 164/338 [00:00<00:00, 3140.57it/s, Materializing param=layers.13.self_attn.k_proj.weight]Loading weights:  49%|████▉     | 165/338 [00:00<00:00, 3149.84it/s, Materializing param=layers.13.self_attn.o_proj.weight]Loading weights:  49%|████▉     | 165/338 [00:00<00:00, 3130.88it/s, Materializing param=layers.13.self_attn.o_proj.weight]Loading weights:  49%|████▉     | 166/338 [00:00<00:00, 3138.95it/s, Materializing param=layers.13.self_attn.q_proj.bias]  Loading weights:  49%|████▉     | 166/338 [00:00<00:00, 3126.79it/s, Materializing param=layers.13.self_attn.q_proj.bias]Loading weights:  49%|████▉     | 167/338 [00:00<00:00, 3136.97it/s, Materializing param=layers.13.self_attn.q_proj.weight]Loading weights:  49%|████▉     | 167/338 [00:00<00:00, 3133.00it/s, Materializing param=layers.13.self_attn.q_proj.weight]Loading weights:  50%|████▉     | 168/338 [00:00<00:00, 3131.40it/s, Materializing param=layers.13.self_attn.v_proj.bias]  Loading weights:  50%|████▉     | 168/338 [00:00<00:00, 3121.45it/s, Materializing param=layers.13.self_attn.v_proj.bias]Loading weights:  50%|█████     | 169/338 [00:00<00:00, 3130.70it/s, Materializing param=layers.13.self_attn.v_proj.weight]Loading weights:  50%|█████     | 169/338 [00:00<00:00, 3126.64it/s, Materializing param=layers.13.self_attn.v_proj.weight]Loading weights:  50%|█████     | 170/338 [00:00<00:00, 3137.61it/s, Materializing param=layers.14.input_layernorm.weight] Loading weights:  50%|█████     | 170/338 [00:00<00:00, 3133.63it/s, Materializing param=layers.14.input_layernorm.weight]Loading weights:  51%|█████     | 171/338 [00:00<00:00, 3144.47it/s, Materializing param=layers.14.mlp.down_proj.weight]  Loading weights:  51%|█████     | 171/338 [00:00<00:00, 3140.60it/s, Materializing param=layers.14.mlp.down_proj.weight]Loading weights:  51%|█████     | 172/338 [00:00<00:00, 3151.59it/s, Materializing param=layers.14.mlp.gate_proj.weight]Loading weights:  51%|█████     | 172/338 [00:00<00:00, 3147.90it/s, Materializing param=layers.14.mlp.gate_proj.weight]Loading weights:  51%|█████     | 173/338 [00:00<00:00, 3158.75it/s, Materializing param=layers.14.mlp.up_proj.weight]  Loading weights:  51%|█████     | 173/338 [00:00<00:00, 3155.02it/s, Materializing param=layers.14.mlp.up_proj.weight]Loading weights:  51%|█████▏    | 174/338 [00:00<00:00, 3166.30it/s, Materializing param=layers.14.post_attention_layernorm.weight]Loading weights:  51%|█████▏    | 174/338 [00:00<00:00, 3162.28it/s, Materializing param=layers.14.post_attention_layernorm.weight]Loading weights:  52%|█████▏    | 175/338 [00:00<00:00, 3173.23it/s, Materializing param=layers.14.self_attn.k_proj.bias]          Loading weights:  52%|█████▏    | 175/338 [00:00<00:00, 3169.34it/s, Materializing param=layers.14.self_attn.k_proj.bias]Loading weights:  52%|█████▏    | 176/338 [00:00<00:00, 3180.06it/s, Materializing param=layers.14.self_attn.k_proj.weight]Loading weights:  52%|█████▏    | 176/338 [00:00<00:00, 3176.26it/s, Materializing param=layers.14.self_attn.k_proj.weight]Loading weights:  52%|█████▏    | 177/338 [00:00<00:00, 3187.08it/s, Materializing param=layers.14.self_attn.o_proj.weight]Loading weights:  52%|█████▏    | 177/338 [00:00<00:00, 3183.31it/s, Materializing param=layers.14.self_attn.o_proj.weight]Loading weights:  53%|█████▎    | 178/338 [00:00<00:00, 3194.09it/s, Materializing param=layers.14.self_attn.q_proj.bias]  Loading weights:  53%|█████▎    | 178/338 [00:00<00:00, 3190.17it/s, Materializing param=layers.14.self_attn.q_proj.bias]Loading weights:  53%|█████▎    | 179/338 [00:00<00:00, 3197.35it/s, Materializing param=layers.14.self_attn.q_proj.weight]Loading weights:  53%|█████▎    | 179/338 [00:00<00:00, 3177.60it/s, Materializing param=layers.14.self_attn.q_proj.weight]Loading weights:  53%|█████▎    | 180/338 [00:00<00:00, 3179.28it/s, Materializing param=layers.14.self_attn.v_proj.bias]  Loading weights:  53%|█████▎    | 180/338 [00:00<00:00, 3163.54it/s, Materializing param=layers.14.self_attn.v_proj.bias]Loading weights:  54%|█████▎    | 181/338 [00:00<00:00, 3141.90it/s, Materializing param=layers.14.self_attn.v_proj.weight]Loading weights:  54%|█████▎    | 181/338 [00:00<00:00, 3121.45it/s, Materializing param=layers.14.self_attn.v_proj.weight]Loading weights:  54%|█████▍    | 182/338 [00:00<00:00, 3129.78it/s, Materializing param=layers.15.input_layernorm.weight] Loading weights:  54%|█████▍    | 182/338 [00:00<00:00, 3109.30it/s, Materializing param=layers.15.input_layernorm.weight]Loading weights:  54%|█████▍    | 183/338 [00:00<00:00, 3107.52it/s, Materializing param=layers.15.mlp.down_proj.weight]  Loading weights:  54%|█████▍    | 183/338 [00:00<00:00, 3103.22it/s, Materializing param=layers.15.mlp.down_proj.weight]Loading weights:  54%|█████▍    | 184/338 [00:00<00:00, 3097.60it/s, Materializing param=layers.15.mlp.gate_proj.weight]Loading weights:  54%|█████▍    | 184/338 [00:00<00:00, 3077.06it/s, Materializing param=layers.15.mlp.gate_proj.weight]Loading weights:  55%|█████▍    | 185/338 [00:00<00:00, 3084.79it/s, Materializing param=layers.15.mlp.up_proj.weight]  Loading weights:  55%|█████▍    | 185/338 [00:00<00:00, 3070.65it/s, Materializing param=layers.15.mlp.up_proj.weight]Loading weights:  55%|█████▌    | 186/338 [00:00<00:00, 3048.10it/s, Materializing param=layers.15.post_attention_layernorm.weight]Loading weights:  55%|█████▌    | 186/338 [00:00<00:00, 3029.34it/s, Materializing param=layers.15.post_attention_layernorm.weight]Loading weights:  55%|█████▌    | 187/338 [00:00<00:00, 3037.91it/s, Materializing param=layers.15.self_attn.k_proj.bias]          Loading weights:  55%|█████▌    | 187/338 [00:00<00:00, 3029.07it/s, Materializing param=layers.15.self_attn.k_proj.bias]Loading weights:  56%|█████▌    | 188/338 [00:00<00:00, 3018.26it/s, Materializing param=layers.15.self_attn.k_proj.weight]Loading weights:  56%|█████▌    | 188/338 [00:00<00:00, 3007.35it/s, Materializing param=layers.15.self_attn.k_proj.weight]Loading weights:  56%|█████▌    | 189/338 [00:00<00:00, 3016.34it/s, Materializing param=layers.15.self_attn.o_proj.weight]Loading weights:  56%|█████▌    | 189/338 [00:00<00:00, 3013.09it/s, Materializing param=layers.15.self_attn.o_proj.weight]Loading weights:  56%|█████▌    | 190/338 [00:00<00:00, 3000.34it/s, Materializing param=layers.15.self_attn.q_proj.bias]  Loading weights:  56%|█████▌    | 190/338 [00:00<00:00, 2985.92it/s, Materializing param=layers.15.self_attn.q_proj.bias]Loading weights:  57%|█████▋    | 191/338 [00:00<00:00, 2987.57it/s, Materializing param=layers.15.self_attn.q_proj.weight]Loading weights:  57%|█████▋    | 191/338 [00:00<00:00, 2976.92it/s, Materializing param=layers.15.self_attn.q_proj.weight]Loading weights:  57%|█████▋    | 192/338 [00:00<00:00, 2971.29it/s, Materializing param=layers.15.self_attn.v_proj.bias]  Loading weights:  57%|█████▋    | 192/338 [00:00<00:00, 2944.74it/s, Materializing param=layers.15.self_attn.v_proj.bias]Loading weights:  57%|█████▋    | 193/338 [00:00<00:00, 2946.68it/s, Materializing param=layers.15.self_attn.v_proj.weight]Loading weights:  57%|█████▋    | 193/338 [00:00<00:00, 2934.75it/s, Materializing param=layers.15.self_attn.v_proj.weight]Loading weights:  57%|█████▋    | 194/338 [00:00<00:00, 2937.04it/s, Materializing param=layers.16.input_layernorm.weight] Loading weights:  57%|█████▋    | 194/338 [00:00<00:00, 2932.52it/s, Materializing param=layers.16.input_layernorm.weight]Loading weights:  58%|█████▊    | 195/338 [00:00<00:00, 2941.39it/s, Materializing param=layers.16.mlp.down_proj.weight]  Loading weights:  58%|█████▊    | 195/338 [00:00<00:00, 2932.75it/s, Materializing param=layers.16.mlp.down_proj.weight]Loading weights:  58%|█████▊    | 196/338 [00:00<00:00, 2941.54it/s, Materializing param=layers.16.mlp.gate_proj.weight]Loading weights:  58%|█████▊    | 196/338 [00:00<00:00, 2924.42it/s, Materializing param=layers.16.mlp.gate_proj.weight]Loading weights:  58%|█████▊    | 197/338 [00:00<00:00, 2930.55it/s, Materializing param=layers.16.mlp.up_proj.weight]  Loading weights:  58%|█████▊    | 197/338 [00:00<00:00, 2927.44it/s, Materializing param=layers.16.mlp.up_proj.weight]Loading weights:  59%|█████▊    | 198/338 [00:00<00:00, 2936.74it/s, Materializing param=layers.16.post_attention_layernorm.weight]Loading weights:  59%|█████▊    | 198/338 [00:00<00:00, 2933.91it/s, Materializing param=layers.16.post_attention_layernorm.weight]Loading weights:  59%|█████▉    | 199/338 [00:00<00:00, 2943.45it/s, Materializing param=layers.16.self_attn.k_proj.bias]          Loading weights:  59%|█████▉    | 199/338 [00:00<00:00, 2936.25it/s, Materializing param=layers.16.self_attn.k_proj.bias]Loading weights:  59%|█████▉    | 200/338 [00:00<00:00, 2930.46it/s, Materializing param=layers.16.self_attn.k_proj.weight]Loading weights:  59%|█████▉    | 200/338 [00:00<00:00, 2916.16it/s, Materializing param=layers.16.self_attn.k_proj.weight]Loading weights:  59%|█████▉    | 201/338 [00:00<00:00, 2923.66it/s, Materializing param=layers.16.self_attn.o_proj.weight]Loading weights:  59%|█████▉    | 201/338 [00:00<00:00, 2920.48it/s, Materializing param=layers.16.self_attn.o_proj.weight]Loading weights:  60%|█████▉    | 202/338 [00:00<00:00, 2928.97it/s, Materializing param=layers.16.self_attn.q_proj.bias]  Loading weights:  60%|█████▉    | 202/338 [00:00<00:00, 2925.89it/s, Materializing param=layers.16.self_attn.q_proj.bias]Loading weights:  60%|██████    | 203/338 [00:00<00:00, 2922.93it/s, Materializing param=layers.16.self_attn.q_proj.weight]Loading weights:  60%|██████    | 203/338 [00:00<00:00, 2914.98it/s, Materializing param=layers.16.self_attn.q_proj.weight]Loading weights:  60%|██████    | 204/338 [00:00<00:00, 2922.74it/s, Materializing param=layers.16.self_attn.v_proj.bias]  Loading weights:  60%|██████    | 204/338 [00:00<00:00, 2919.70it/s, Materializing param=layers.16.self_attn.v_proj.bias]Loading weights:  61%|██████    | 205/338 [00:00<00:00, 2928.16it/s, Materializing param=layers.16.self_attn.v_proj.weight]Loading weights:  61%|██████    | 205/338 [00:00<00:00, 2925.23it/s, Materializing param=layers.16.self_attn.v_proj.weight]Loading weights:  61%|██████    | 206/338 [00:00<00:00, 2933.91it/s, Materializing param=layers.17.input_layernorm.weight] Loading weights:  61%|██████    | 206/338 [00:00<00:00, 2918.95it/s, Materializing param=layers.17.input_layernorm.weight]Loading weights:  61%|██████    | 207/338 [00:00<00:00, 2919.28it/s, Materializing param=layers.17.mlp.down_proj.weight]  Loading weights:  61%|██████    | 207/338 [00:00<00:00, 2910.37it/s, Materializing param=layers.17.mlp.down_proj.weight]Loading weights:  62%|██████▏   | 208/338 [00:00<00:00, 2917.79it/s, Materializing param=layers.17.mlp.gate_proj.weight]Loading weights:  62%|██████▏   | 208/338 [00:00<00:00, 2914.78it/s, Materializing param=layers.17.mlp.gate_proj.weight]Loading weights:  62%|██████▏   | 209/338 [00:00<00:00, 2923.04it/s, Materializing param=layers.17.mlp.up_proj.weight]  Loading weights:  62%|██████▏   | 209/338 [00:00<00:00, 2920.16it/s, Materializing param=layers.17.mlp.up_proj.weight]Loading weights:  62%|██████▏   | 210/338 [00:00<00:00, 2928.47it/s, Materializing param=layers.17.post_attention_layernorm.weight]Loading weights:  62%|██████▏   | 210/338 [00:00<00:00, 2925.57it/s, Materializing param=layers.17.post_attention_layernorm.weight]Loading weights:  62%|██████▏   | 211/338 [00:00<00:00, 2934.05it/s, Materializing param=layers.17.self_attn.k_proj.bias]          Loading weights:  62%|██████▏   | 211/338 [00:00<00:00, 2931.13it/s, Materializing param=layers.17.self_attn.k_proj.bias]Loading weights:  63%|██████▎   | 212/338 [00:00<00:00, 2938.93it/s, Materializing param=layers.17.self_attn.k_proj.weight]Loading weights:  63%|██████▎   | 212/338 [00:00<00:00, 2930.94it/s, Materializing param=layers.17.self_attn.k_proj.weight]Loading weights:  63%|██████▎   | 213/338 [00:00<00:00, 2938.60it/s, Materializing param=layers.17.self_attn.o_proj.weight]Loading weights:  63%|██████▎   | 213/338 [00:00<00:00, 2935.72it/s, Materializing param=layers.17.self_attn.o_proj.weight]Loading weights:  63%|██████▎   | 214/338 [00:00<00:00, 2937.96it/s, Materializing param=layers.17.self_attn.q_proj.bias]  Loading weights:  63%|██████▎   | 214/338 [00:00<00:00, 2929.00it/s, Materializing param=layers.17.self_attn.q_proj.bias]Loading weights:  64%|██████▎   | 215/338 [00:00<00:00, 2936.35it/s, Materializing param=layers.17.self_attn.q_proj.weight]Loading weights:  64%|██████▎   | 215/338 [00:00<00:00, 2926.76it/s, Materializing param=layers.17.self_attn.q_proj.weight]Loading weights:  64%|██████▍   | 216/338 [00:00<00:00, 2918.36it/s, Materializing param=layers.17.self_attn.v_proj.bias]  Loading weights:  64%|██████▍   | 216/338 [00:00<00:00, 2915.06it/s, Materializing param=layers.17.self_attn.v_proj.bias]Loading weights:  64%|██████▍   | 217/338 [00:00<00:00, 2922.93it/s, Materializing param=layers.17.self_attn.v_proj.weight]Loading weights:  64%|██████▍   | 217/338 [00:00<00:00, 2919.98it/s, Materializing param=layers.17.self_attn.v_proj.weight]Loading weights:  64%|██████▍   | 218/338 [00:00<00:00, 2927.84it/s, Materializing param=layers.18.input_layernorm.weight] Loading weights:  64%|██████▍   | 218/338 [00:00<00:00, 2924.97it/s, Materializing param=layers.18.input_layernorm.weight]Loading weights:  65%|██████▍   | 219/338 [00:00<00:00, 2932.98it/s, Materializing param=layers.18.mlp.down_proj.weight]  Loading weights:  65%|██████▍   | 219/338 [00:00<00:00, 2930.23it/s, Materializing param=layers.18.mlp.down_proj.weight]Loading weights:  65%|██████▌   | 220/338 [00:00<00:00, 2938.24it/s, Materializing param=layers.18.mlp.gate_proj.weight]Loading weights:  65%|██████▌   | 220/338 [00:00<00:00, 2935.55it/s, Materializing param=layers.18.mlp.gate_proj.weight]Loading weights:  65%|██████▌   | 221/338 [00:00<00:00, 2943.75it/s, Materializing param=layers.18.mlp.up_proj.weight]  Loading weights:  65%|██████▌   | 221/338 [00:00<00:00, 2940.94it/s, Materializing param=layers.18.mlp.up_proj.weight]Loading weights:  66%|██████▌   | 222/338 [00:00<00:00, 2948.98it/s, Materializing param=layers.18.post_attention_layernorm.weight]Loading weights:  66%|██████▌   | 222/338 [00:00<00:00, 2946.16it/s, Materializing param=layers.18.post_attention_layernorm.weight]Loading weights:  66%|██████▌   | 223/338 [00:00<00:00, 2954.25it/s, Materializing param=layers.18.self_attn.k_proj.bias]          Loading weights:  66%|██████▌   | 223/338 [00:00<00:00, 2951.56it/s, Materializing param=layers.18.self_attn.k_proj.bias]Loading weights:  66%|██████▋   | 224/338 [00:00<00:00, 2959.66it/s, Materializing param=layers.18.self_attn.k_proj.weight]Loading weights:  66%|██████▋   | 224/338 [00:00<00:00, 2956.92it/s, Materializing param=layers.18.self_attn.k_proj.weight]Loading weights:  67%|██████▋   | 225/338 [00:00<00:00, 2965.00it/s, Materializing param=layers.18.self_attn.o_proj.weight]Loading weights:  67%|██████▋   | 225/338 [00:00<00:00, 2962.24it/s, Materializing param=layers.18.self_attn.o_proj.weight]Loading weights:  67%|██████▋   | 226/338 [00:00<00:00, 2969.52it/s, Materializing param=layers.18.self_attn.q_proj.bias]  Loading weights:  67%|██████▋   | 226/338 [00:00<00:00, 2966.36it/s, Materializing param=layers.18.self_attn.q_proj.bias]Loading weights:  67%|██████▋   | 227/338 [00:00<00:00, 2973.96it/s, Materializing param=layers.18.self_attn.q_proj.weight]Loading weights:  67%|██████▋   | 227/338 [00:00<00:00, 2971.33it/s, Materializing param=layers.18.self_attn.q_proj.weight]Loading weights:  67%|██████▋   | 228/338 [00:00<00:00, 2979.29it/s, Materializing param=layers.18.self_attn.v_proj.bias]  Loading weights:  67%|██████▋   | 228/338 [00:00<00:00, 2976.67it/s, Materializing param=layers.18.self_attn.v_proj.bias]Loading weights:  68%|██████▊   | 229/338 [00:00<00:00, 2969.01it/s, Materializing param=layers.18.self_attn.v_proj.weight]Loading weights:  68%|██████▊   | 229/338 [00:00<00:00, 2952.11it/s, Materializing param=layers.18.self_attn.v_proj.weight]Loading weights:  68%|██████▊   | 230/338 [00:00<00:00, 2955.52it/s, Materializing param=layers.19.input_layernorm.weight] Loading weights:  68%|██████▊   | 230/338 [00:00<00:00, 2944.50it/s, Materializing param=layers.19.input_layernorm.weight]Loading weights:  68%|██████▊   | 231/338 [00:00<00:00, 2951.08it/s, Materializing param=layers.19.mlp.down_proj.weight]  Loading weights:  68%|██████▊   | 231/338 [00:00<00:00, 2948.33it/s, Materializing param=layers.19.mlp.down_proj.weight]Loading weights:  69%|██████▊   | 232/338 [00:00<00:00, 2956.16it/s, Materializing param=layers.19.mlp.gate_proj.weight]Loading weights:  69%|██████▊   | 232/338 [00:00<00:00, 2953.65it/s, Materializing param=layers.19.mlp.gate_proj.weight]Loading weights:  69%|██████▉   | 233/338 [00:00<00:00, 2961.59it/s, Materializing param=layers.19.mlp.up_proj.weight]  Loading weights:  69%|██████▉   | 233/338 [00:00<00:00, 2958.97it/s, Materializing param=layers.19.mlp.up_proj.weight]Loading weights:  69%|██████▉   | 234/338 [00:00<00:00, 2967.61it/s, Materializing param=layers.19.post_attention_layernorm.weight]Loading weights:  69%|██████▉   | 234/338 [00:00<00:00, 2965.34it/s, Materializing param=layers.19.post_attention_layernorm.weight]Loading weights:  70%|██████▉   | 235/338 [00:00<00:00, 2973.91it/s, Materializing param=layers.19.self_attn.k_proj.bias]          Loading weights:  70%|██████▉   | 235/338 [00:00<00:00, 2971.72it/s, Materializing param=layers.19.self_attn.k_proj.bias]Loading weights:  70%|██████▉   | 236/338 [00:00<00:00, 2980.37it/s, Materializing param=layers.19.self_attn.k_proj.weight]Loading weights:  70%|██████▉   | 236/338 [00:00<00:00, 2978.22it/s, Materializing param=layers.19.self_attn.k_proj.weight]Loading weights:  70%|███████   | 237/338 [00:00<00:00, 2986.89it/s, Materializing param=layers.19.self_attn.o_proj.weight]Loading weights:  70%|███████   | 237/338 [00:00<00:00, 2984.74it/s, Materializing param=layers.19.self_attn.o_proj.weight]Loading weights:  70%|███████   | 238/338 [00:00<00:00, 2993.35it/s, Materializing param=layers.19.self_attn.q_proj.bias]  Loading weights:  70%|███████   | 238/338 [00:00<00:00, 2991.20it/s, Materializing param=layers.19.self_attn.q_proj.bias]Loading weights:  71%|███████   | 239/338 [00:00<00:00, 2999.74it/s, Materializing param=layers.19.self_attn.q_proj.weight]Loading weights:  71%|███████   | 239/338 [00:00<00:00, 2997.58it/s, Materializing param=layers.19.self_attn.q_proj.weight]Loading weights:  71%|███████   | 240/338 [00:00<00:00, 3006.22it/s, Materializing param=layers.19.self_attn.v_proj.bias]  Loading weights:  71%|███████   | 240/338 [00:00<00:00, 3004.11it/s, Materializing param=layers.19.self_attn.v_proj.bias]Loading weights:  71%|███████▏  | 241/338 [00:00<00:00, 3012.73it/s, Materializing param=layers.19.self_attn.v_proj.weight]Loading weights:  71%|███████▏  | 241/338 [00:00<00:00, 3010.61it/s, Materializing param=layers.19.self_attn.v_proj.weight]Loading weights:  72%|███████▏  | 242/338 [00:00<00:00, 3018.01it/s, Materializing param=layers.20.input_layernorm.weight] Loading weights:  72%|███████▏  | 242/338 [00:00<00:00, 3015.84it/s, Materializing param=layers.20.input_layernorm.weight]Loading weights:  72%|███████▏  | 243/338 [00:00<00:00, 3024.27it/s, Materializing param=layers.20.mlp.down_proj.weight]  Loading weights:  72%|███████▏  | 243/338 [00:00<00:00, 3022.15it/s, Materializing param=layers.20.mlp.down_proj.weight]Loading weights:  72%|███████▏  | 244/338 [00:00<00:00, 3030.17it/s, Materializing param=layers.20.mlp.gate_proj.weight]Loading weights:  72%|███████▏  | 244/338 [00:00<00:00, 3028.00it/s, Materializing param=layers.20.mlp.gate_proj.weight]Loading weights:  72%|███████▏  | 245/338 [00:00<00:00, 3036.52it/s, Materializing param=layers.20.mlp.up_proj.weight]  Loading weights:  72%|███████▏  | 245/338 [00:00<00:00, 3034.41it/s, Materializing param=layers.20.mlp.up_proj.weight]Loading weights:  73%|███████▎  | 246/338 [00:00<00:00, 3042.94it/s, Materializing param=layers.20.post_attention_layernorm.weight]Loading weights:  73%|███████▎  | 246/338 [00:00<00:00, 3040.76it/s, Materializing param=layers.20.post_attention_layernorm.weight]Loading weights:  73%|███████▎  | 247/338 [00:00<00:00, 3049.22it/s, Materializing param=layers.20.self_attn.k_proj.bias]          Loading weights:  73%|███████▎  | 247/338 [00:00<00:00, 3047.10it/s, Materializing param=layers.20.self_attn.k_proj.bias]Loading weights:  73%|███████▎  | 248/338 [00:00<00:00, 3055.40it/s, Materializing param=layers.20.self_attn.k_proj.weight]Loading weights:  73%|███████▎  | 248/338 [00:00<00:00, 3053.28it/s, Materializing param=layers.20.self_attn.k_proj.weight]Loading weights:  74%|███████▎  | 249/338 [00:00<00:00, 3061.55it/s, Materializing param=layers.20.self_attn.o_proj.weight]Loading weights:  74%|███████▎  | 249/338 [00:00<00:00, 3059.43it/s, Materializing param=layers.20.self_attn.o_proj.weight]Loading weights:  74%|███████▍  | 250/338 [00:00<00:00, 3067.74it/s, Materializing param=layers.20.self_attn.q_proj.bias]  Loading weights:  74%|███████▍  | 250/338 [00:00<00:00, 3065.64it/s, Materializing param=layers.20.self_attn.q_proj.bias]Loading weights:  74%|███████▍  | 251/338 [00:00<00:00, 3073.98it/s, Materializing param=layers.20.self_attn.q_proj.weight]Loading weights:  74%|███████▍  | 251/338 [00:00<00:00, 3071.85it/s, Materializing param=layers.20.self_attn.q_proj.weight]Loading weights:  75%|███████▍  | 252/338 [00:00<00:00, 3080.06it/s, Materializing param=layers.20.self_attn.v_proj.bias]  Loading weights:  75%|███████▍  | 252/338 [00:00<00:00, 3077.93it/s, Materializing param=layers.20.self_attn.v_proj.bias]Loading weights:  75%|███████▍  | 253/338 [00:00<00:00, 3086.23it/s, Materializing param=layers.20.self_attn.v_proj.weight]Loading weights:  75%|███████▍  | 253/338 [00:00<00:00, 3084.12it/s, Materializing param=layers.20.self_attn.v_proj.weight]Loading weights:  75%|███████▌  | 254/338 [00:00<00:00, 3092.43it/s, Materializing param=layers.21.input_layernorm.weight] Loading weights:  75%|███████▌  | 254/338 [00:00<00:00, 3090.31it/s, Materializing param=layers.21.input_layernorm.weight]Loading weights:  75%|███████▌  | 255/338 [00:00<00:00, 3098.51it/s, Materializing param=layers.21.mlp.down_proj.weight]  Loading weights:  75%|███████▌  | 255/338 [00:00<00:00, 3096.40it/s, Materializing param=layers.21.mlp.down_proj.weight]Loading weights:  76%|███████▌  | 256/338 [00:00<00:00, 3104.72it/s, Materializing param=layers.21.mlp.gate_proj.weight]Loading weights:  76%|███████▌  | 256/338 [00:00<00:00, 3102.65it/s, Materializing param=layers.21.mlp.gate_proj.weight]Loading weights:  76%|███████▌  | 257/338 [00:00<00:00, 3110.95it/s, Materializing param=layers.21.mlp.up_proj.weight]  Loading weights:  76%|███████▌  | 257/338 [00:00<00:00, 3108.81it/s, Materializing param=layers.21.mlp.up_proj.weight]Loading weights:  76%|███████▋  | 258/338 [00:00<00:00, 3117.03it/s, Materializing param=layers.21.post_attention_layernorm.weight]Loading weights:  76%|███████▋  | 258/338 [00:00<00:00, 3098.38it/s, Materializing param=layers.21.post_attention_layernorm.weight]Loading weights:  77%|███████▋  | 259/338 [00:00<00:00, 3105.64it/s, Materializing param=layers.21.self_attn.k_proj.bias]          Loading weights:  77%|███████▋  | 259/338 [00:00<00:00, 3103.43it/s, Materializing param=layers.21.self_attn.k_proj.bias]Loading weights:  77%|███████▋  | 260/338 [00:00<00:00, 3111.18it/s, Materializing param=layers.21.self_attn.k_proj.weight]Loading weights:  77%|███████▋  | 260/338 [00:00<00:00, 3108.99it/s, Materializing param=layers.21.self_attn.k_proj.weight]Loading weights:  77%|███████▋  | 261/338 [00:00<00:00, 3116.94it/s, Materializing param=layers.21.self_attn.o_proj.weight]Loading weights:  77%|███████▋  | 261/338 [00:00<00:00, 3114.81it/s, Materializing param=layers.21.self_attn.o_proj.weight]Loading weights:  78%|███████▊  | 262/338 [00:00<00:00, 3122.78it/s, Materializing param=layers.21.self_attn.q_proj.bias]  Loading weights:  78%|███████▊  | 262/338 [00:00<00:00, 3120.65it/s, Materializing param=layers.21.self_attn.q_proj.bias]Loading weights:  78%|███████▊  | 263/338 [00:00<00:00, 3128.21it/s, Materializing param=layers.21.self_attn.q_proj.weight]Loading weights:  78%|███████▊  | 263/338 [00:00<00:00, 3118.72it/s, Materializing param=layers.21.self_attn.q_proj.weight]Loading weights:  78%|███████▊  | 264/338 [00:00<00:00, 3125.62it/s, Materializing param=layers.21.self_attn.v_proj.bias]  Loading weights:  78%|███████▊  | 264/338 [00:00<00:00, 3123.37it/s, Materializing param=layers.21.self_attn.v_proj.bias]Loading weights:  78%|███████▊  | 265/338 [00:00<00:00, 3131.07it/s, Materializing param=layers.21.self_attn.v_proj.weight]Loading weights:  78%|███████▊  | 265/338 [00:00<00:00, 3128.93it/s, Materializing param=layers.21.self_attn.v_proj.weight]Loading weights:  79%|███████▊  | 266/338 [00:00<00:00, 3136.84it/s, Materializing param=layers.22.input_layernorm.weight] Loading weights:  79%|███████▊  | 266/338 [00:00<00:00, 3134.71it/s, Materializing param=layers.22.input_layernorm.weight]Loading weights:  79%|███████▉  | 267/338 [00:00<00:00, 3142.56it/s, Materializing param=layers.22.mlp.down_proj.weight]  Loading weights:  79%|███████▉  | 267/338 [00:00<00:00, 3140.48it/s, Materializing param=layers.22.mlp.down_proj.weight]Loading weights:  79%|███████▉  | 268/338 [00:00<00:00, 3148.27it/s, Materializing param=layers.22.mlp.gate_proj.weight]Loading weights:  79%|███████▉  | 268/338 [00:00<00:00, 3146.22it/s, Materializing param=layers.22.mlp.gate_proj.weight]Loading weights:  80%|███████▉  | 269/338 [00:00<00:00, 3130.89it/s, Materializing param=layers.22.mlp.up_proj.weight]  Loading weights:  80%|███████▉  | 269/338 [00:00<00:00, 3128.50it/s, Materializing param=layers.22.mlp.up_proj.weight]Loading weights:  80%|███████▉  | 270/338 [00:00<00:00, 3136.08it/s, Materializing param=layers.22.post_attention_layernorm.weight]Loading weights:  80%|███████▉  | 270/338 [00:00<00:00, 3133.89it/s, Materializing param=layers.22.post_attention_layernorm.weight]Loading weights:  80%|████████  | 271/338 [00:00<00:00, 3141.54it/s, Materializing param=layers.22.self_attn.k_proj.bias]          Loading weights:  80%|████████  | 271/338 [00:00<00:00, 3139.46it/s, Materializing param=layers.22.self_attn.k_proj.bias]Loading weights:  80%|████████  | 272/338 [00:00<00:00, 3147.16it/s, Materializing param=layers.22.self_attn.k_proj.weight]Loading weights:  80%|████████  | 272/338 [00:00<00:00, 3145.11it/s, Materializing param=layers.22.self_attn.k_proj.weight]Loading weights:  81%|████████  | 273/338 [00:00<00:00, 3135.53it/s, Materializing param=layers.22.self_attn.o_proj.weight]Loading weights:  81%|████████  | 273/338 [00:00<00:00, 3133.19it/s, Materializing param=layers.22.self_attn.o_proj.weight]Loading weights:  81%|████████  | 274/338 [00:00<00:00, 3140.76it/s, Materializing param=layers.22.self_attn.q_proj.bias]  Loading weights:  81%|████████  | 274/338 [00:00<00:00, 3138.74it/s, Materializing param=layers.22.self_attn.q_proj.bias]Loading weights:  81%|████████▏ | 275/338 [00:00<00:00, 3146.39it/s, Materializing param=layers.22.self_attn.q_proj.weight]Loading weights:  81%|████████▏ | 275/338 [00:00<00:00, 3144.36it/s, Materializing param=layers.22.self_attn.q_proj.weight]Loading weights:  82%|████████▏ | 276/338 [00:00<00:00, 3152.02it/s, Materializing param=layers.22.self_attn.v_proj.bias]  Loading weights:  82%|████████▏ | 276/338 [00:00<00:00, 3149.98it/s, Materializing param=layers.22.self_attn.v_proj.bias]Loading weights:  82%|████████▏ | 277/338 [00:00<00:00, 3147.38it/s, Materializing param=layers.22.self_attn.v_proj.weight]Loading weights:  82%|████████▏ | 277/338 [00:00<00:00, 3144.51it/s, Materializing param=layers.22.self_attn.v_proj.weight]Loading weights:  82%|████████▏ | 278/338 [00:00<00:00, 3151.75it/s, Materializing param=layers.23.input_layernorm.weight] Loading weights:  82%|████████▏ | 278/338 [00:00<00:00, 3149.68it/s, Materializing param=layers.23.input_layernorm.weight]Loading weights:  83%|████████▎ | 279/338 [00:00<00:00, 3128.28it/s, Materializing param=layers.23.mlp.down_proj.weight]  Loading weights:  83%|████████▎ | 279/338 [00:00<00:00, 3115.93it/s, Materializing param=layers.23.mlp.down_proj.weight]Loading weights:  83%|████████▎ | 280/338 [00:00<00:00, 3122.55it/s, Materializing param=layers.23.mlp.gate_proj.weight]Loading weights:  83%|████████▎ | 280/338 [00:00<00:00, 3120.63it/s, Materializing param=layers.23.mlp.gate_proj.weight]Loading weights:  83%|████████▎ | 281/338 [00:00<00:00, 3128.34it/s, Materializing param=layers.23.mlp.up_proj.weight]  Loading weights:  83%|████████▎ | 281/338 [00:00<00:00, 3126.62it/s, Materializing param=layers.23.mlp.up_proj.weight]Loading weights:  83%|████████▎ | 282/338 [00:00<00:00, 3134.56it/s, Materializing param=layers.23.post_attention_layernorm.weight]Loading weights:  83%|████████▎ | 282/338 [00:00<00:00, 3132.83it/s, Materializing param=layers.23.post_attention_layernorm.weight]Loading weights:  84%|████████▎ | 283/338 [00:00<00:00, 3140.80it/s, Materializing param=layers.23.self_attn.k_proj.bias]          Loading weights:  84%|████████▎ | 283/338 [00:00<00:00, 3139.17it/s, Materializing param=layers.23.self_attn.k_proj.bias]Loading weights:  84%|████████▍ | 284/338 [00:00<00:00, 3147.13it/s, Materializing param=layers.23.self_attn.k_proj.weight]Loading weights:  84%|████████▍ | 284/338 [00:00<00:00, 3145.51it/s, Materializing param=layers.23.self_attn.k_proj.weight]Loading weights:  84%|████████▍ | 285/338 [00:00<00:00, 3153.48it/s, Materializing param=layers.23.self_attn.o_proj.weight]Loading weights:  84%|████████▍ | 285/338 [00:00<00:00, 3151.87it/s, Materializing param=layers.23.self_attn.o_proj.weight]Loading weights:  85%|████████▍ | 286/338 [00:00<00:00, 3134.85it/s, Materializing param=layers.23.self_attn.q_proj.bias]  Loading weights:  85%|████████▍ | 286/338 [00:00<00:00, 3132.99it/s, Materializing param=layers.23.self_attn.q_proj.bias]Loading weights:  85%|████████▍ | 287/338 [00:00<00:00, 3140.81it/s, Materializing param=layers.23.self_attn.q_proj.weight]Loading weights:  85%|████████▍ | 287/338 [00:00<00:00, 3132.28it/s, Materializing param=layers.23.self_attn.q_proj.weight]Loading weights:  85%|████████▌ | 288/338 [00:00<00:00, 3139.56it/s, Materializing param=layers.23.self_attn.v_proj.bias]  Loading weights:  85%|████████▌ | 288/338 [00:00<00:00, 3137.89it/s, Materializing param=layers.23.self_attn.v_proj.bias]Loading weights:  86%|████████▌ | 289/338 [00:00<00:00, 3145.70it/s, Materializing param=layers.23.self_attn.v_proj.weight]Loading weights:  86%|████████▌ | 289/338 [00:00<00:00, 3144.11it/s, Materializing param=layers.23.self_attn.v_proj.weight]Loading weights:  86%|████████▌ | 290/338 [00:00<00:00, 3152.04it/s, Materializing param=layers.24.input_layernorm.weight] Loading weights:  86%|████████▌ | 290/338 [00:00<00:00, 3150.46it/s, Materializing param=layers.24.input_layernorm.weight]Loading weights:  86%|████████▌ | 291/338 [00:00<00:00, 3157.58it/s, Materializing param=layers.24.mlp.down_proj.weight]  Loading weights:  86%|████████▌ | 291/338 [00:00<00:00, 3155.97it/s, Materializing param=layers.24.mlp.down_proj.weight]Loading weights:  86%|████████▋ | 292/338 [00:00<00:00, 3136.17it/s, Materializing param=layers.24.mlp.gate_proj.weight]Loading weights:  86%|████████▋ | 292/338 [00:00<00:00, 3128.87it/s, Materializing param=layers.24.mlp.gate_proj.weight]Loading weights:  87%|████████▋ | 293/338 [00:00<00:00, 3124.59it/s, Materializing param=layers.24.mlp.up_proj.weight]  Loading weights:  87%|████████▋ | 293/338 [00:00<00:00, 3115.01it/s, Materializing param=layers.24.mlp.up_proj.weight]Loading weights:  87%|████████▋ | 294/338 [00:00<00:00, 3100.36it/s, Materializing param=layers.24.post_attention_layernorm.weight]Loading weights:  87%|████████▋ | 294/338 [00:00<00:00, 3088.37it/s, Materializing param=layers.24.post_attention_layernorm.weight]Loading weights:  87%|████████▋ | 295/338 [00:00<00:00, 3061.54it/s, Materializing param=layers.24.self_attn.k_proj.bias]          Loading weights:  87%|████████▋ | 295/338 [00:00<00:00, 3053.59it/s, Materializing param=layers.24.self_attn.k_proj.bias]Loading weights:  88%|████████▊ | 296/338 [00:00<00:00, 3044.09it/s, Materializing param=layers.24.self_attn.k_proj.weight]Loading weights:  88%|████████▊ | 296/338 [00:00<00:00, 3038.66it/s, Materializing param=layers.24.self_attn.k_proj.weight]Loading weights:  88%|████████▊ | 297/338 [00:00<00:00, 3032.71it/s, Materializing param=layers.24.self_attn.o_proj.weight]Loading weights:  88%|████████▊ | 297/338 [00:00<00:00, 3022.53it/s, Materializing param=layers.24.self_attn.o_proj.weight]Loading weights:  88%|████████▊ | 298/338 [00:00<00:00, 3016.60it/s, Materializing param=layers.24.self_attn.q_proj.bias]  Loading weights:  88%|████████▊ | 298/338 [00:00<00:00, 3011.75it/s, Materializing param=layers.24.self_attn.q_proj.bias]Loading weights:  88%|████████▊ | 299/338 [00:00<00:00, 3009.25it/s, Materializing param=layers.24.self_attn.q_proj.weight]Loading weights:  88%|████████▊ | 299/338 [00:00<00:00, 3001.25it/s, Materializing param=layers.24.self_attn.q_proj.weight]Loading weights:  89%|████████▉ | 300/338 [00:00<00:00, 2999.75it/s, Materializing param=layers.24.self_attn.v_proj.bias]  Loading weights:  89%|████████▉ | 300/338 [00:00<00:00, 2994.26it/s, Materializing param=layers.24.self_attn.v_proj.bias]Loading weights:  89%|████████▉ | 301/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.24.self_attn.v_proj.bias]Loading weights:  89%|████████▉ | 301/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.24.self_attn.v_proj.weight]Loading weights:  89%|████████▉ | 301/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.24.self_attn.v_proj.weight]Loading weights:  89%|████████▉ | 302/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.input_layernorm.weight] Loading weights:  89%|████████▉ | 302/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.input_layernorm.weight]Loading weights:  90%|████████▉ | 303/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.down_proj.weight]  Loading weights:  90%|████████▉ | 303/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.down_proj.weight]Loading weights:  90%|████████▉ | 304/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.gate_proj.weight]Loading weights:  90%|████████▉ | 304/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.gate_proj.weight]Loading weights:  90%|█████████ | 305/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.up_proj.weight]  Loading weights:  90%|█████████ | 305/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.mlp.up_proj.weight]Loading weights:  91%|█████████ | 306/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.post_attention_layernorm.weight]Loading weights:  91%|█████████ | 306/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.post_attention_layernorm.weight]Loading weights:  91%|█████████ | 307/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.k_proj.bias]          Loading weights:  91%|█████████ | 307/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.k_proj.bias]Loading weights:  91%|█████████ | 308/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.k_proj.weight]Loading weights:  91%|█████████ | 308/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.k_proj.weight]Loading weights:  91%|█████████▏| 309/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.o_proj.weight]Loading weights:  91%|█████████▏| 309/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.o_proj.weight]Loading weights:  92%|█████████▏| 310/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.q_proj.bias]  Loading weights:  92%|█████████▏| 310/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.q_proj.bias]Loading weights:  92%|█████████▏| 311/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.q_proj.weight]Loading weights:  92%|█████████▏| 311/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.q_proj.weight]Loading weights:  92%|█████████▏| 312/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.v_proj.bias]  Loading weights:  92%|█████████▏| 312/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.v_proj.bias]Loading weights:  93%|█████████▎| 313/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.v_proj.weight]Loading weights:  93%|█████████▎| 313/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.25.self_attn.v_proj.weight]Loading weights:  93%|█████████▎| 314/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.input_layernorm.weight] Loading weights:  93%|█████████▎| 314/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.input_layernorm.weight]Loading weights:  93%|█████████▎| 315/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.down_proj.weight]  Loading weights:  93%|█████████▎| 315/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.down_proj.weight]Loading weights:  93%|█████████▎| 316/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.gate_proj.weight]Loading weights:  93%|█████████▎| 316/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.gate_proj.weight]Loading weights:  94%|█████████▍| 317/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.up_proj.weight]  Loading weights:  94%|█████████▍| 317/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.mlp.up_proj.weight]Loading weights:  94%|█████████▍| 318/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.post_attention_layernorm.weight]Loading weights:  94%|█████████▍| 318/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.post_attention_layernorm.weight]Loading weights:  94%|█████████▍| 319/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.k_proj.bias]          Loading weights:  94%|█████████▍| 319/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.k_proj.bias]Loading weights:  95%|█████████▍| 320/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.k_proj.weight]Loading weights:  95%|█████████▍| 320/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.k_proj.weight]Loading weights:  95%|█████████▍| 321/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.o_proj.weight]Loading weights:  95%|█████████▍| 321/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.o_proj.weight]Loading weights:  95%|█████████▌| 322/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.q_proj.bias]  Loading weights:  95%|█████████▌| 322/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.q_proj.bias]Loading weights:  96%|█████████▌| 323/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.q_proj.weight]Loading weights:  96%|█████████▌| 323/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.q_proj.weight]Loading weights:  96%|█████████▌| 324/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.v_proj.bias]  Loading weights:  96%|█████████▌| 324/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.v_proj.bias]Loading weights:  96%|█████████▌| 325/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.v_proj.weight]Loading weights:  96%|█████████▌| 325/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.26.self_attn.v_proj.weight]Loading weights:  96%|█████████▋| 326/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.input_layernorm.weight] Loading weights:  96%|█████████▋| 326/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.input_layernorm.weight]Loading weights:  97%|█████████▋| 327/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.down_proj.weight]  Loading weights:  97%|█████████▋| 327/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.down_proj.weight]Loading weights:  97%|█████████▋| 328/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.gate_proj.weight]Loading weights:  97%|█████████▋| 328/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.gate_proj.weight]Loading weights:  97%|█████████▋| 329/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.up_proj.weight]  Loading weights:  97%|█████████▋| 329/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.mlp.up_proj.weight]Loading weights:  98%|█████████▊| 330/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.post_attention_layernorm.weight]Loading weights:  98%|█████████▊| 330/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.post_attention_layernorm.weight]Loading weights:  98%|█████████▊| 331/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.k_proj.bias]          Loading weights:  98%|█████████▊| 331/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.k_proj.bias]Loading weights:  98%|█████████▊| 332/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.k_proj.weight]Loading weights:  98%|█████████▊| 332/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.k_proj.weight]Loading weights:  99%|█████████▊| 333/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.o_proj.weight]Loading weights:  99%|█████████▊| 333/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.o_proj.weight]Loading weights:  99%|█████████▉| 334/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.q_proj.bias]  Loading weights:  99%|█████████▉| 334/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.q_proj.bias]Loading weights:  99%|█████████▉| 335/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.q_proj.weight]Loading weights:  99%|█████████▉| 335/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.q_proj.weight]Loading weights:  99%|█████████▉| 336/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.v_proj.bias]  Loading weights:  99%|█████████▉| 336/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.v_proj.bias]Loading weights: 100%|█████████▉| 337/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.v_proj.weight]Loading weights: 100%|█████████▉| 337/338 [00:00<00:00, 2993.81it/s, Materializing param=layers.27.self_attn.v_proj.weight]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 2993.81it/s, Materializing param=norm.weight]                      Loading weights: 100%|██████████| 338/338 [00:00<00:00, 2993.81it/s, Materializing param=norm.weight]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 2853.99it/s, Materializing param=norm.weight]
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.21s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.21s/it]
-[INFO] GeminiAgent is available with 59 workers ready.
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/linkedin_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/grammarly_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hive-mind-advanced_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/wish_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/agentic-jujutsu_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/progressive_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/sephora_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/jetaasc-newsletter_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/doc-scraper_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/freshsales_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/philips-hue_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/upstash_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/funimation_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/web-build_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/docusign_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/kindle_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.57s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.57s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/weekly-plan_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/pandora_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/platform-porter_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/project-init_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/homeadvisor_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/heygen_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.09it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.09it/s]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/american-airlines_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.31s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.31s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/context7_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/discord-nitro_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/using-superpowers_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/mercury_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/tailadmin-patterns_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hemingway_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/bsa-brainstorm_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/brilliant_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/slack-bridge_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/math-calculator_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/peacock_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/load-skills_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/policygenius_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/digitalocean_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/legacy_v1_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/apple-music_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/thumbtack_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/oh-notes_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/yourmechanic_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/humble-bundle_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/flow-nexus-platform_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/zoom_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/flow-nexus-swarm_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/indeed_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/labcorp_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/infra-tester_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/email_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/fidelity_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/google-news_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/rover_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/graphics-api_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/full_upload_injected_pptx_skill_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/cc10x-router_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/sqlite-agent-amplification_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/amtrak_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/sacred-space-protocol_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/lawpay_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.33s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.33s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/firebase_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/idea-skill_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/database_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/webflow_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/teladoc_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/zeplin_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.10s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.10s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/find-incomplete-series_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/newegg_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/chrome-devtools_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/Skills_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hungryroot_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/roblox_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/outlook_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/dexter_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/turo_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hacs_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/github-multi-repo_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/oracle_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/setup-claude-skills-for-web_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/vanguard_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/offerpad_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/ai-truthfulness-enforcer_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/plan-refine_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/pandadoc_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/url_injected_pptx_skill_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/mdlive_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hooks-automation_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/lark-agent-simple_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/caviar_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/facebook_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/updating-neon-logos_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/compass_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/tidal_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/test-strategy_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/pptx_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/terra-data_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/playstation_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/network-conftest-generator_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/care-com_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/github-code-review_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/stealth-ops_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/my-skill_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.94it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.94it/s]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/vercel_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/favor_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.23it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.23it/s]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/browser-automation_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/zoho-crm_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/walgreens_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/statefarm_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/worker_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/zappos_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/geforce-now_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/repairpal_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/coursera_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/invision_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/google-analytics_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.54s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/kayak_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/behance_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/github-workflow-automation_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.58s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.58s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/zapier_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.52s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/stealth-ghosting_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.55s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/flow-nexus-neural_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.53s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/medium_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/hello_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.50s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/itch-io_report.md
-[STEP 1/2] Run JS Code Analysis Pipeline...
-[INFO] Retrieving similar documents for question
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.51s/it]
-[STEP 2/2] Report generation complete.
-
-[INFO] Report saved to: /home/lyvd/workspace/RAG/data/skills/outputs/nike-run-club_report.md

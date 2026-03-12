@@ -88,6 +88,9 @@ def run_pipeline(code: str) -> str:
 
 def save_report(report: str, output_path: str) -> None:
     """Lưu báo cáo ra file markdown."""
+    if not os.path.exists(os.path.dirname(output_path)):
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(report, encoding="utf-8")

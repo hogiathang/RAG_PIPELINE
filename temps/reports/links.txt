@@ -1,4 +1,0 @@
-- https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/
-- https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting
-- https://arxiv.org/pdf/2602.06547
-- https://snyk.io/articles/clawdhub-malicious-campaign-ai-agent-skills/
