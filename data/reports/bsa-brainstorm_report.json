@@ -14,7 +14,7 @@
                                 "text": "Detects arbitrary code execution vulnerabilities."
                             },
                             "fullDescription": {
-                                "text": "Identifies instances where an application allows the execution of arbitrary code, which can lead to system compromise, data exfiltration, or other malicious activities if exploited by an attacker."
+                                "text": "Identifies mechanisms or code patterns that allow for the execution of arbitrary code, potentially leading to system compromise, data exfiltration, or unauthorized actions."
                             },
                             "helpUri": "https://cwe.mitre.org/data/definitions/94.html"
                         }
@@ -26,19 +26,19 @@
                     "ruleId": "RCE-001",
                     "level": "error",
                     "message": {
-                        "text": "A CVSS CRITICAL vulnerability was detected on lines 106 and 117. The skill `sc-brainstorm` utilizes the `mcp__rube__RUBE_REMOTE_WORKBENCH` tool, which explicitly permits arbitrary code execution via its `code_to_execute` argument. This RCE vulnerability allows an attacker to execute arbitrary commands on the system, potentially leading to system compromise or data exfiltration. The provided snippet demonstrates file system access, confirming the severe impact."
+                        "text": "A CVSS CRITICAL vulnerability was detected on lines 130-136. The 'sc-brainstorm' skill, specifically within its 'Rube MCP' integration, utilizes a tool named `mcp__rube__RUBE_REMOTE_WORKBENCH`. This tool is designed to execute arbitrary code provided in its `code_to_execute` argument. The code snippet shown, while benign in its current form (loading user feedback and processing with an LLM), demonstrates the fundamental capability for executing any Python code. This constitutes a Remote Code Execution (RCE) vulnerability, allowing a malicious actor to potentially compromise the system, exfiltrate data, or perform other unauthorized actions."
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "https://github.com/Tony363/SuperClaude/blob/main/SKILL.md"
+                                    "uri": "skill.py"
                                 },
                                 "region": {
-                                    "startLine": 106,
-                                    "endLine": 117,
+                                    "startLine": 130,
+                                    "endLine": 136,
                                     "snippet": {
-                                        "text": "mcp__rube__RUBE_REMOTE_WORKBENCH(\n    thought=\"Analyze user feedback data for patterns\",\n    code_to_execute='''\nimport json\n# Load user feedback from file\nfeedback_data = json.load(open(\"/tmp/user_feedback.json\"))\n# Analyze with LLM\nanalysis, error = invoke_llm(f\"Analyze this user feedback for analytics feature requests: {feedback_data[:5000]}\")\noutput = {\"analysis\": analysis, \"feedback_count\": len(feedback_data)}\noutput\n'''\n)"
+                                        "text": "import json\n# Load user feedback from file\nfeedback_data = json.load(open(\"/tmp/user_feedback.json\"))\n# Analyze with LLM\nanalysis, error = invoke_llm(f\"Analyze this user feedback for analytics feature requests: {feedback_data[:5000]}\")\noutput = {\"analysis\": analysis, \"feedback_count\": len(feedback_data)}\noutput"
                                     }
                                 }
                             }
@@ -46,7 +46,8 @@
                     ],
                     "properties": {
                         "cvss_severity": "CRITICAL",
-                        "threat_category": "RCE"
+                        "threat_category": "RCE",
+                        "skill_url": "N/A"
                     }
                 }
             ]
