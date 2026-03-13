@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-CRED-001",
+                            "name": "CredentialExposure",
+                            "shortDescription": {
+                                "text": "Detects hardcoded credentials or insecure handling of sensitive API keys/secrets."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies instances where API keys, access tokens, passwords, or other sensitive credentials might be exposed directly in the code, configuration files, or handled in an insecure manner, leading to potential unauthorized access."
+                            },
+                            "helpUri": "https://example.com/help/SEC-CRED-001"
+                        },
+                        {
+                            "id": "SEC-DOWNLOAD-002",
+                            "name": "MaliciousDownload",
+                            "shortDescription": {
+                                "text": "Identifies code capable of downloading and executing external files from untrusted sources."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags code patterns that allow the skill to download and run executables or scripts from arbitrary URLs, which could be exploited for malware delivery or arbitrary code execution."
+                            },
+                            "helpUri": "https://example.com/help/SEC-DOWNLOAD-002"
+                        },
+                        {
+                            "id": "SEC-INJECT-003",
+                            "name": "PromptInjection",
+                            "shortDescription": {
+                                "text": "Detects potential prompt injection vulnerabilities in AI agent skills."
+                            },
+                            "fullDescription": {
+                                "text": "This rule looks for patterns that could allow an attacker to manipulate the AI agent's behavior or extract sensitive information by injecting malicious instructions into user prompts or skill inputs."
+                            },
+                            "helpUri": "https://example.com/help/SEC-INJECT-003"
+                        },
+                        {
+                            "id": "SEC-RCE-004",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code constructs that could allow an attacker to execute arbitrary commands or code on the host system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/help/SEC-RCE-004"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

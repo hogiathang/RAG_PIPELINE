@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands on the system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/rce-001"
+                        },
+                        {
+                            "id": "SEC-WARN-002",
+                            "name": "InsecureFileOperation",
+                            "shortDescription": {
+                                "text": "Detects potentially insecure file operations."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies file operations (read, write, delete, execute) that might be performed in an insecure manner, potentially leading to data leakage, tampering, or unauthorized access."
+                            },
+                            "helpUri": "https://example.com/sec-warn-002"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Provides general information or notes about the code."
+                            },
+                            "fullDescription": {
+                                "text": "This rule is used for informational findings that do not represent a direct security vulnerability but might be relevant for understanding the code's behavior or security posture."
+                            },
+                            "helpUri": "https://example.com/info-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

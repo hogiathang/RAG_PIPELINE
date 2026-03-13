@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-RCE-001",
+                            "name": "Arbitrary Command Execution Capability",
+                            "shortDescription": {
+                                "text": "Detects skills with the capability to execute arbitrary shell commands."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies skills that declare the 'Bash' tool, granting them the ability to execute arbitrary shell commands. While this capability might be intended for legitimate purposes, it poses a significant security risk as it can be exploited for Remote Code Execution (RCE), data exfiltration, or system compromise if the skill's implementation is malicious or vulnerable to command injection."
+                            },
+                            "helpUri": "https://example.com/help/SEC-RCE-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SEC-RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS HIGH vulnerability was detected on line 9. The skill declares 'allowed-tools: Read, Write, Bash', granting it the capability to execute arbitrary shell commands. This poses a significant security risk, as it could be exploited for Remote Code Execution (RCE) or data exfiltration if the underlying code were malicious or compromised."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/0xrdan/claude-router/blob/main/skills/router-analytics/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 9,
+                                    "endLine": 9,
+                                    "snippet": {
+                                        "text": "allowed-tools: Read, Write, Bash"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "HIGH",
+                        "threat_category": "RCE"
+                    }
+                }
+            ]
+        }
+    ]
+}

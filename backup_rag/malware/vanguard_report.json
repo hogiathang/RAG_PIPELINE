@@ -1,0 +1,116 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands or code on the system where the skill is running. This often involves improper sanitization of user input or insecure use of system commands."
+                            },
+                            "defaultConfiguration": {
+                                "level": "error"
+                            },
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "rce",
+                                    "critical"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "ID-001",
+                            "name": "InformationDisclosure",
+                            "shortDescription": {
+                                "text": "Detects sensitive information disclosure."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where sensitive information (e.g., API keys, credentials, personal data, internal system details) might be inadvertently exposed to unauthorized parties, either through logs, error messages, or insecure output."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            },
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "info-disclosure",
+                                    "medium"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "IC-001",
+                            "name": "InsecureConfiguration",
+                            "shortDescription": {
+                                "text": "Detects insecure configurations or default settings."
+                            },
+                            "fullDescription": {
+                                "text": "Flags configurations that are known to be insecure or use default settings that could be exploited. This includes weak permissions, exposed services, or lack of essential security controls."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            },
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "config",
+                                    "medium"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "SD-001",
+                            "name": "SensitiveDataExposure",
+                            "shortDescription": {
+                                "text": "Detects potential exposure of sensitive data."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that handles or stores sensitive data (e.g., PII, financial info) without adequate protection, potentially leading to unauthorized access or leakage."
+                            },
+                            "defaultConfiguration": {
+                                "level": "error"
+                            },
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "data-exposure",
+                                    "high"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "BENIGN-001",
+                            "name": "BenignAnalysis",
+                            "shortDescription": {
+                                "text": "Indicates that the analyzed artifact was classified as benign."
+                            },
+                            "fullDescription": {
+                                "text": "This rule signifies that the static analysis and threat intelligence aggregation found no malicious code or security vulnerabilities within the provided artifact. The artifact is deemed safe based on current analysis."
+                            },
+                            "defaultConfiguration": {
+                                "level": "none"
+                            },
+                            "properties": {
+                                "tags": [
+                                    "analysis",
+                                    "benign",
+                                    "info"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns that could allow an attacker to execute arbitrary commands on the system, often through misuse of shell commands or external process execution."
+                            },
+                            "helpUri": "https://example.com/help/RCE-001"
+                        },
+                        {
+                            "id": "DATA-001",
+                            "name": "SensitiveDataHandling",
+                            "shortDescription": {
+                                "text": "Detects insecure handling of sensitive data."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that reads, writes, or processes sensitive information without adequate protection, potentially leading to data leakage or unauthorized modification."
+                            },
+                            "helpUri": "https://example.com/help/DATA-001"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationDisclosure",
+                            "shortDescription": {
+                                "text": "Detects potential information disclosure vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where sensitive system or user information might be inadvertently exposed, for example, through verbose error messages or improper use of web search tools."
+                            },
+                            "helpUri": "https://example.com/help/INFO-001"
+                        },
+                        {
+                            "id": "SEC-WARN-001",
+                            "name": "GeneralSecurityWarning",
+                            "shortDescription": {
+                                "text": "Identifies general security warnings or potential misconfigurations."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code patterns that, while not direct vulnerabilities, could lead to security issues if not properly managed, such as the use of powerful system tools without sufficient safeguards."
+                            },
+                            "helpUri": "https://example.com/help/SEC-WARN-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

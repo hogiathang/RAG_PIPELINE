@@ -1,0 +1,209 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "Arbitrary Code Execution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns or configurations that allow an attacker or an autonomous agent to execute arbitrary commands on the host system, potentially leading to full system compromise, data exfiltration, or unauthorized modifications. This includes scenarios where highly privileged external tools are invoked with broad permissions or in 'auto-approval' modes, especially when such tools have known command injection vulnerabilities."
+                            },
+                            "helpUri": "https://owasp.org/www-community/attacks/Command_Injection"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS CRITICAL vulnerability was detected on lines 3, 6, and 61-69, specifically highlighting line 73. The 'codex' skill is designed to invoke an external CLI tool named 'codex' for autonomous task execution. Line 6 explicitly grants 'Bash(codex:*)' permission, allowing the 'codex' CLI tool to be executed with broad capabilities. Line 3 indicates that 'Codex has full codebase access and can make changes.' Furthermore, the default execution mode for the 'codex exec' command (lines 61-69) includes the '--full-auto' flag (line 73), which is described as 'workspace-write + auto-approval'. This combination means the skill, by design, enables an AI agent to perform arbitrary modifications to the user's codebase and potentially execute commands without explicit per-action approval. External threat intelligence confirms that the OpenAI Codex CLI tool has a critical command injection vulnerability, allowing attackers to execute arbitrary commands on developer machines without user interaction or approval, particularly through silently executed project-local configuration files. This constitutes a significant security risk due to the broad, unconstrained access granted to an external, autonomous entity, which can be exploited for data loss, unauthorized code changes, or arbitrary code execution on the user's system."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 3,
+                                    "endLine": 3,
+                                    "snippet": {
+                                        "text": "Codex has full codebase access and can make changes."
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6,
+                                    "snippet": {
+                                        "text": "allowed-tools: Bash(codex:*), Bash(git:*), Bash(pwd:*), Bash(mkdir:*), Bash(cat:*), Bash(head:*), Bash(tail:*), Bash(wc:*), Read, Grep, Glob"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 61,
+                                    "endLine": 61,
+                                    "snippet": {
+                                        "text": "codex exec --json \\"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 62,
+                                    "endLine": 62,
+                                    "snippet": {
+                                        "text": "  -o ~/.claude/codex/${CLAUDE_SESSION_ID}/summary-{timestamp}.txt \\"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 63,
+                                    "endLine": 63,
+                                    "snippet": {
+                                        "text": "  {--skip-git-repo-check if not in git} \\"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 64,
+                                    "endLine": 64,
+                                    "snippet": {
+                                        "text": "  {--full-auto OR --sandbox <mode>} \\"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 65,
+                                    "endLine": 65,
+                                    "snippet": {
+                                        "text": "  {-m <model> if requested} \\"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 66,
+                                    "endLine": 66,
+                                    "snippet": {
+                                        "text": "  - <<'CODEX_PROMPT'"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 67,
+                                    "endLine": 67,
+                                    "snippet": {
+                                        "text": "{prompt}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 68,
+                                    "endLine": 68,
+                                    "snippet": {
+                                        "text": "CODEX_PROMPT > ~/.claude/codex/${CLAUDE_SESSION_ID}/progress-{timestamp}.jsonl"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 69,
+                                    "endLine": 69,
+                                    "snippet": {
+                                        "text": "CODEX_PROMPT > ~/.claude/codex/${CLAUDE_SESSION_ID}/progress-{timestamp}.jsonl"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/proflead/codex-skills-library/blob/main/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 73,
+                                    "endLine": 73,
+                                    "snippet": {
+                                        "text": "  {--full-auto OR --sandbox <mode>} \\"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "CRITICAL",
+                        "threat_category": "RCE"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,153 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SUPPLY-CHAIN-001",
+                            "name": "SupplyChainIntegrity",
+                            "shortDescription": {
+                                "text": "Detects potential supply chain integrity issues."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies discrepancies in metadata, conflicting source repositories, or inconsistent file paths that could indicate repackaging, misconfiguration, or an attempt to obscure the true origin of a skill. Such ambiguities can lead to users inadvertently installing a modified or untrusted version of the skill, posing a supply chain risk."
+                            },
+                            "helpUri": "https://example.com/supply-chain-integrity-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SUPPLY-CHAIN-001",
+                    "level": "note",
+                    "message": {
+                        "text": "A CVSS LOW vulnerability related to supply chain integrity was detected. Significant inconsistencies in the skill's metadata, including conflicting skill identity, discrepant source repositories, and inconsistent file paths, were found on lines 2, 3, 6, 11, 12, 13, 14, and 16. The package is named 'hashnode' but referred to as 'X Bookmarks Archiver'. The `_meta.json` points to `github.com/clawdbot/skills`, while `metadata.json` states `github.com/Andrejones92/canifi-life-os` as the source. Furthermore, `SKILL.md` instructions refer to paths like `skills/x-bookmark-archiver/scripts/...`, contradicting `metadata.json`'s `dir_name: \"hashnode\"` and `path: \"skills/hashnode/SKILL.md\"`. These discrepancies make it difficult to verify the authenticity and integrity of the skill, raising concerns about potential misconfiguration, repackaging, or an attempt to obscure its true origin. While the described functionality appears benign, this ambiguity could lead to users installing an untrusted version, especially given the history of MoltBot/ClawdBot skills being exploited for malware distribution as highlighted by external threat intelligence."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 2,
+                                    "endLine": 2,
+                                    "snippet": {
+                                        "text": "PACKAGE NAME: hashnode"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 3,
+                                    "endLine": 3,
+                                    "snippet": {
+                                        "text": "Skill Name: X Bookmarks Archiver"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6,
+                                    "snippet": {
+                                        "text": "Skill Slug: x-bookmark-archiver"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 11,
+                                    "endLine": 11,
+                                    "snippet": {
+                                        "text": "Source Repository (metadata.json): github.com/Andrejones92/canifi-life-os"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 12,
+                                    "endLine": 12,
+                                    "snippet": {
+                                        "text": "Source Repository (_meta.json): github.com/clawdbot/skills"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 13,
+                                    "endLine": 13,
+                                    "snippet": {
+                                        "text": "Skill Directory (metadata.json): dir_name: \"hashnode\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 14,
+                                    "endLine": 14,
+                                    "snippet": {
+                                        "text": "Skill Path (metadata.json): path: \"skills/hashnode/SKILL.md\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/blob/main/skills/hashnode/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 16,
+                                    "endLine": 16,
+                                    "snippet": {
+                                        "text": "SKILL.md instructions path: skills/x-bookmark-archiver/scripts/..."
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "LOW",
+                        "threat_category": "Supply Chain Integrity"
+                    }
+                }
+            ]
+        }
+    ]
+}

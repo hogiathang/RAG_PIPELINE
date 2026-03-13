@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-SDE-001",
+                            "name": "SensitiveDataExposure",
+                            "shortDescription": {
+                                "text": "Detects sensitive data exposure vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where sensitive information, such as API keys, credentials, or configuration files, might be exposed or improperly handled, leading to potential data breaches."
+                            },
+                            "helpUri": "https://example.com/help/SEC-SDE-001"
+                        },
+                        {
+                            "id": "SEC-ACE-002",
+                            "name": "ArbitraryCommandExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands on the host system, potentially leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/help/SEC-ACE-002"
+                        },
+                        {
+                            "id": "SEC-API-003",
+                            "name": "InsecureAPIKeyHandling",
+                            "shortDescription": {
+                                "text": "Detects insecure handling of API keys."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies practices where API keys are hardcoded, exposed in public repositories, or transmitted insecurely, making them vulnerable to unauthorized access and misuse."
+                            },
+                            "helpUri": "https://example.com/help/SEC-API-003"
+                        },
+                        {
+                            "id": "SEC-MISCONF-004",
+                            "name": "DeploymentMisconfiguration",
+                            "shortDescription": {
+                                "text": "Detects insecure deployment configurations."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies misconfigurations in deployment settings, such as public preview deployments, missing security headers, or improper environment variable management, which can expose applications to various attacks."
+                            },
+                            "helpUri": "https://example.com/help/SEC-MISCONF-004"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

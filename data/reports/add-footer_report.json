@@ -5,11 +5,85 @@
         {
             "tool": {
                 "driver": {
-                    "name": "Thang's Agent Analyzer",
-                    "rules": []
+                    "name": "Senior Cybersecurity Auditor",
+                    "informationUri": "https://example.com/cybersecurity-auditor-guidance"
                 }
             },
-            "results": []
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "The 'add-footer' skill provides a Markdown template containing external links. Threat intelligence indicates that clicking external links in Markdown files, particularly in unpatched clients like Windows 11 Notepad (CVE-2026-20841), can lead to remote code execution without a security prompt. While the skill provides legitimate links, a user could replace them with malicious URLs, or even legitimate links could be exploited on a vulnerable client. This poses a significant risk if the generated Markdown is viewed or interacted with on an unpatched system. The preliminary analysis acknowledged the theoretical risk of malicious URLs by a user, but did not account for client-side RCE vulnerabilities."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "add-footer.md"
+                                },
+                                "region": {
+                                    "startLine": 28,
+                                    "endLine": 28,
+                                    "snippet": {
+                                        "text": "Markdown external link (exact snippet not provided in input, referenced by preliminary analysis)"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "add-footer.md"
+                                },
+                                "region": {
+                                    "startLine": 45,
+                                    "endLine": 45,
+                                    "snippet": {
+                                        "text": "Markdown external link (exact snippet not provided in input, referenced by preliminary analysis)"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "The 'add-footer' skill includes an image badge from 'img.shields.io'. Recent threat intelligence from shields.io (blog post: 'A critical security advisory relating to a Remote Code Execution vulnerability in Dynamic JSON/TOML/YAML badges') indicates a potential for Remote Code Execution. If the badge used by this skill, or a badge a user customizes it to use, falls into the category of dynamic badges, it could lead to remote code execution. Further investigation is required to determine if the specific badge type used is vulnerable. The preliminary analysis did not identify this potential RCE vector."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "add-footer.md"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 45,
+                                    "snippet": {
+                                        "text": "Image badge from img.shields.io (exact snippet and line not provided in input, assuming within markdown template)"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "rules": [
+                {
+                    "id": "RCE-001",
+                    "name": "Remote Code Execution via Malicious Content or Vulnerable Client Interaction",
+                    "shortDescription": {
+                        "text": "Identifies potential vectors for remote code execution through user-provided content or interaction with content in vulnerable clients."
+                    },
+                    "fullDescription": {
+                        "text": "This rule flags content that, when processed by vulnerable clients or combined with malicious user input, could lead to remote code execution. This includes external links in Markdown that exploit client-side vulnerabilities and dynamic badges from third-party services with known RCE advisories. Even if the initial content is benign, the provision of a template that can be easily modified or rendered in a vulnerable context constitutes a security risk."
+                    },
+                    "helpUri": "https://example.com/rce-001-guidance"
+                }
+            ]
         }
     ]
 }

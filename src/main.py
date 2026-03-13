@@ -11,6 +11,7 @@ Pipeline:
 import sys, os, json
 import argparse
 from pathlib import Path
+from src.ingestion.ingest_data import ingest_data
 
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -127,6 +128,9 @@ def retrieval_pipeline(args) -> None:
 
         contents =  read_package(package_path)
 
+        # print(f"[INFO] Processing Package: {package}")
+        # print(f"[INFO] Content Summary: {contents[0][:500]}...")
+
         report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
@@ -136,18 +140,23 @@ def retrieval_pipeline(args) -> None:
 
     
 def ingest_data_pipeline():
-    pass
+    ingest_data()
 
 if __name__ == "__main__":
-    args = parse_args()
-    print(BANNER)
+    try:
+        args = parse_args()
+        print(BANNER)
     
-    if args.ingest_data:
-        ingest_data_pipeline()
-    else:
-        if args.analyze_skills:
-            print("[INFO] Running in Skills Analysis Mode...")
+        if args.ingest_data:
+            ingest_data_pipeline()
         else:
-            print("[INFO] Running in Retrieval Mode...")
+            if args.analyze_skills:
+                print("[INFO] Running in Skills Analysis Mode...")
+            else:
+                print("[INFO] Running in Retrieval Mode...")
 
-        retrieval_pipeline(args)
+            retrieval_pipeline(args)
+    
+    except KeyboardInterrupt:
+        print("\n[INFO] Process interrupted by user. Exiting gracefully.")
+        sys.exit(0)

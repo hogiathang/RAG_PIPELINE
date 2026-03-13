@@ -1,0 +1,67 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-001",
+                            "name": "InsecureNetworkBinding",
+                            "shortDescription": {
+                                "text": "Detects services configured to bind to all network interfaces (0.0.0.0) without proper security controls."
+                            },
+                            "fullDescription": {
+                                "text": "Binding a service to '0.0.0.0' makes it accessible from all network interfaces, including external ones. This can expose the service to unauthorized access if not protected by a firewall, authentication, or other security measures, potentially leading to data exposure or remote code execution."
+                            },
+                            "helpUri": "https://accuknox.com/blog/fix-18-year-old-security-hole"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Identifies vulnerabilities that could allow an attacker to execute arbitrary code on the system."
+                            },
+                            "fullDescription": {
+                                "text": "Arbitrary code execution vulnerabilities allow an attacker to run commands or inject code into the application's process, potentially leading to full system compromise. This often arises from improper input validation or insecure use of system commands."
+                            }
+                        },
+                        {
+                            "id": "DATA-001",
+                            "name": "SensitiveDataExposure",
+                            "shortDescription": {
+                                "text": "Detects instances where sensitive information might be exposed or handled insecurely."
+                            },
+                            "fullDescription": {
+                                "text": "Sensitive data exposure occurs when an application fails to adequately protect confidential information, such as credentials, API keys, or personal data. This can lead to unauthorized access, data breaches, and privacy violations."
+                            }
+                        },
+                        {
+                            "id": "INJ-001",
+                            "name": "CommandInjection",
+                            "shortDescription": {
+                                "text": "Identifies potential command or prompt injection vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Command or prompt injection vulnerabilities allow attackers to execute arbitrary commands or manipulate prompts by injecting malicious input into data that is processed by a shell or interpreter. This can lead to unauthorized access, data manipulation, or system compromise."
+                            }
+                        },
+                        {
+                            "id": "CAP-001",
+                            "name": "ExcessiveCapabilityRequest",
+                            "shortDescription": {
+                                "text": "Flags requests for capabilities that appear overly broad or unnecessary for the stated functionality."
+                            },
+                            "fullDescription": {
+                                "text": "Requesting excessive capabilities (e.g., broad file system access, process spawning, or network outbound connections) can increase the attack surface. While sometimes legitimate, such requests warrant careful review to ensure they are strictly necessary and not indicative of potential over-privileging or malicious intent."
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

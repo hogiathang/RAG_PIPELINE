@@ -1,0 +1,67 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns that could lead to an attacker executing arbitrary commands or code on the system, potentially compromising the entire system."
+                            },
+                            "defaultConfiguration": {
+                                "level": "error"
+                            },
+                            "properties": {
+                                "cvss_severity": "CRITICAL",
+                                "threat_category": "RCE"
+                            }
+                        },
+                        {
+                            "id": "SEC-WARN-002",
+                            "name": "InsecureConfiguration",
+                            "shortDescription": {
+                                "text": "Detects insecure configurations or settings."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies configurations that might weaken the security posture of the application or system, leading to potential vulnerabilities."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            },
+                            "properties": {
+                                "cvss_severity": "MEDIUM",
+                                "threat_category": "Configuration"
+                            }
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Provides general information or notes about the code."
+                            },
+                            "fullDescription": {
+                                "text": "Highlights aspects of the code that are not security vulnerabilities but might be relevant for review or understanding, or confirm benign nature."
+                            },
+                            "defaultConfiguration": {
+                                "level": "none"
+                            },
+                            "properties": {
+                                "cvss_severity": "NONE",
+                                "threat_category": "Informational"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

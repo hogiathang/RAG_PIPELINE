@@ -1,0 +1,83 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "JQL-INJ-001",
+                            "name": "JQLInjection",
+                            "shortDescription": {
+                                "text": "Detects JQL (Jira Query Language) injection vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where user-controlled input is directly embedded into JQL query strings without proper sanitization, potentially leading to unauthorized data access, information disclosure, or denial of service. Attackers can manipulate queries to bypass restrictions or extract sensitive data."
+                            },
+                            "helpUri": "https://medium.com/@mart.schneider/is-jql-injection-real-d461a33eec77"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "JQL-INJ-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS HIGH vulnerability was detected on lines 76, 86, and 119. The code constructs JQL queries by directly embedding user-provided input (`projectKey`, `accountId`, `label`) without proper sanitization. This allows an attacker to inject malicious JQL, potentially leading to unauthorized data access, information disclosure, or denial of service, as confirmed by external research on JQL injection."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/mrrefactoring/jira.js/blob/main/src/jira_skill.ts"
+                                },
+                                "region": {
+                                    "startLine": 76,
+                                    "endLine": 76,
+                                    "snippet": {
+                                        "text": "function searchByProject(projectKey: string): string {\n  return `project = ${projectKey}`;\n}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/mrrefactoring/jira.js/blob/main/src/jira_skill.ts"
+                                },
+                                "region": {
+                                    "startLine": 86,
+                                    "endLine": 86,
+                                    "snippet": {
+                                        "text": "function searchByAssignee(accountId: string): string { return `assignee = '${accountId}'`; }"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/mrrefactoring/jira.js/blob/main/src/jira_skill.ts"
+                                },
+                                "region": {
+                                    "startLine": 119,
+                                    "endLine": 119,
+                                    "snippet": {
+                                        "text": "const jql = `labels = '${label}'`;"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "HIGH",
+                        "threat_category": "Injection"
+                    }
+                }
+            ]
+        }
+    ]
+}

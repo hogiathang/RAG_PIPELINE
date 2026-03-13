@@ -1,0 +1,93 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns that could lead to an attacker executing arbitrary code on the system, often due to improper input validation or deserialization issues."
+                            },
+                            "helpUri": "https://example.com/rce-001"
+                        },
+                        {
+                            "id": "LFI-001",
+                            "name": "LocalFileInclusion",
+                            "shortDescription": {
+                                "text": "Detects local file inclusion vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where an application includes files from the local system without proper validation, potentially allowing an attacker to read sensitive files."
+                            },
+                            "helpUri": "https://example.com/lfi-001"
+                        },
+                        {
+                            "id": "RFI-001",
+                            "name": "RemoteFileInclusion",
+                            "shortDescription": {
+                                "text": "Detects remote file inclusion vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where an application includes files from a remote server without proper validation, potentially allowing an attacker to execute malicious code or access sensitive data."
+                            },
+                            "helpUri": "https://example.com/rfi-001"
+                        },
+                        {
+                            "id": "PRIV-ESC-001",
+                            "name": "PrivilegeEscalation",
+                            "shortDescription": {
+                                "text": "Detects potential privilege escalation vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow a user to gain higher privileges than intended, often due to misconfigurations or flawed access control mechanisms."
+                            },
+                            "helpUri": "https://example.com/priv-esc-001"
+                        },
+                        {
+                            "id": "NET-001",
+                            "name": "UnauthorizedNetworkActivity",
+                            "shortDescription": {
+                                "text": "Detects unauthorized network communication attempts."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that attempts to establish network connections or communicate with external resources without explicit authorization or for malicious purposes."
+                            },
+                            "helpUri": "https://example.com/net-001"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Provides informational details about the code's behavior."
+                            },
+                            "fullDescription": {
+                                "text": "Highlights benign or informational aspects of the code that do not pose a direct security threat but are relevant for understanding its functionality."
+                            },
+                            "helpUri": "https://example.com/info-001"
+                        },
+                        {
+                            "id": "SEC-WARN-001",
+                            "name": "GeneralSecurityWarning",
+                            "shortDescription": {
+                                "text": "Detects general security warnings or best practice violations."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that might not be a direct vulnerability but violates security best practices or could lead to future issues if not addressed."
+                            },
+                            "helpUri": "https://example.com/sec-warn-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

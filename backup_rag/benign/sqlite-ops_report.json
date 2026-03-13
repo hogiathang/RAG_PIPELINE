@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-POTENTIAL-RCE-001",
+                            "name": "BroadShellExecutionPermission",
+                            "shortDescription": {
+                                "text": "Detects skills with broad shell execution permissions."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies skills that declare broad shell execution permissions (e.g., 'Read Write Bash'). While not inherently malicious, such permissions grant the skill the capability to execute arbitrary shell commands, posing a significant security risk if the skill is compromised or contains hidden malicious logic. This could lead to remote code execution, data exfiltration, or system compromise."
+                            },
+                            "helpUri": "https://docs.example.com/sec-potential-rce-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SEC-POTENTIAL-RCE-001",
+                    "level": "note",
+                    "message": {
+                        "text": "A CVSS LOW vulnerability was detected on line 6. The skill declares `allowed-tools: \"Read Write Bash\"`, granting it broad shell execution capabilities. While the current content is benign, this permission could be leveraged by a malicious actor for remote code execution, data exfiltration, or other system compromises."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/0xDarkMatter/claude-mods/blob/main/skills/sqlite-ops/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6,
+                                    "snippet": {
+                                        "text": "allowed-tools: \"Read Write Bash\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "LOW",
+                        "threat_category": "Permission Misuse"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands or code on the system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        },
+                        {
+                            "id": "DATA-LEAK-001",
+                            "name": "SensitiveDataExposure",
+                            "shortDescription": {
+                                "text": "Detects sensitive data exposure vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where sensitive information (e.g., API keys, personal data, credentials) might be inadvertently exposed or handled insecurely."
+                            },
+                            "helpUri": "https://example.com/data-leak-guidance"
+                        },
+                        {
+                            "id": "AUTH-BYP-001",
+                            "name": "AuthenticationBypass",
+                            "shortDescription": {
+                                "text": "Detects authentication bypass vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies flaws in authentication mechanisms that could allow unauthorized access to protected resources or functionalities."
+                            },
+                            "helpUri": "https://example.com/auth-bypass-guidance"
+                        },
+                        {
+                            "id": "SEC-WARN-001",
+                            "name": "GeneralSecurityWarning",
+                            "shortDescription": {
+                                "text": "Identifies general security warnings or best practice violations."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code that, while not a direct vulnerability, deviates from security best practices and could potentially lead to issues or reduce overall security posture."
+                            },
+                            "helpUri": "https://example.com/security-warning-guidance"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Provides informational context or benign observations."
+                            },
+                            "fullDescription": {
+                                "text": "Notes about the code that are not security vulnerabilities but provide useful context or confirm benign behavior."
+                            },
+                            "helpUri": "https://example.com/info-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

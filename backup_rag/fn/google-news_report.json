@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "Remote Code Execution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns that could lead to an attacker executing arbitrary code on the system, often due to improper input validation or insecure deserialization."
+                            },
+                            "helpUri": "https://example.com/rce-001"
+                        },
+                        {
+                            "id": "CRED-EXPOSURE-001",
+                            "name": "Credential Exposure",
+                            "shortDescription": {
+                                "text": "Detects hardcoded or exposed sensitive credentials."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where API keys, passwords, or other sensitive credentials might be hardcoded in the source code or exposed through insecure configurations."
+                            },
+                            "helpUri": "https://example.com/cred-exposure-001"
+                        },
+                        {
+                            "id": "INSECURE-API-USAGE-001",
+                            "name": "Insecure API Usage",
+                            "shortDescription": {
+                                "text": "Detects potentially insecure usage of external APIs."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns where external APIs are called without proper authentication, authorization, or secure parameter handling, potentially leading to data leakage or unauthorized actions."
+                            },
+                            "helpUri": "https://example.com/insecure-api-usage-001"
+                        },
+                        {
+                            "id": "PROMPT-INJECTION-001",
+                            "name": "Prompt Injection",
+                            "shortDescription": {
+                                "text": "Detects potential prompt injection vulnerabilities in AI agent skills."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns in skill definitions or documentation that could allow an attacker to manipulate the AI agent's behavior through crafted inputs, bypassing intended safety measures or eliciting unintended actions."
+                            },
+                            "helpUri": "https://example.com/prompt-injection-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

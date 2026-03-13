@@ -1,0 +1,85 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "INFO-PROV-001",
+                            "name": "Provenance Discrepancy",
+                            "shortDescription": {
+                                "text": "Detects inconsistencies in skill package provenance metadata."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies situations where the reported origin repositories or metadata sources for a skill package do not align, suggesting potential copying, forking, or re-uploading from its canonical source. While not a direct security threat, it raises questions about the exact lineage of the package instance."
+                            },
+                            "help": {
+                                "text": "Review the conflicting metadata entries to understand the true origin and distribution path of the skill. Verify if the discrepancies are intentional (e.g., official forks, re-packaging) or indicative of an unauthorized distribution."
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "INFO-PROV-001",
+                    "level": "note",
+                    "message": {
+                        "text": "A CVSS NONE informational discrepancy was detected regarding the skill's provenance. The `_meta.json` file on line 7 references a commit from `github.com/clawdbot/skills`, while the `metadata.json` file on lines 3 and 4 indicates the skill was downloaded from `github.com/Andrejones92/canifi-life-os`. This inconsistency suggests that this particular skill package might have been copied, forked, or re-uploaded from its original source, or that the metadata files are simply reflecting where it was collected from rather than its canonical source. This is an informational discrepancy related to provenance, not a direct security threat."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/clawdbot/skills/_meta.json"
+                                },
+                                "region": {
+                                    "startLine": 7,
+                                    "endLine": 7,
+                                    "snippet": {
+                                        "text": "Line content not provided."
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 3,
+                                    "endLine": 3,
+                                    "snippet": {
+                                        "text": "Line content not provided."
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 4,
+                                    "endLine": 4,
+                                    "snippet": {
+                                        "text": "Line content not provided."
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "NONE",
+                        "threat_category": "Provenance Discrepancy"
+                    }
+                }
+            ]
+        }
+    ]
+}

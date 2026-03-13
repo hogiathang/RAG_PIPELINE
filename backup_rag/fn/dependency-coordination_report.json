@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Identifies informational findings or benign observations."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags observations that are not security vulnerabilities but provide context or confirm benign behavior within the analyzed code. These findings typically do not require remediation but are noted for completeness."
+                            },
+                            "helpUri": "https://example.com/info-001"
+                        },
+                        {
+                            "id": "SEC-MEM-001",
+                            "name": "SecureMemoryOperations",
+                            "shortDescription": {
+                                "text": "Detects potential issues related to memory access and modification."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code patterns that interact with memory systems. While many memory operations are legitimate, this rule highlights them for review to ensure they adhere to secure coding practices and do not lead to unauthorized data access, modification, or corruption."
+                            },
+                            "helpUri": "https://example.com/sec-mem-001"
+                        },
+                        {
+                            "id": "INTER-AGENT-COMM-001",
+                            "name": "InterAgentCommunicationSecurity",
+                            "shortDescription": {
+                                "text": "Identifies potential vulnerabilities in inter-agent communication and dependency management."
+                            },
+                            "fullDescription": {
+                                "text": "This rule focuses on the security of communication channels and dependency resolution mechanisms between different software agents. It aims to detect issues such as improper authentication, authorization, data integrity, or denial-of-service vulnerabilities that could arise from inter-agent interactions."
+                            },
+                            "helpUri": "https://example.com/inter-agent-comm-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

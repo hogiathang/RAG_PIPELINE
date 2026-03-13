@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "UnrestrictedShellAccess",
+                            "shortDescription": {
+                                "text": "Detects unrestricted shell access granted to AI agents."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies configurations where an AI agent is granted broad, unrestricted access to the underlying operating system's shell (e.g., Bash). Such access can lead to critical security vulnerabilities including remote code execution, data exfiltration, system modification, and privilege escalation if the agent is compromised or misconfigured. Best practices dictate strict sandboxing and command whitelisting for any shell interactions."
+                            },
+                            "helpUri": "https://www.f5.com/labs/articles/the-ghost-in-the-shell-why-agentic-ai-is-a-corporate-security-nightmare"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS CRITICAL vulnerability was detected on lines 3, 4, and 5. The skill explicitly grants the AI model unrestricted 'Bash' access via the `allowed-tools: - Bash` directive. This capability poses a critical security risk, potentially leading to data exfiltration, remote code execution, system modification, or privilege escalation. As highlighted by external threat intelligence, granting autonomous AI agents broad shell access without strict sandboxing or command whitelisting is a severe security vulnerability, creating a 'structural danger' and enabling attackers to target internal systems."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://gist.github.com/LuD1161/84102959a9375961ad9252e4d16ed592"
+                                },
+                                "region": {
+                                    "startLine": 3,
+                                    "endLine": 5,
+                                    "snippet": {
+                                        "text": "allowed-tools:\n  - Read\n  - Bash"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "CRITICAL",
+                        "threat_category": "RCE | Data Exfiltration | Privilege Escalation"
+                    }
+                }
+            ]
+        }
+    ]
+}

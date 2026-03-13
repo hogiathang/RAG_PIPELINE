@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns or configurations that could allow an attacker to execute arbitrary commands or code on the system where the skill operates."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        },
+                        {
+                            "id": "CRED-001",
+                            "name": "CredentialTheft",
+                            "shortDescription": {
+                                "text": "Detects potential credential theft or exposure."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code that handles sensitive information like API keys, passwords, or tokens in an insecure manner, potentially leading to their exfiltration or compromise."
+                            },
+                            "helpUri": "https://example.com/credential-guidance"
+                        },
+                        {
+                            "id": "MAL-001",
+                            "name": "MalwarePatternDetection",
+                            "shortDescription": {
+                                "text": "Detects known malware patterns or indicators of compromise."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code structures, external calls, or behaviors that are consistent with known malicious software or programmatic malware campaigns."
+                            },
+                            "helpUri": "https://example.com/malware-guidance"
+                        },
+                        {
+                            "id": "SEC-WARN-001",
+                            "name": "SecurityBestPracticeWarning",
+                            "shortDescription": {
+                                "text": "Identifies deviations from security best practices."
+                            },
+                            "fullDescription": {
+                                "text": "Highlights code that, while not directly malicious, might introduce security weaknesses or make the system more vulnerable to attacks if not properly handled."
+                            },
+                            "helpUri": "https://example.com/best-practice-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns or configurations that could allow an attacker to execute arbitrary code on the system."
+                            },
+                            "helpUri": "https://example.com/rules/RCE-001"
+                        },
+                        {
+                            "id": "SEC-WARN-002",
+                            "name": "InsecureConfiguration",
+                            "shortDescription": {
+                                "text": "Detects insecure configurations or practices."
+                            },
+                            "fullDescription": {
+                                "text": "Flags configurations or coding practices that, while not directly exploitable, weaken the overall security posture."
+                            },
+                            "helpUri": "https://example.com/rules/SEC-WARN-002"
+                        },
+                        {
+                            "id": "INFO-003",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Provides informational details or observations."
+                            },
+                            "fullDescription": {
+                                "text": "Highlights observations that are not security vulnerabilities but may be relevant for review or understanding the system's behavior."
+                            },
+                            "helpUri": "https://example.com/rules/INFO-003"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

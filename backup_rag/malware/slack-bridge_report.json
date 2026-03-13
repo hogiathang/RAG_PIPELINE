@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SUPPLY-CHAIN-001",
+                            "name": "AuthorDiscrepancy",
+                            "shortDescription": {
+                                "text": "Detects inconsistencies in author or maintainer information across skill metadata."
+                            },
+                            "fullDescription": {
+                                "text": "Inconsistencies in author or maintainer information across different metadata files (e.g., metadata.json, SKILL.md) can indicate supply chain security risks, obfuscation of origin, or potential for unauthorized modifications. This can lead to trust issues and difficulty in verifying the skill's provenance, even if the core code is benign."
+                            },
+                            "helpUri": "https://example.com/supply-chain-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SUPPLY-CHAIN-001",
+                    "level": "note",
+                    "message": {
+                        "text": "A CVSS LOW supply chain security concern was detected. The 'api-connector' skill exhibits an inconsistency in author information: its 'metadata.json' lists 'Lordjiggy' while its 'SKILL.md' lists 'GLINCKER Team'. This discrepancy raises questions about the true origin and maintainership, which could impact trust and verification of the skill's provenance."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/claude-marketplace/api-connector-skill/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 1,
+                                    "snippet": {
+                                        "text": "Author: Lordjiggy"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/claude-marketplace/api-connector-skill/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 1,
+                                    "snippet": {
+                                        "text": "Author: GLINCKER Team"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "LOW",
+                        "threat_category": "Supply Chain Security"
+                    }
+                }
+            ]
+        }
+    ]
+}

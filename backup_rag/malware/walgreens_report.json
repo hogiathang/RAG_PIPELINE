@@ -1,0 +1,128 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "METADATA-DISCREPANCY-001",
+                            "name": "Metadata Discrepancy",
+                            "shortDescription": {
+                                "text": "Detects inconsistencies in skill metadata."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies discrepancies across various metadata fields and files, such as conflicting package names, skill names, or repository origins. Such inconsistencies can indicate issues with packaging, renaming, or sourcing of the skill, warranting further investigation into its true provenance and purpose."
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "METADATA-DISCREPANCY-001",
+                    "level": "none",
+                    "message": {
+                        "text": "A CVSS NONE (informational) finding was detected regarding metadata inconsistencies across multiple files. The `metadata.json` file on line 13 identifies the package name as 'walgreens', which conflicts with the skill name 'card-optimizer' found in `_meta.json` on line 3 and `SKILL.md` on line 24. Furthermore, conflicting repository origins were identified: `_meta.json` on line 6 points to `https://github.com/clawdbot/skills`, `metadata.json` on lines 14 and 16 references `Andrejones92/canifi-life-os`, and `SKILL.md` on line 26 provides `https://github.com/ScotTFO/card-optimizer-skill` as the homepage. These discrepancies warrant further investigation to clarify the skill's true origin and purpose."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/clawdbot/skills/_meta.json"
+                                },
+                                "region": {
+                                    "startLine": 3,
+                                    "endLine": 3
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/clawdbot/skills/_meta.json"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 13,
+                                    "endLine": 13
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 14,
+                                    "endLine": 14
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 15,
+                                    "endLine": 15
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Andrejones92/canifi-life-os/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 16,
+                                    "endLine": 16
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/ScotTFO/card-optimizer-skill/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 24,
+                                    "endLine": 24
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/ScotTFO/card-optimizer-skill/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 26,
+                                    "endLine": 26
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "NONE",
+                        "threat_category": "None"
+                    }
+                }
+            ]
+        }
+    ]
+}

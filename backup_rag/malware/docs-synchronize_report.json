@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "Arbitrary Code Execution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns that could allow an attacker to execute arbitrary commands or code on the system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        },
+                        {
+                            "id": "DATA-EXFIL-002",
+                            "name": "Data Exfiltration",
+                            "shortDescription": {
+                                "text": "Detects potential data exfiltration attempts."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code that attempts to send sensitive data to unauthorized external destinations, potentially leading to data breaches."
+                            },
+                            "helpUri": "https://example.com/data-exfil-guidance"
+                        },
+                        {
+                            "id": "PRIV-ESC-003",
+                            "name": "Privilege Escalation",
+                            "shortDescription": {
+                                "text": "Detects potential privilege escalation vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow a low-privileged user or process to gain higher-level access or control."
+                            },
+                            "helpUri": "https://example.com/priv-esc-guidance"
+                        },
+                        {
+                            "id": "MAL-BEHAV-004",
+                            "name": "General Malicious Behavior",
+                            "shortDescription": {
+                                "text": "Detects general patterns indicative of malicious intent."
+                            },
+                            "fullDescription": {
+                                "text": "Flags suspicious activities that do not fall into specific categories but suggest harmful intent, such as unusual file system modifications or process manipulation."
+                            },
+                            "helpUri": "https://example.com/mal-behav-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

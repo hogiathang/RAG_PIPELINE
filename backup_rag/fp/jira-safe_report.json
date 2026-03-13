@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "DATA-LOSS-001",
+                            "name": "DestructiveAPICall",
+                            "shortDescription": {
+                                "text": "Detects functions capable of irreversible data deletion via API calls."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code segments that perform destructive operations, such as bulk deletion of data, without sufficient safeguards or explicit user confirmation. Such functions, if invoked improperly, can lead to catastrophic and irreversible data loss."
+                            },
+                            "helpUri": "https://example.com/docs/DATA-LOSS-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "DATA-LOSS-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS CRITICAL vulnerability was detected on lines 285 to 303. The 'jira-safe' skill contains a function named `bulkDeleteIssues` that is designed to query all issues within a specified Jira project and then iteratively delete each one, including its subtasks. While it uses legitimate Jira API functionality, its inclusion in a skill focused on SAFe methodology is highly suspicious and dangerous. The lack of apparent context or safeguards (e.g., explicit user confirmation, dry-run mode, or robust access control) for this destructive operation poses a critical risk of irreversible and catastrophic data loss across an entire Jira project if invoked accidentally, maliciously, or with incorrect parameters."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/01000001-01001110/agent-jira-skills/blob/main/jira-safe/skill.js"
+                                },
+                                "region": {
+                                    "startLine": 285,
+                                    "endLine": 303,
+                                    "snippet": {
+                                        "text": "async function bulkDeleteIssues(projectKey, maxResults = 100) {\n  // Search for all issues\n  const jql = encodeURIComponent(`project = ${projectKey} ORDER BY key ASC`);\n  const searchResponse = await fetch(\n    `${JIRA_URL}/rest/api/3/search/jql?jql=${jql}&maxResults=${maxResults}&fields=key`,\n    { headers }\n  );\n  const { issues } = await searchResponse.json();\n\n  // Delete each issue\n  for (const issue of issues) {\n    await fetch(`${JIRA_URL}/rest/api/3/issue/${issue.key}?deleteSubtasks=true`, {\n      method: 'DELETE',\n      headers\n    });\n    console.log(`Deleted: ${issue.key}`);\n    await new Promise(r => setTimeout(r, 100)); // Rate limit\n  }\n\n  return issues.length;\n}"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "CRITICAL",
+                        "threat_category": "Data Loss"
+                    }
+                }
+            ]
+        }
+    ]
+}

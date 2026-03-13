@@ -5,6 +5,8 @@ from threading import Lock
 from google.genai import Client, types
 from src.common.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
 from uuid import uuid4
+from threading import Thread
+import time
 
 # =========================================================
 # Lớp Worker bên trong (Được khởi tạo 1 lần duy nhất trên mỗi token)
@@ -63,6 +65,7 @@ class GeminiAgent:
         self.model_name = model_name
         self.worker_pool = Queue()
         self.worker_status = {}
+        self.workers = {}
 
         def prepare_worker(token):
             worker = Worker(token, self.model_name)
@@ -81,8 +84,21 @@ class GeminiAgent:
                 worker = future.result()
                 if worker:
                     self.worker_pool.put(worker)
+                    self.workers[worker.id] = worker
                 
         self._initialized = True
+
+        recovery_thread = Thread(target=self._worker_recovery_loop, daemon=True)
+        recovery_thread.start()
+
+    def _worker_recovery_loop(self):
+        while True:
+            try:
+                self.check_and_invoke_worker()
+            except Exception as e:
+                print(f"[ERROR] Worker recovery loop encountered an error: {e}")
+
+            time.sleep(60)
 
     def _load_tokens(self, token_file_path) -> list:
         tokens = []
@@ -95,6 +111,36 @@ class GeminiAgent:
                     if token:
                         tokens.append(token)
         return tokens
+    
+    def check_and_invoke_worker(self):
+        """
+        Ping các worker đang bị đánh dấu là 'unavailable'.
+        Nếu worker hoạt động trở lại thì đưa vào pool.
+        """
+
+        recovered = []
+
+        for worker_id, status in list(self.worker_status.items()):
+
+            if status != "unavailable":
+                continue
+
+            worker = self.workers.get(worker_id)
+
+            if worker is None:
+                continue
+
+            try:
+                if worker.is_available():
+                    self.worker_status[worker_id] = "available"
+                    self.worker_pool.put(worker)
+                    recovered.append(worker_id)
+
+            except Exception:
+                continue
+
+        if recovered:
+            print(f"[INFO] Recovered workers: {', '.join(recovered)}")
 
     def execute_task(self, prompt, task_type="summary-generation"):
         """
@@ -120,6 +166,12 @@ class GeminiAgent:
                 system_prompt  = AGENT_PROMPT.get(task_type, "")
 
                 result = worker.perform_task(prompt, system_instruction=system_prompt)
+
+                if result is None:
+                    self.worker_status[worker.id] = "unavailable"
+                    print(f"[ERROR] Worker {worker.id} failed to perform task. Marking as unavailable.")
+                    continue
+
                 self.worker_pool.put(worker)
                 return result
             

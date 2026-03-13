@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-TRUST-001",
+                            "name": "Third-Party Trust Assessment",
+                            "shortDescription": {
+                                "text": "Identifies reliance on external third-party services."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags code that integrates with or relies heavily on external third-party services for critical functionality, such as credential management or data processing. While not inherently malicious, such reliance introduces a dependency on the security and trustworthiness of the third-party, which should be thoroughly vetted."
+                            },
+                            "helpUri": "https://example.com/rules/SEC-TRUST-001"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "Arbitrary Code Execution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies patterns that could lead to arbitrary code execution, allowing an attacker to run malicious commands on the system. This includes improper use of evaluation functions, deserialization vulnerabilities, or command injection flaws."
+                            },
+                            "helpUri": "https://example.com/rules/RCE-001"
+                        },
+                        {
+                            "id": "DATA-EXFIL-001",
+                            "name": "Data Exfiltration",
+                            "shortDescription": {
+                                "text": "Detects potential data exfiltration attempts."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags code that might attempt to exfiltrate sensitive data to unauthorized external destinations. This includes suspicious network requests, file transfers to unknown hosts, or logging of sensitive information to insecure locations."
+                            },
+                            "helpUri": "https://example.com/rules/DATA-EXFIL-001"
+                        },
+                        {
+                            "id": "SEC-MISCONFIG-001",
+                            "name": "Security Misconfiguration",
+                            "shortDescription": {
+                                "text": "Identifies security misconfigurations."
+                            },
+                            "fullDescription": {
+                                "text": "This rule detects common security misconfigurations, such as insecure default settings, improper access controls, or exposed sensitive information in configuration files, which could lead to various vulnerabilities."
+                            },
+                            "helpUri": "https://example.com/rules/SEC-MISCONFIG-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

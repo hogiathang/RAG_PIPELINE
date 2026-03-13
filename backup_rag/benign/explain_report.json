@@ -1,0 +1,167 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "CommandInjection",
+                            "shortDescription": {
+                                "text": "Detects arbitrary command execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where unsanitized user input is directly incorporated into system commands, leading to potential arbitrary code execution, system compromise, or data manipulation."
+                            },
+                            "helpUri": "https://cwe.mitre.org/data/definitions/77.html"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS CRITICAL vulnerability was detected on lines 57, 60, 66, 70, 73, 80, 83, 89, and 92. The 'explain' skill is classified as MALICIOUS due to a critical command injection vulnerability. The 'allowed-tools' section explicitly permits the 'Bash' tool, which enables the execution of arbitrary shell commands. The vulnerability arises because the user-provided argument '$TARGET' is directly interpolated into multiple Bash commands without sufficient sanitization or robust quoting to prevent command injection. Specifically, commands such as `test -f \"$TARGET\"`, `test -d \"$TARGET\"`, and `tokei \"$TARGET\"` are executed. This allows an attacker to execute arbitrary commands on the system where the skill is run, leading to potential data loss, system compromise, or privilege escalation. Similar vulnerabilities exist where `$TARGET` is used in `ast-grep` and `rg` commands."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 57,
+                                    "endLine": 57,
+                                    "snippet": {
+                                        "text": "test -f \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 60,
+                                    "endLine": 60,
+                                    "snippet": {
+                                        "text": "test -d \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 66,
+                                    "endLine": 66,
+                                    "snippet": {
+                                        "text": "tokei \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 70,
+                                    "endLine": 70,
+                                    "snippet": {
+                                        "text": "ast-grep \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 73,
+                                    "endLine": 73,
+                                    "snippet": {
+                                        "text": "rg \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 80,
+                                    "endLine": 80,
+                                    "snippet": {
+                                        "text": "fd \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 83,
+                                    "endLine": 83,
+                                    "snippet": {
+                                        "text": "ast-grep --config \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 89,
+                                    "endLine": 89,
+                                    "snippet": {
+                                        "text": "rg --json \"$TARGET\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/Badhansen/skills/blob/main/explain_skill.sh"
+                                },
+                                "region": {
+                                    "startLine": 92,
+                                    "endLine": 92,
+                                    "snippet": {
+                                        "text": "tokei --stats \"$TARGET\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "CRITICAL",
+                        "threat_category": "RCE"
+                    }
+                }
+            ]
+        }
+    ]
+}

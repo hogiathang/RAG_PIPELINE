@@ -47,27 +47,27 @@ def format_json_response(response: str) -> json:
 def build_prompt_from_retrive_similar_documents_for_skills_analysis(skills_contents: str) -> json:
 
     gemini_agent = GeminiAgent()
-    max_retries = 3
 
-    for attempt in range(max_retries):
-        response = gemini_agent.execute_task(skills_contents, "skills-analysis")
-        
-        try:
-            formatted_response = format_json_response(response)
+    response = gemini_agent.execute_task(skills_contents, "skills-analysis")
 
-            search_queries = formatted_response.get("search_queries", [])
+    print(f"[INFO] Agent Analyzied Skill Response {response}")
 
-            search_contents = []
-            for query in search_queries:
-                search_result = retrieve_similar_documents(query)
-                search_contents.extend(search_result)
+    formatted_response = format_json_response(response)
 
-            formatted_response["search_contents"] = search_contents
+    search_queries = formatted_response.get("search_queries", [])
 
-            return format_json_response(
-                gemini_agent.execute_task(json.dumps(formatted_response), 
-                                          "skills-report-generation"))
+    search_contents = []
 
-        except ValueError as e:
-            print(f"[WARNING] Attempt {attempt + 1}: Failed to parse JSON - {e}")
-            continue
+    for query in search_queries:
+        search_result = retrieve_similar_documents(query)
+        search_contents.extend(search_result)
+
+    formatted_response["search_contents"] = search_contents
+    print(f"[INFO] Agent Analyzied Skill Formatted Response {formatted_response}")
+
+    report = format_json_response(
+        gemini_agent.execute_task(json.dumps(formatted_response), 
+                                  "skills-report-generation"))
+    
+    print(f"[INFO] Agent Analyzied Skill Report {report}")
+    return report

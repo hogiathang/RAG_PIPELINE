@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns or configurations that could allow an attacker to execute arbitrary code on the system where the skill is running, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/rce-001"
+                        },
+                        {
+                            "id": "SEC-WARN-002",
+                            "name": "InsecureConfiguration",
+                            "shortDescription": {
+                                "text": "Detects insecure configurations or weak security practices."
+                            },
+                            "fullDescription": {
+                                "text": "Flags configurations that might weaken the overall security posture of the skill or the environment it operates in, potentially leading to unauthorized access or data exposure."
+                            },
+                            "helpUri": "https://example.com/sec-warn-002"
+                        },
+                        {
+                            "id": "DATA-EXFIL-003",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects potential data exfiltration attempts."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns or network activities that suggest an attempt to transfer sensitive data out of the system without authorization."
+                            },
+                            "helpUri": "https://example.com/data-exfil-003"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

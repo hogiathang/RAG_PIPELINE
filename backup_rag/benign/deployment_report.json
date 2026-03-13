@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "Arbitrary Code Execution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands or code on the system, leading to severe security breaches such as data compromise or system control. This often occurs when untrusted input is executed directly or when unverified external packages are run."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS HIGH vulnerability was detected on line 39. The code attempts to execute `npx testflight`, which is not a standard or officially documented command within the Expo Application Services (EAS) CLI. This command would download and run an unknown npm package, posing a significant risk of arbitrary code execution (RCE), data exfiltration, or other harmful activities if a malicious package is published under this name."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/expo/skills/blob/main/plugins/expo-deployment/skills/expo-deployment//SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 39,
+                                    "endLine": 39,
+                                    "snippet": {
+                                        "text": "npx testflight"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "HIGH",
+                        "threat_category": "RCE"
+                    }
+                }
+            ]
+        }
+    ]
+}

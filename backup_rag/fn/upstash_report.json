@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "QSTASH-SEC-001",
+                            "name": "UnverifiedQStashWebhookSignature",
+                            "shortDescription": {
+                                "text": "Detects missing or improper verification of Upstash QStash webhook signatures."
+                            },
+                            "fullDescription": {
+                                "text": "Upstash QStash webhooks should always be verified using both provided keys to ensure the authenticity and integrity of incoming messages. Failure to do so can lead to spoofing and unauthorized actions, potentially allowing attackers to trigger actions or inject malicious data."
+                            },
+                            "properties": {
+                                "cvss_severity": "CRITICAL",
+                                "threat_category": "Authentication Bypass",
+                                "level": "error"
+                            }
+                        },
+                        {
+                            "id": "QSTASH-PERF-002",
+                            "name": "MissingDeduplicationCriticalOperations",
+                            "shortDescription": {
+                                "text": "Identifies lack of message deduplication for critical Upstash QStash operations."
+                            },
+                            "fullDescription": {
+                                "text": "For critical operations, Upstash QStash messages should implement deduplication to prevent processing the same message multiple times. Without deduplication, idempotent operations might be executed repeatedly, leading to data inconsistencies, unintended side effects, or resource exhaustion."
+                            },
+                            "properties": {
+                                "cvss_severity": "HIGH",
+                                "threat_category": "Data Integrity",
+                                "level": "error"
+                            }
+                        },
+                        {
+                            "id": "QSTASH-NET-003",
+                            "name": "ExposurePrivateLocalhostEndpoints",
+                            "shortDescription": {
+                                "text": "Detects attempts to use Upstash QStash to reach private or localhost endpoints in a production environment."
+                            },
+                            "fullDescription": {
+                                "text": "Upstash QStash is designed for public HTTP endpoints. Expecting it to reach private or localhost endpoints in a production setup is a misconfiguration and will not work, potentially leading to service unavailability, message delivery failures, or data loss. Endpoints must be publicly accessible."
+                            },
+                            "properties": {
+                                "cvss_severity": "CRITICAL",
+                                "threat_category": "Service Misconfiguration",
+                                "level": "error"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

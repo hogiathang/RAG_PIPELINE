@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "METADATA-INCONSISTENCY-001",
+                            "name": "MetadataInconsistency",
+                            "shortDescription": {
+                                "text": "Detects inconsistencies in skill metadata that may indicate misidentification or tampering."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies discrepancies between various metadata files or documentation within a skill package. Such inconsistencies can lead to misidentification of the skill's purpose, origin, or intended behavior, potentially obscuring malicious intent or indicating packaging errors that affect trust and integrity."
+                            },
+                            "helpUri": "https://example.com/metadata-inconsistency-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "METADATA-INCONSISTENCY-001",
+                    "level": "note",
+                    "message": {
+                        "text": "A CVSS LOW vulnerability was detected on lines 19-27. The 'metadata.json' file for the skill 'notion-export' (also known as 'Notion to Markdown') contains a significant inconsistency. It describes a skill named 'dot-export' for 'Exporting DOT/Graphviz diagrams' and points to the 'sparkling/claude-config' repository, which directly contradicts the 'Notion to Markdown' description found in '_meta.json' and 'SKILL.md' files associated with the 'openclaw/skills' repository. This discrepancy raises concerns about the integrity and proper identification of the skill, although the 'SKILL.md' content itself appears benign."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/openclaw/skills/blob/main/metadata.json"
+                                },
+                                "region": {
+                                    "startLine": 19,
+                                    "endLine": 27,
+                                    "snippet": {
+                                        "text": "{\n  \"name\": \"dot-export\",\n  \"description\": \"Exporting DOT/Graphviz diagrams\",\n  \"repository\": \"sparkling/claude-config\",\n  \"author\": \"sparkling\",\n  \"version\": \"1.0.0\",\n  \"license\": \"MIT\",\n  \"tags\": [\"diagram\", \"graphviz\", \"dot\"]\n}"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "LOW",
+                        "threat_category": "Metadata Inconsistency"
+                    }
+                }
+            ]
+        }
+    ]
+}

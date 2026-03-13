@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-GEN-001",
+                            "name": "GenericSecurityVulnerability",
+                            "shortDescription": {
+                                "text": "Detects generic security vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies potential security weaknesses that could lead to various types of attacks, such as data breaches, unauthorized access, or system compromise. It serves as a catch-all for issues not covered by more specific rules."
+                            },
+                            "helpUri": "https://example.com/help/SEC-GEN-001"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Identifies informational findings or best practice deviations."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags elements that are not direct security vulnerabilities but might indicate areas for improvement, adherence to best practices, or provide context for the analysis. These findings typically have a low impact."
+                            },
+                            "helpUri": "https://example.com/help/INFO-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

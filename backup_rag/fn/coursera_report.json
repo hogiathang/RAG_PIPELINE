@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "MaliciousCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities or malicious payloads."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns indicative of remote code execution, malware distribution, or other forms of malicious code designed to compromise system integrity or confidentiality."
+                            },
+                            "helpUri": "https://example.com/help/RCE-001"
+                        },
+                        {
+                            "id": "SEC-002",
+                            "name": "CredentialExposure",
+                            "shortDescription": {
+                                "text": "Detects exposed sensitive information like API keys or credentials."
+                            },
+                            "fullDescription": {
+                                "text": "Scans for hardcoded API keys, passwords, tokens, or other sensitive credentials that could lead to unauthorized access or data breaches."
+                            },
+                            "helpUri": "https://example.com/help/SEC-002"
+                        },
+                        {
+                            "id": "PROMPT-003",
+                            "name": "PromptInjection",
+                            "shortDescription": {
+                                "text": "Detects prompt injection or jailbreaking attempts."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies input patterns or content designed to bypass security filters, manipulate AI agent behavior, or extract confidential information through prompt injection or jailbreaking techniques."
+                            },
+                            "helpUri": "https://example.com/help/PROMPT-003"
+                        },
+                        {
+                            "id": "DATAEX-004",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects attempts at data exfiltration."
+                            },
+                            "fullDescription": {
+                                "text": "Looks for code constructs or patterns that suggest an attempt to covertly transfer data out of the system or environment."
+                            },
+                            "helpUri": "https://example.com/help/DATAEX-004"
+                        },
+                        {
+                            "id": "INSECURE-DEP-005",
+                            "name": "InsecureDependency",
+                            "shortDescription": {
+                                "text": "Detects insecure third-party content or dependencies."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies the use of vulnerable or untrusted third-party libraries, modules, or external content that could introduce security risks."
+                            },
+                            "helpUri": "https://example.com/help/INSECURE-DEP-005"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "DATAEXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects mechanisms for unauthorized data exfiltration or session hijacking."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code patterns or commands that allow an agent to save sensitive session data (e.g., authentication tokens, cookies) to a local file, which can then be exfiltrated or used for session hijacking, leading to unauthorized access and privilege escalation."
+                            },
+                            "helpUri": "https://example.com/docs/DATAEXFIL-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "DATAEXFIL-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS HIGH vulnerability was detected on line 88. The 'agent-browser' skill includes the command `agent-browser state save auth.json` which explicitly saves the current browser session's authentication state to a local file. This capability poses a significant security risk, as it provides a direct mechanism for an attacker to persist and potentially exfiltrate sensitive user session data, leading to unauthorized access, session hijacking, and potential data breaches."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/vercel-labs/agent-browser/blob/main/skills/agent-browser/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 88,
+                                    "endLine": 88,
+                                    "snippet": {
+                                        "text": "agent-browser state save auth.json"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "HIGH",
+                        "threat_category": "Data Exfiltration | Privilege Escalation"
+                    }
+                }
+            ]
+        }
+    ]
+}

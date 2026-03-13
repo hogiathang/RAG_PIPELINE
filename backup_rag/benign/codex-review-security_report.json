@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instances where an agent or skill is granted permissions that could lead to arbitrary code execution, such as unrestricted shell access, which can be exploited by malicious inputs or compromised dependencies. This allows an attacker to run arbitrary commands on the host system."
+                            },
+                            "helpUri": "https://example.com/rce-001-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "A CVSS CRITICAL vulnerability was detected on line 6. The skill `codex-review-security` explicitly allows `Bash` execution, granting it the ability to run arbitrary shell commands. While the current script uses this for benign operations like `git branch` (line 29) and `npm install` (line 50), this broad permission introduces a significant risk. If the underlying Large Language Model generates unexpected or malicious commands, or if external tools like `@openai/codex` are compromised, this permission could lead to Remote Code Execution (RCE) or other severe attacks on the host system."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/pauhu/claude-codex-review/blob/main/skill.yaml"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6,
+                                    "snippet": {
+                                        "text": "allowed-tools: - Bash"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "cvss_severity": "CRITICAL",
+                        "threat_category": "RCE"
+                    }
+                }
+            ]
+        }
+    ]
+}

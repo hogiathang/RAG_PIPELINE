@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-INFO-001",
+                            "name": "Informational Content",
+                            "shortDescription": {
+                                "text": "Identifies content that is purely informational or educational."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags content that serves an informational or educational purpose, providing guidance, best practices, or anti-patterns without containing executable code or direct security vulnerabilities."
+                            },
+                            "helpUri": "https://example.com/rules/SEC-INFO-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

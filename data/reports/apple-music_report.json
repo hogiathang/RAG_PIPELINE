@@ -5,11 +5,82 @@
         {
             "tool": {
                 "driver": {
-                    "name": "Thang's Agent Analyzer",
-                    "rules": []
+                    "name": "Senior Cybersecurity Auditor",
+                    "informationUri": "https://example.com/cybersecurity-auditor",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "Remote Command Execution via Shell/AppleScript Injection",
+                            "shortDescription": {
+                                "text": "Unsanitized user input embedded into shell commands or scripts can lead to arbitrary code execution."
+                            },
+                            "fullDescription": {
+                                "text": "This vulnerability occurs when user-controlled data is directly inserted into a command executed by the system shell or an interpreter like AppleScript's `osascript` without proper sanitization or escaping. An attacker can inject malicious commands, leading to arbitrary code execution on the host system. In the context of AppleScript, this often involves injecting `do shell script` commands, which can execute arbitrary shell commands."
+                            },
+                            "help": {
+                                "text": "To prevent command injection, always sanitize and validate user input before incorporating it into shell commands or scripts. Use parameterized commands or robust escaping functions provided by the language or framework. For AppleScript, ensure that any variables passed into `osascript -e` are properly quoted and escaped to prevent them from being interpreted as part of the AppleScript logic or as shell commands via `do shell script`."
+                            },
+                            "properties": {
+                                "severity": "CRITICAL",
+                                "threatCategory": "RCE"
+                            }
+                        }
+                    ]
                 }
             },
-            "results": []
+            "results": [
+                {
+                    "ruleId": "RCE-001",
+                    "level": "error",
+                    "message": {
+                        "text": "The `apple-music.sh` script is vulnerable to remote command execution due to improper sanitization of user input when constructing AppleScript commands. User-provided variables (e.g., `$target`, `$query`, `$arg`) are directly embedded into `osascript -e` strings without proper escaping. An attacker can craft input containing malicious AppleScript commands (e.g., `\" & do shell script \"open /Applications/Calculator.app\" & \"`) to achieve arbitrary command execution on the macOS system where the skill is run. This is a critical supply chain security concern, as agent skills, particularly those on platforms like ClawHub, often inherit full agent permissions, lack default sandboxing, and are known targets for malicious maintainers and programmatic malware campaigns, as highlighted by threat intelligence. This vulnerability allows for complete system compromise."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "apple-music.sh"
+                                },
+                                "region": {
+                                    "startLine": 320,
+                                    "endLine": 320,
+                                    "snippet": {
+                                        "text": "osascript -e \"tell application \\\"Music\\\" to play playlist \\\"$target\\\"\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "apple-music.sh"
+                                },
+                                "region": {
+                                    "startLine": 333,
+                                    "endLine": 333,
+                                    "snippet": {
+                                        "text": "osascript -e \"tell application \\\"Music\\\" ... search library playlist 1 for \\\"$query\\\" only songs ...\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "apple-music.sh"
+                                },
+                                "region": {
+                                    "startLine": 496,
+                                    "endLine": 496,
+                                    "snippet": {
+                                        "text": "osascript -e \"tell application \\\"Music\\\" ... if name of d is \\\"$arg\\\" then set selected of d to true ...\""
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

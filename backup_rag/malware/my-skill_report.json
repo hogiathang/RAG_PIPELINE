@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalFinding",
+                            "shortDescription": {
+                                "text": "Identifies benign or informational findings."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags content that has been analyzed and determined to be benign, or provides general information about the analyzed artifact without indicating a security vulnerability."
+                            },
+                            "helpUri": "https://example.com/info-001"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies patterns or configurations that could allow an attacker to execute arbitrary code on the target system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/rce-001"
+                        },
+                        {
+                            "id": "INSECURE-SCRIPT-001",
+                            "name": "InsecureScriptExecution",
+                            "shortDescription": {
+                                "text": "Detects potentially insecure script execution mechanisms."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags mechanisms that allow for the execution of external scripts without sufficient validation or sandboxing, potentially leading to supply chain attacks or arbitrary command execution."
+                            },
+                            "helpUri": "https://example.com/insecure-script-001"
+                        },
+                        {
+                            "id": "CRED-THEFT-001",
+                            "name": "CredentialTheft",
+                            "shortDescription": {
+                                "text": "Detects patterns indicative of credential theft attempts."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code or configurations designed to steal user credentials, API keys, or other sensitive authentication information."
+                            },
+                            "helpUri": "https://example.com/cred-theft-001"
+                        },
+                        {
+                            "id": "INJECTION-001",
+                            "name": "InjectionVulnerability",
+                            "shortDescription": {
+                                "text": "Detects various forms of injection vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies vulnerabilities where untrusted input is processed as part of a command, query, or code, leading to unintended execution or data manipulation."
+                            },
+                            "helpUri": "https://example.com/injection-001"
+                        },
+                        {
+                            "id": "MALWARE-GEN-001",
+                            "name": "MalwareGeneration",
+                            "shortDescription": {
+                                "text": "Detects indicators of automated malware generation or distribution."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies patterns associated with programmatic malware campaigns, automated skill generation for malicious purposes, or distribution of known malicious artifacts."
+                            },
+                            "helpUri": "https://example.com/malware-gen-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "RCE-001",
+                            "name": "ArbitraryCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects arbitrary code execution vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code patterns that could allow an attacker to execute arbitrary commands or code on the system, leading to full system compromise."
+                            },
+                            "helpUri": "https://example.com/help/RCE-001"
+                        },
+                        {
+                            "id": "DATA-EXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects potential data exfiltration."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that sends sensitive data to unauthorized external destinations, potentially leading to data breaches."
+                            },
+                            "helpUri": "https://example.com/help/DATA-EXFIL-001"
+                        },
+                        {
+                            "id": "AUTH-BYPASS-001",
+                            "name": "AuthenticationBypass",
+                            "shortDescription": {
+                                "text": "Detects authentication bypass vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies flaws in authentication mechanisms that could allow unauthorized access to protected resources."
+                            },
+                            "helpUri": "https://example.com/help/AUTH-BYPASS-001"
+                        },
+                        {
+                            "id": "INSECURE-COMM-001",
+                            "name": "InsecureCommunication",
+                            "shortDescription": {
+                                "text": "Detects insecure communication practices."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies the use of insecure communication protocols or lack of encryption when transmitting sensitive data."
+                            },
+                            "helpUri": "https://example.com/help/INSECURE-COMM-001"
+                        },
+                        {
+                            "id": "SEC-WARN-002",
+                            "name": "GeneralSecurityWarning",
+                            "shortDescription": {
+                                "text": "Identifies general security warnings or best practice violations."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code that might not be a direct vulnerability but violates security best practices, potentially leading to future issues or reducing overall security posture."
+                            },
+                            "helpUri": "https://example.com/help/SEC-WARN-002"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}
