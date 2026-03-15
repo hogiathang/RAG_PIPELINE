@@ -3,11 +3,15 @@ from queue import Queue, Empty
 import concurrent.futures
 from threading import Lock
 from google.genai import Client, types
-from src.common.model.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
+from src.common.model.agent_prompt import AGENT_PROMPT
 from uuid import uuid4
 from threading import Thread
 import time
 from src.common.model.agent_adapter import AgentAdapter
+
+# ------------- CONFIGURATION -------------
+MODEL_NAME = "gemini-2.5-flash"
+TOKENS_FILE = "api_tokens/gemini_tokens.txt"
 
 # =========================================================
 # Lớp Worker bên trong (Được khởi tạo 1 lần duy nhất trên mỗi token)

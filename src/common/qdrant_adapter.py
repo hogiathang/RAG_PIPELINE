@@ -67,9 +67,10 @@ class QdrantAdapter:
         result = self._search(question, top_k)
         
         search_engine = WebSearchEngine()
-        web_searh_response = search_engine.search(question)
+        web_search_response = []
+        # web_search_response = search_engine.search(question)
 
-        return result + web_searh_response
+        return result + web_search_response
 
     def delete(self):
         self.client.delete_collection(self.collection)

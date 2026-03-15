@@ -1,6 +1,3 @@
-# ------------- CONFIGURATION -------------
-MODEL_NAME = "gemini-2.5-flash"
-TOKENS_FILE = "api_tokens/gemini_tokens.txt"
 AGENT_PROMPT = {
     # =========================================================================
     # PROMPT 1: CODE -> SEARCH QUERIES

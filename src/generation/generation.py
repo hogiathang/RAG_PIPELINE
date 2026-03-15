@@ -1,6 +1,7 @@
 from src.retrieval.retrieval import retrieve_similar_documents
 from src.common.model.gemini_agent import GeminiAgent
 from src.common.model.agent_adapter import AgentAdapter
+from src.common.model.local_agent import LocalAgent
 import json, re
 
 def build_prompt_from_retrieve_similar_documents(user_prompt: str):
@@ -20,9 +21,9 @@ def format_json_response(response: str) -> json:
 
 def build_prompt_from_retrive_similar_documents_for_skills_analysis(skills_contents: str) -> json:
 
-    gemini_agent: AgentAdapter = GeminiAgent()
+    agent: AgentAdapter = LocalAgent()
 
-    response = gemini_agent.execute_task(skills_contents, "skills-analysis")
+    response = agent.execute_task(skills_contents, "skills-analysis")
 
     print(f"[INFO] Agent Analyzied Skill Response {response}")
 
@@ -40,7 +41,7 @@ def build_prompt_from_retrive_similar_documents_for_skills_analysis(skills_conte
     print(f"[INFO] Agent Analyzied Skill Formatted Response {formatted_response}")
 
     report = format_json_response(
-        gemini_agent.execute_task(json.dumps(formatted_response), 
+        agent.execute_task(json.dumps(formatted_response), 
                                   "skills-report-generation"))
     
     print(f"[INFO] Agent Analyzied Skill Report {report}")
