@@ -3,10 +3,11 @@ from queue import Queue, Empty
 import concurrent.futures
 from threading import Lock
 from google.genai import Client, types
-from src.common.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
+from src.common.model.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
 from uuid import uuid4
 from threading import Thread
 import time
+from src.common.model.agent_adapter import AgentAdapter
 
 # =========================================================
 # Lớp Worker bên trong (Được khởi tạo 1 lần duy nhất trên mỗi token)
@@ -46,7 +47,7 @@ class Worker:
 
 # -----------------------------------------
 
-class GeminiAgent:
+class GeminiAgent(AgentAdapter):
     _instance = None
     _lock = Lock()
 
@@ -94,7 +95,7 @@ class GeminiAgent:
     def _worker_recovery_loop(self):
         while True:
             try:
-                self.check_and_invoke_worker()
+                self._check_and_invoke_worker()
             except Exception as e:
                 print(f"[ERROR] Worker recovery loop encountered an error: {e}")
 
@@ -112,7 +113,7 @@ class GeminiAgent:
                         tokens.append(token)
         return tokens
     
-    def check_and_invoke_worker(self):
+    def _check_and_invoke_worker(self):
         """
         Ping các worker đang bị đánh dấu là 'unavailable'.
         Nếu worker hoạt động trở lại thì đưa vào pool.

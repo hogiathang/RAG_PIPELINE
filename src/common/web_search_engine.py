@@ -1,4 +1,4 @@
-from src.common.gemini_agent import GeminiAgent
+from src.common.model.gemini_agent import GeminiAgent
 from threading import Lock
 import os, re, json, requests
 
