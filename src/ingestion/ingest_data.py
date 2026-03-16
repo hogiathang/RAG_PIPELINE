@@ -10,7 +10,7 @@ from src.common.embedding_model import EmbeddingModel
 from src.common.qdrant_adapter import QdrantAdapter
 
 
-INPUT_DIR = "./documents"
+INPUT_DIR = "./backup_rag"
 
 
 def load_document(file_path: str):
