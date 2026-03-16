@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-001",
+                            "name": "Benign Code Verified",
+                            "shortDescription": {
+                                "text": "The analyzed code has been verified as benign and performs its stated functionality without malicious intent."
+                            },
+                            "fullDescription": {
+                                "text": "This rule indicates that a thorough analysis, including external threat intelligence correlation, has confirmed the benign nature of the code. All identified functionalities are legitimate and align with the skill's stated purpose, with no evidence of unauthorized actions, data exfiltration, or other malicious behaviors."
+                            },
+                            "helpUri": "https://example.com/docs/SEC-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

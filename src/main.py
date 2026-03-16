@@ -12,11 +12,13 @@ import sys, os, json
 import argparse
 from pathlib import Path
 from src.ingestion.ingest_data import ingest_data
+from src.retrieval.retrieval import retrieve_similar_documents
 
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.generation.generation import build_prompt_from_retrieve_similar_documents, build_prompt_from_retrive_similar_documents_for_skills_analysis
+from src.generation.generation import build_prompt_from_retrieve_similar_documents, \
+    build_prompt_from_retrive_similar_documents_for_skills_analysis, analyze_skills_file, analyze_package_codes, verify_result
 
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
@@ -88,55 +90,94 @@ def save_report(report: str, output_path: str) -> None:
     print(f"[INFO] Report saved to: {path.resolve()}")
 
 
-def read_package(package_path: str) -> str:
+def read_package_codes(package_path: str) -> list[str]:
     contents = []
-    for file in os.listdir(package_path):
-        # Chỉ đọc file .js, .json, .md, .sh,
 
-        if not file.endswith((".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")):
-            continue
+    for root, _, files in os.walk(package_path):
+        for file in files:
+            if file.endswith((".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")) and file != "SKILL.md":
+                file_path = os.path.join(root, file)
+                try:
+                    content = Path(file_path).read_text(encoding="utf-8")
+                    contents.append(f"FILE: {file}\n{content}")
+                except Exception as e:
+                    print(f"[WARNING] Could not read file '{file_path}': {e}")
 
-        content = Path(os.path.join(package_path, file)).read_text(encoding="utf-8")
-        contents.append(f"[FILE: {file}]\n{content}")
+def read_skills_file(package_dir: str) -> str:
+    skill_file_name = "SKILL.md"
 
-    return contents
+    try:
+        skill_file_path = os.path.join(package_dir, skill_file_name)
+        return Path(skill_file_path).read_text(encoding="utf-8")
+    except FileNotFoundError:
+        print(f"[WARNING] Skill file '{skill_file_name}' not found in '{package_dir}'. Returning empty string.")
+        return ""
 
-def retrieval_pipeline(args) -> None:
-
-    INPUT_DIR = input("Please enter the input directory path (containing JavaScript/Node.js packages): ").strip()
-    OUTPUT_DIR = input("Please enter the output directory path (to save markdown reports): ").strip()
-
-    if not os.path.exists(INPUT_DIR):
-        print(f"[ERROR] Input directory '{INPUT_DIR}' does not exist.", file=sys.stderr)
+def retrieval_pipeline(input_dir: str, output_dir: str) -> None:
+    if not os.path.exists(input_dir):
+        print(f"[ERROR] Input directory '{input_dir}' does not exist.", file=sys.stderr)
         sys.exit(1)
 
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
-    analyzed_packages = []
-    for file in os.listdir(OUTPUT_DIR):
-        if file.endswith("_report.json"):
-            analyzed_packages.append(file.replace("_report.json", ""))
+    analyzed_packages = {
+        file.replace("_report.json", "") 
+        for file in os.listdir(output_dir) if file.endswith("_report.json")
+    }
 
-    for package in os.listdir(INPUT_DIR):
+    LOCAL_MODEL_SUSPICIOUS_THRESHOLD = 70
+    MALWARE_THRESHOLD = 80
 
+    for package in os.listdir(input_dir):
         if package in analyzed_packages:
             print(f"[SKIP] Package '{package}' already analyzed. Skipping...")
             continue
 
-        package_path = os.path.join(INPUT_DIR, package)
+        print(f"\n[START] Analyzing package: {package}")
+        package_path = os.path.join(input_dir, package)
+        
+        skill_content = read_skills_file(package_path)
+        report = analyze_skills_file(skill_content, using_local_model=True)
+        
+        malware_score = report.get("malware_score", 0)
+        suspicious_score = report.get("suspicious_score", 0)
+        
+        if suspicious_score >= LOCAL_MODEL_SUSPICIOUS_THRESHOLD or malware_score >= MALWARE_THRESHOLD:
+            print(f"[ESCALATION] High risk detected (Malware: {malware_score}, Suspicious: {suspicious_score}). Switching to Gemini...")
+            report = analyze_skills_file(skill_content, using_local_model=False)
+            malware_score = report.get("malware_score", 0)
 
-        contents =  read_package(package_path)
+        final_report_data = {
+            "package_name": package,
+            "skills_analysis": report,
+            "source_code_analysis": None,
+            "rag_search_results": []
+        }
 
-        # print(f"[INFO] Processing Package: {package}")
-        # print(f"[INFO] Content Summary: {contents[0][:500]}...")
+        if malware_score < MALWARE_THRESHOLD:
+            print(f"[INFO] Skills seem okay. Deep diving into source codes...")
+            other_files_contents = read_package_codes(package_path)
+            other_files_report = analyze_package_codes(other_files_contents, using_large_language_model=False)
+            final_report_data["source_code_analysis"] = other_files_report
 
-        report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
+        queries = report.get("functions_to_query", [])
+        if final_report_data["source_code_analysis"]:
+            queries.extend(final_report_data["source_code_analysis"].get("functions_to_query", []))
+            
+        unique_queries = list(set(queries))
+        
+        for query in unique_queries:
+            search_result = retrieve_similar_documents(query)
+            final_report_data["rag_search_results"].extend(search_result)
 
-        output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
+        final_result = verify_result(final_report_data)
+
+        output_path = os.path.join(output_dir, f"{package}_report.json")
         with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(report, f, indent=4)
-        print(f"[INFO] Report saved to: {output_path}\n{SEPARATOR}\n")
+            json.dump(final_result, f, indent=4)
+
+        print(f"[INFO] Report saved to: {output_path}")
+        print("="*50)
 
     
 def ingest_data_pipeline():
@@ -150,12 +191,7 @@ if __name__ == "__main__":
         if args.ingest_data:
             ingest_data_pipeline()
         else:
-            if args.analyze_skills:
-                print("[INFO] Running in Skills Analysis Mode...")
-            else:
-                print("[INFO] Running in Retrieval Mode...")
-
-            retrieval_pipeline(args)
+            retrieval_pipeline(input_dir="data/test", output_dir="data/reports")
     
     except KeyboardInterrupt:
         print("\n[INFO] Process interrupted by user. Exiting gracefully.")
