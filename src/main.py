@@ -1,23 +1,17 @@
-"""
-Main entry point cho RAG System
-──────────────────────────────────────────
-Pipeline:
-  1. Nhận code snippet từ user (stdin, CLI arg, hoặc file)
-  2. Embed code → tìm kiếm tài liệu tương tự trong Qdrant + web search
-  3. Tổng hợp ngữ cảnh → Gemini sinh báo cáo Threat Intelligence
-  4. In báo cáo markdown ra stdout
-"""
+"""Main entry point for the RAG skill-analysis pipeline."""
 
-import sys, os, json
 import argparse
+import json
+import os
+import sys
 from pathlib import Path
+
 from src.ingestion.ingest_data import ingest_data
-from src.retrieval.retrieval import retrieve_similar_documents
 
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.generation.generation import extractor
+from src.generation.generation import run_map_reduce_extraction
 
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
@@ -37,6 +31,23 @@ User Guide:
 SEPARATOR = "=" * 60
 
 
+ALLOWED_SOURCE_EXTENSIONS = (
+    ".js",
+    ".json",
+    ".md",
+    ".sh",
+    ".txt",
+    ".yaml",
+    ".yml",
+    ".html",
+    ".css",
+    ".ts",
+    ".tsx",
+    ".jsx",
+    ".py",
+)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         "prog=rag-malware-analyzer",
@@ -45,46 +56,39 @@ def parse_args() -> argparse.Namespace:
 
     input_group = parser.add_mutually_exclusive_group()
 
-
     input_group.add_argument(
         "--analyze-skills",
         action="store_true",
-        help="Analyze agent's skills behavior"
+        help="Analyze agent's skills behavior",
     )
 
     input_group.add_argument(
         "--ingest-data",
         action="store_true",
-        help="Ingest sample data into Qdrant (for testing purposes)"
+        help="Ingest sample data into Qdrant (for testing purposes)",
     )
 
     return parser.parse_args()
 
-def save_report(report: str, output_path: str) -> None:
-    """Lưu báo cáo ra file markdown."""
-    path = Path(output_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(report, encoding="utf-8")
-    print(f"[INFO] Report saved to: {path.resolve()}")
-
-
-def read_package_codes(package_path: str) -> list[str]:
-    contents = []
+def read_package_codes(package_path: str) -> list[dict[str, str]]:
+    contents: list[dict[str, str]] = []
 
     for root, _, files in os.walk(package_path):
         for file in files:
-            if file.endswith((".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")):
+            if file.endswith(ALLOWED_SOURCE_EXTENSIONS):
                 file_path = os.path.join(root, file)
                 try:
                     content = Path(file_path).read_text(encoding="utf-8")
                     contents.append({
-                        "file_path": file_path,
+                        "file_path": os.path.relpath(file_path, package_path),
                         "content": content
                     })
                 except Exception as e:
                     print(f"[WARNING] Could not read file '{file_path}': {e}")
 
-def save_report(report: json, output_dir: str, package_name: str) -> None:
+    return contents
+
+def save_report(report: dict, output_dir: str, package_name: str) -> None:
     output_path = os.path.join(output_dir, f"{package_name}_report.json")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=4)
@@ -100,21 +104,28 @@ def retrieval_pipeline(input_dir: str, output_dir: str) -> None:
 
     os.makedirs(output_dir, exist_ok=True)
 
-    for package in os.listdir(input_dir):
+    for package in sorted(os.listdir(input_dir)):
         print(f"\n[START] Analyzing package: {package}")
         package_path = os.path.join(input_dir, package)
+
+        if not os.path.isdir(package_path):
+            print(f"[INFO] Skipping non-directory entry: {package}")
+            continue
         
         contents = read_package_codes(package_path)
+        if not contents:
+            print(f"[WARNING] No readable source files found in '{package_path}'.")
+            continue
 
-        extractor_result = {}
+        extractor_result = run_map_reduce_extraction(
+            package_path=package_path,
+            files_data=contents,
+            use_local_agent=False,
+            max_workers=8,
+        )
 
-        for file_path, content in contents:
-            extractor_result = {**extractor_result, **extractor(file_path, content)}
+        save_report(extractor_result, output_dir=output_dir, package_name=package)
 
-        print(f"[INFO] Extractor result for package '{package}': {json.dumps(extractor_result, indent=4)}")
-
-
-    
 def ingest_data_pipeline():
     ingest_data()
 

@@ -1,5 +1,5 @@
 from src.common.model.agent_adapter import AgentAdapter
-from src.common.model.agent_prompt import AGENT_PROMPT
+from src.common.model.agent_prompt import AGENT_PROMPT, GLOBAL_REASONING_PROMPT
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from threading import Lock
 
@@ -28,7 +28,10 @@ class LocalAgent(AgentAdapter):
         self._initialized = True
 
     def execute_task(self, prompt, task_type):
-        system_instruction = AGENT_PROMPT.get(task_type, "")
+        if task_type == "global-reasoning":
+            system_instruction = GLOBAL_REASONING_PROMPT
+        else:
+            system_instruction = AGENT_PROMPT.get(task_type, "")
         
         messages = [
             {"role": "system", "content": system_instruction},

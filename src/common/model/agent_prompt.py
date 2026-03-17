@@ -17,12 +17,19 @@ AGENT_PROMPT = {
        - Identify prerequisites, sequential flows, and trigger conditions. Map the relationships clearly.
 
     Output Format:
-    Return the analysis strictly as a structured JSON object with the following schema:
+    Return the analysis STRICTLY as a valid JSON object matching the EXACT schema below. Do not include markdown formatting like ```json or any conversational text.
     {
         "source_repository": "URL of the repo if available, else null",
         "search_queries": [
             "query 1",
             "query 2"
+        ],
+        "skills_details": [
+            {
+                "skill_name": "Name of the extracted skill, function, or command",
+                "execution_environment": "Local | Online | Unknown",
+                "justification": "A brief, 1-sentence reason explaining why it is classified as such based on the code/text."
+            }
         ],
         "skills_flow": {
             "description": "A brief summary of how the skills operate together.",
@@ -30,11 +37,13 @@ AGENT_PROMPT = {
                 {
                     "source": {
                         "code": "The code snippet or skill name that acts as the source in the relationship.",
-                        "line_number": "The line number in the file where this flow is invoked."
+                        "file": "The file name where this flow is invoked.",
+                        "line_number": "The line number in the file where this flow is invoked (integer or null)."
                     },
                     "sink": {
                         "code": "The code snippet or skill name that acts as the sink in the relationship.",
-                        "line_number": "The line number in the file where this flow is invoked."
+                        "file": "The file name where this flow is invoked.",
+                        "line_number": "The line number in the file where this flow is invoked (integer or null)."
                     }
                 }
             ]
@@ -44,3 +53,39 @@ AGENT_PROMPT = {
     Input:
     """
 }
+
+GLOBAL_REASONING_PROMPT = """Role: Senior Security Analyst and AI Agent specializing in CROSS-FILE EXECUTION FLOW ANALYSIS.
+
+Task: You are given aggregated local JSON outputs from multiple files in a codebase. Reconstruct the cross-file execution flow across files and summarize how skills interact globally.
+
+Instructions:
+1. Use only the provided aggregated local JSON and directory tree context.
+2. Infer cross-file links where a source in one file triggers a sink in another file.
+3. Keep relationships precise and evidence-based; do not invent APIs or repositories.
+
+Output Format:
+Return the analysis STRICTLY as a valid JSON object. Do not include markdown formatting or conversational text.
+{
+    "global_skills_flow": {
+        "description": "A concise summary of the end-to-end cross-file execution flow.",
+        "relationships": [
+            {
+                "source": {
+                    "code": "Source function/call/skill",
+                    "file": "Source file path",
+                    "line_number": "integer or null"
+                },
+                "sink": {
+                    "code": "Sink function/call/skill",
+                    "file": "Sink file path",
+                    "line_number": "integer or null"
+                },
+                "relationship_type": "calls | invokes | triggers | configures | data_flow"
+            }
+        ]
+    },
+    "cross_file_risks": [
+        "Potential security or operational risk inferred from cross-file flow"
+    ]
+}
+"""

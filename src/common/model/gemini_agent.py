@@ -3,7 +3,7 @@ from queue import Queue, Empty
 import concurrent.futures
 from threading import Lock
 from google.genai import Client, types
-from src.common.model.agent_prompt import AGENT_PROMPT
+from src.common.model.agent_prompt import AGENT_PROMPT, GLOBAL_REASONING_PROMPT
 from uuid import uuid4
 from threading import Thread
 import time
@@ -156,8 +156,12 @@ class GeminiAgent(AgentAdapter):
                 + "code-to-query": Phân tích code và tạo search query
                 + "summary-generation": Tổng hợp thông tin và tạo báo cáo phân tích
         """
-        if task_type not in AGENT_PROMPT:
-            print(f"[ERROR] Unknown task type '{task_type}'. Defaulting to no system prompt.")
+        if task_type == "global-reasoning":
+            system_prompt = GLOBAL_REASONING_PROMPT
+        elif task_type in AGENT_PROMPT:
+            system_prompt = AGENT_PROMPT.get(task_type, "")
+        else:
+            print(f"[ERROR] Unknown task type '{task_type}'.")
             return None
 
         while True:
@@ -167,8 +171,6 @@ class GeminiAgent(AgentAdapter):
                 if self.worker_status.get(worker.id) != "available":
                     print(f"[WARNING] Worker {worker.id} is marked as unavailable. Skipping.")
                     continue
-
-                system_prompt  = AGENT_PROMPT.get(task_type, "")
 
                 result = worker.perform_task(prompt, system_instruction=system_prompt)
 
