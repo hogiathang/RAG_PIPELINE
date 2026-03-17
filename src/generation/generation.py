@@ -19,8 +19,20 @@ def format_json_response(response: str) -> json:
     else:
         raise ValueError("No valid JSON object found in the response.")
 
-def extractor(file: str, file_content: str) -> dict:
+def extractor(file: str, file_content: str) -> json:
     agent: AgentAdapter = LocalAgent()
+
     task_type = "agent-extractor"
 
-    
+    agent: AgentAdapter = LocalAgent()
+
+    print(f"[INFO] Running extractor for file '{file}'...")
+    prompt = f"file: {file}\n\ncontent:\n{file_content}"
+
+    response = agent.execute_task(prompt, task_type)
+
+    try:
+        return format_json_response(response)
+    except Exception as e:
+        print(f"[ERROR] Failed to parse JSON response for file '{file}': {e}")
+        return {}

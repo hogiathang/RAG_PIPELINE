@@ -17,8 +17,7 @@ from src.retrieval.retrieval import retrieve_similar_documents
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.generation.generation import build_prompt_from_retrieve_similar_documents, \
-    build_prompt_from_retrive_similar_documents_for_skills_analysis, analyze_skills_file, analyze_package_codes, verify_result
+from src.generation.generation import extractor
 
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
@@ -60,27 +59,6 @@ def parse_args() -> argparse.Namespace:
     )
 
     return parser.parse_args()
-
-
-def run_pipeline(code: str, is_analyzing_skills: bool = True) -> json:
-    """
-    Thực thi toàn bộ RAG pipeline:
-      Retrieve (Qdrant + Web Search) → Generate (Gemini)
-    Trả về báo cáo dạng Markdown string.
-
-    """
-
-    print("[STEP 1/2] Run RAG Pipeline...")
-
-    report = build_prompt_from_retrieve_similar_documents(code) if \
-        not is_analyzing_skills else build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
-
-    if report is None:
-        print("[ERROR] Pipeline returned no result. Check your API tokens and services.", file=sys.stderr)
-        sys.exit(1)
-
-    print("[STEP 2/2] Report generation complete.\n")
-    return report
 
 def save_report(report: str, output_path: str) -> None:
     """Lưu báo cáo ra file markdown."""
@@ -128,12 +106,12 @@ def retrieval_pipeline(input_dir: str, output_dir: str) -> None:
         
         contents = read_package_codes(package_path)
 
-        
-        save_report(
-            analyze_package_codes(contents, using_large_language_model=False), 
-            output_dir, 
-            package
-        )
+        extractor_result = {}
+
+        for file_path, content in contents:
+            extractor_result = {**extractor_result, **extractor(file_path, content)}
+
+        print(f"[INFO] Extractor result for package '{package}': {json.dumps(extractor_result, indent=4)}")
 
 
     
