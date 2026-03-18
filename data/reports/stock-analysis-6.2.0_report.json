@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "INSECURE-AUTH-001",
+                            "name": "InsecureAuthenticationMethod",
+                            "shortDescription": {
+                                "text": "Identifies skills that instruct users to employ insecure authentication methods."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags skills that guide users to directly extract and store highly sensitive session tokens (e.g., browser cookies like AUTH_TOKEN and CT0) for use with third-party command-line interface (CLI) tools. Such practices bypass standard, more secure authentication protocols (like OAuth) and expose user accounts to significant risk of full compromise if the tokens are mishandled, stored insecurely, or if the external CLI tool itself is compromised or malicious. While the stated intent of the skill or tool might be legitimate, the prescribed method creates a severe security vulnerability."
+                            },
+                            "helpUri": "N/A"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "INSECURE-AUTH-001",
+                    "message": {
+                        "text": "Threat intelligence partially confirmed the technical details of the insecure authentication method but refuted direct malicious intent by the skill's author. The `README.md` (lines 102-110) and `SKILL.md` (lines 143-145) instruct users to install the `@steipete/bird` CLI and then manually extract `AUTH_TOKEN` and `CT0` from browser cookies (x.com) for storage in a local `.env` file. No confirmed malicious intent by the `stock-analysis` skill author; however, this method for Twitter/X integration poses a significant security risk to user accounts due to the handling of highly sensitive session tokens that grant full account control. The `bird CLI` and its author (`@steipete`) appear legitimate, but the authentication mechanism itself is inherently vulnerable."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 102,
+                                    "endLine": 110,
+                                    "snippet": {
+                                        "text": "102. To enable Twitter/X integration:\n103. 1. Install the bird CLI: `npm install -g @steipete/bird`\n104. 2. Create a `.env` file in your skill directory.\n105. 3. Add your Twitter/X authentication tokens to `.env`:\n106.    `AUTH_TOKEN=your_auth_token_here`\n107.    `CT0=your_ct0_token_here`\n108. 4. Obtain these tokens by inspecting your browser cookies for x.com\n109.    (e.g., using DevTools -> Application -> Cookies).\n110.    These tokens grant full access to your Twitter/X account."
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "level": "note",
+                    "properties": {
+                        "threat_score": 38,
+                        "confidence": 90,
+                        "evidence_strength": "moderate",
+                        "verification_result": "partially_confirmed",
+                        "threat_category": "Insecure Credential Handling",
+                        "skill_url": "N/A"
+                    }
+                }
+            ]
+        }
+    ]
+}
