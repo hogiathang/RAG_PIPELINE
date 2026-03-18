@@ -128,10 +128,7 @@ You MUST compute a NEW final threat_score (0–100), independent from bias.
 Map to SARIF level:
 - 80–100 → "error"
 - 40–79  → "warning"
-- 1–39   → "note"
-
-If final threat_score = 0:
-→ results MUST be []
+- 0–39   → "note"
 
 --------------------------------------------------
 SARIF OUTPUT REQUIREMENTS
