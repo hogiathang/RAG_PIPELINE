@@ -1,0 +1,148 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "POTENTIAL-MISUSE-001",
+                            "name": "Potential Misuse of Powerful System Tools",
+                            "shortDescription": {
+                                "text": "Identifies skills that declare and use powerful system tools (e.g., Bash, file I/O) which, while legitimate, could be misused if the skill's intent were malicious."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags the declaration and usage of system-level tools like shell execution (Bash) and file system access (Read, Write). While these tools are essential for many legitimate operations, their inherent power means they could be leveraged for malicious activities such as data exfiltration, arbitrary command execution, or persistence if the skill's underlying implementation is compromised or designed with malicious intent. Verification focuses on confirming the actual intent and observed behavior against external threat intelligence."
+                            },
+                            "defaultConfiguration": {
+                                "level": "note"
+                            },
+                            "properties": {
+                                "threat_category": "Potential Misuse of Powerful Tools"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "POTENTIAL-MISUSE-001",
+                    "message": {
+                        "text": "This skill declares and uses powerful system tools (Bash, Read, Write) for Ghostty terminal configuration. External threat intelligence (GitHub repositories, Medium articles, and Ghostty project issues) strongly REFUTES any malicious intent, confirming these operations are legitimate for configuring the Ghostty terminal. The observed commands, such as checking config file paths, listing themes, and querying fonts, are benign. No confirmed malicious intent was found. The finding relates to lines 6, 46, 52, 129, 132, 135, and 160."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 6,
+                                    "endLine": 6,
+                                    "snippet": {
+                                        "text": "tool: Bash"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 46,
+                                    "endLine": 46,
+                                    "snippet": {
+                                        "text": "tool: Read"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 52,
+                                    "endLine": 52,
+                                    "snippet": {
+                                        "text": "tool: Write"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 129,
+                                    "endLine": 129,
+                                    "snippet": {
+                                        "text": "Bash: test -f \"$config_path\""
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 132,
+                                    "endLine": 132,
+                                    "snippet": {
+                                        "text": "Bash: ghostty +list-themes"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 135,
+                                    "endLine": 135,
+                                    "snippet": {
+                                        "text": "Bash: fc-list"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/zerebos/ghostty-config/blob/main/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 160,
+                                    "endLine": 160,
+                                    "snippet": {
+                                        "text": "Bash: # Another configuration command"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "level": "note",
+                    "properties": {
+                        "threat_score": 30,
+                        "confidence": 90,
+                        "evidence_strength": "strong",
+                        "verification_result": "refuted",
+                        "threat_category": "Potential Misuse of Powerful Tools",
+                        "skill_url": "https://github.com/zerebos/ghostty-config"
+                    }
+                }
+            ]
+        }
+    ]
+}

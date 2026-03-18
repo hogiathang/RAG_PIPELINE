@@ -1,0 +1,101 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "DANGEROUS-CLI-001",
+                            "name": "Dangerous CLI Option: Permission Bypass",
+                            "shortDescription": {
+                                "text": "Identifies documentation of CLI options that bypass security prompts or permission checks, enabling unattended execution of privileged operations."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags CLI options that allow an agent or tool to operate without requiring explicit user confirmation for sensitive actions. While useful for automation, such options significantly increase the risk of unauthorized actions, privilege escalation, or system compromise if the agent is misconfigured or compromised. Review the context and ensure robust access controls are in place."
+                            },
+                            "helpUri": "https://example.com/docs/dangerous-cli-001"
+                        },
+                        {
+                            "id": "PRIVILEGED-TOOL-001",
+                            "name": "Privileged Tool Access: Remote Code Execution / Data Exfiltration Risk",
+                            "shortDescription": {
+                                "text": "Identifies documentation of CLI options that grant an agent access to highly privileged tools (e.g., shell execution, file write/edit)."
+                            },
+                            "fullDescription": {
+                                "text": "This rule highlights CLI options that enable an agent to utilize powerful system tools such as Bash, direct file write/edit capabilities, or other commands that can lead to Remote Code Execution (RCE), unauthorized data modification, or data exfiltration. When combined with permission bypass mechanisms, these capabilities pose a critical security risk. Strict configuration and monitoring are essential to prevent misuse."
+                            },
+                            "helpUri": "https://example.com/docs/privileged-tool-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "DANGEROUS-CLI-001",
+                    "level": "warning",
+                    "message": {
+                        "text": "Threat intelligence (GitHub issues, official documentation) confirms the existence and intended functionality of the `--permission-mode bypassPermissions` CLI option. This option, described on line 40, allows the Claude Code agent to skip all interactive permission prompts. While legitimate for automation (e.g., CI/CD), its use creates a significant security risk by enabling unattended execution of privileged operations, potentially leading to unauthorized actions without human oversight. The documentation itself shows no confirmed malicious intent, but highlights a feature that requires careful security consideration."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 40,
+                                    "endLine": 40,
+                                    "snippet": {
+                                        "text": "--permission-mode bypassPermissions"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 60,
+                        "confidence": 95,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "Security Misconfiguration Risk",
+                        "skill_url": "N/A"
+                    }
+                },
+                {
+                    "ruleId": "PRIVILEGED-TOOL-001",
+                    "level": "warning",
+                    "message": {
+                        "text": "Threat intelligence (GitHub issues, security blogs) confirms the existence and security implications of the `--allowedTools` CLI option, described on line 29. This option controls which tools the Claude Code agent can use. Allowing highly privileged tools like `Bash`, `Write`, or `Edit` (as highlighted in the document, e.g., on line 54 where they are disallowed, implying their availability) in conjunction with permission bypass mechanisms creates a severe risk of Remote Code Execution (RCE), unauthorized file modifications, or data exfiltration. While these are legitimate features for automation, their misconfiguration poses a critical security threat. The documentation itself shows no confirmed malicious intent, but describes capabilities that can be misused."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 29,
+                                    "endLine": 29,
+                                    "snippet": {
+                                        "text": "--allowedTools"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 60,
+                        "confidence": 95,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "Remote Code Execution Risk",
+                        "skill_url": "N/A"
+                    }
+                }
+            ]
+        }
+    ]
+}

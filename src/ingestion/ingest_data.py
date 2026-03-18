@@ -1,173 +1,151 @@
 import os
 import uuid
 import json
+import logging
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+from tqdm import tqdm
 
 from langchain_community.document_loaders import PyPDFLoader, TextLoader, JSONLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
+# Giả định các module này đã có sẵn
 from src.common.embedding_model import EmbeddingModel
 from src.common.qdrant_adapter import QdrantAdapter
-from pathlib import Path
 
+# Cấu hình logging
+logging.basicConfig(level=logging.ERROR) # Giảm log để tránh làm chậm console
+logger = logging.getLogger(__name__)
+
+# Cấu hình hệ thống
 INPUT_DIR = "./backup_rag"
+CHECKER_FILE = "./checker.json"
+MAX_WORKERS = 8  # Tùy thuộc vào số nhân CPU và giới hạn API của bạn
+BATCH_SIZE = 100 # Số lượng vector gửi lên Qdrant mỗi lần (nếu file quá lớn)
 
-def load_checker() -> list:
+# Khóa để bảo vệ việc ghi vào file checker
+checker_lock = threading.Lock()
 
-    checker_file = "./checker.json"
-
-    if not os.path.exists(checker_file):
-        print(f"[INFO] Checker file '{checker_file}' not found. Starting with an empty list.")
-        return []
-
+def load_checker() -> set:
+    if not os.path.exists(CHECKER_FILE):
+        return set()
     try:
-        with open(checker_file, "r", encoding="utf-8") as f:
+        with open(CHECKER_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data.get("checks", [])
-    except Exception as e:
-        print(f"[ERROR] Failed to load checker file: {e}")
-        return []
+            return set(data.get("checks", []))
+    except Exception:
+        return set()
 
+def update_checker_safe(file_path: str):
+    """Cập nhật checker một cách an toàn giữa các luồng."""
+    with checker_lock:
+        current_data = load_checker()
+        current_data.add(file_path)
+        try:
+            with open(CHECKER_FILE, "w", encoding="utf-8") as f:
+                json.dump({"checks": list(current_data)}, f, ensure_ascii=False, indent=4)
+        except Exception as e:
+            logger.error(f"Lỗi cập nhật checker: {e}")
 
 def load_document(file_path: str):
-    """Load document based on file type"""
-
     try:
-
-        if file_path.endswith(".pdf"):
-            loader = PyPDFLoader(file_path)
-            return loader.load()
-
-        elif file_path.endswith(".txt"):
-            loader = TextLoader(file_path)
-            return loader.load()
-
-        elif file_path.endswith(".json"):
-
-            try:
-                loader = JSONLoader(
-                    file_path=file_path,
-                    jq_schema=".",
-                    text_content=False
-                )
-                return loader.load()
-
-            except Exception:
-                with open(file_path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-
-                return [
-                    Document(
-                        page_content=json.dumps(data, ensure_ascii=False),
-                        metadata={"source": file_path}
-                    )
-                ]
-
-        else:
-            return None
-
+        suffix = Path(file_path).suffix.lower()
+        if suffix == ".pdf":
+            return PyPDFLoader(file_path).load()
+        elif suffix == ".txt":
+            return TextLoader(file_path, encoding="utf-8").load()
+        elif suffix == ".json":
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return [Document(page_content=json.dumps(data, ensure_ascii=False), metadata={"source": file_path})]
+        return None
     except Exception as e:
-        print(f"Load error {file_path}: {e}")
+        logger.error(f"Lỗi load {file_path}: {e}")
         return None
 
+def process_single_file(file_path_obj, qdrant_db, embedding_model, text_splitter):
+    """Hàm xử lý cho một file duy nhất (Worker)"""
+    file_path = str(file_path_obj)
+    
+    try:
+        documents = load_document(file_path)
+        if not documents:
+            return 0, file_path
 
-def normalize_vectors(vectors):
-    """
-    Convert embedding output to list[list[float]] for Qdrant
-    """
+        chunks = text_splitter.split_documents(documents)
+        if not chunks:
+            return 0, file_path
 
-    # numpy array -> list
-    if hasattr(vectors, "tolist"):
-        vectors = vectors.tolist()
+        texts = [doc.page_content for doc in chunks]
+        
+        # Gọi API Embedding (đây là bước tốn thời gian nhất)
+        vectors = embedding_model.embed(texts)
+        
+        # Chuẩn hóa vector
+        if hasattr(vectors, "tolist"): vectors = vectors.tolist()
+        if isinstance(vectors, list) and len(vectors) > 0 and isinstance(vectors[0], (int, float)):
+            vectors = [vectors]
+        
+        ids = [str(uuid.uuid4()) for _ in texts]
+        payloads = [
+            {
+                "text": doc.page_content,
+                "source": doc.metadata.get("source", file_path),
+                "file_name": file_path_obj.name
+            }
+            for doc in chunks
+        ]
 
-    # single vector -> wrap
-    if isinstance(vectors, list) and len(vectors) > 0 and isinstance(vectors[0], float):
-        vectors = [vectors]
+        # Insert vào DB
+        qdrant_db.insert(ids=ids, vectors=vectors, payloads=payloads)
+        
+        # Đánh dấu hoàn thành
+        update_checker_safe(file_path)
+        
+        return len(ids), file_path
 
-    # ensure python float
-    normalized = []
-    for v in vectors:
-        if hasattr(v, "tolist"):
-            v = v.tolist()
-        normalized.append([float(x) for x in v])
-
-    return normalized
-
+    except Exception as e:
+        logger.error(f"Thất bại khi xử lý {file_path}: {e}")
+        return -1, file_path
 
 def ingest_data():
-
     qdrant_db = QdrantAdapter()
     embedding_model = EmbeddingModel()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+    
+    processed_files = load_checker()
+    
+    # Quét danh sách file cần xử lý
+    all_files = [
+        f for f in Path(INPUT_DIR).rglob('*') 
+        if f.is_file() and str(f) not in processed_files
+    ]
+    
+    if not all_files:
+        print("Không có file mới cần xử lý.")
+        return
 
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
-    )
-
-    checked_files = load_checker()
-
+    print(f"Bắt đầu xử lý song song {len(all_files)} file với {MAX_WORKERS} luồng...")
+    
     total_vectors = 0
-    total_files = 0
+    success_count = 0
+    
+    # Sử dụng ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        # Gửi tất cả task vào pool
+        futures = {
+            executor.submit(process_single_file, f, qdrant_db, embedding_model, text_splitter): f 
+            for f in all_files
+        }
+        
+        # Hiển thị thanh tiến trình
+        for future in tqdm(as_completed(futures), total=len(all_files), desc="Ingesting"):
+            vec_count, f_path = future.result()
+            if vec_count >= 0:
+                total_vectors += vec_count
+                success_count += 1
 
-    for root, dirs, files in os.walk(INPUT_DIR):
-
-        if files in checked_files:
-            print(f"[SKIP] Already ingested files in {root}. Skipping...")
-            continue
-
-        for file in files:
-
-            file_path = os.path.join(root, file)
-
-            documents = load_document(file_path)
-
-            if not documents:
-                continue
-
-            try:
-
-                components = text_splitter.split_documents(documents)
-
-                if len(components) == 0:
-                    continue
-
-                texts = [doc.page_content for doc in components]
-
-                # embedding
-                vectors = embedding_model.embed(texts)
-
-                # FIX VECTOR FORMAT
-                vectors = normalize_vectors(vectors)
-
-                ids = [str(uuid.uuid4()) for _ in texts]
-
-                payloads = [
-                    {
-                        "text": doc.page_content,
-                        "source": doc.metadata.get("source", file_path),
-                        "page": doc.metadata.get("page", None),
-                        "file_name": file,
-                        "path": file_path
-                    }
-                    for doc in components
-                ]
-
-                qdrant_db.insert(
-                    ids=ids,
-                    vectors=vectors,
-                    payloads=payloads
-                )
-
-                total_vectors += len(ids)
-                total_files += 1
-
-                print(f"Inserted {len(ids)} vectors from {file}")
-
-                checked_files.append(files)
-
-            except Exception as e:
-                print(f"Failed ingest {file_path}: {e}")
-
-    print("\n========== INGEST SUMMARY ==========")
-    print(f"Files processed: {total_files}")
-    print(f"Total vectors inserted: {total_vectors}")
+    print(f"\n[XONG] Đã xử lý thành công {success_count}/{len(all_files)} file.")
+    print(f"Tổng số vector mới: {total_vectors}")

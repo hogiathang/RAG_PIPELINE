@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "BENIGN-001",
+                            "name": "Benign Skill Definition",
+                            "shortDescription": {
+                                "text": "The skill definition does not exhibit any malicious behavior or dangerous security practices."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies skill definitions that are configured with appropriate restrictions and do not contain indicators of malicious intent such as data exfiltration, unauthorized access, or command execution. Explicit tool restrictions (e.g., no write, edit, or bash access) are considered strong indicators of benign intent."
+                            },
+                            "helpUri": "https://example.com/docs/BENIGN-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

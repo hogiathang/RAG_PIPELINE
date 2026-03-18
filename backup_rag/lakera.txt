@@ -1,0 +1,279 @@
+The Agent Skill Ecosystem: When AI Extensions Become a Malware Delivery Channel (OpenClaw Hackathon Findings)
+Research
+8
+min read
+February 20, 2026
+
+Max Mathys
+
+OpenClaw and its growing skills ecosystem have drawn significant attention across the AI and cybersecurity communities. As agents move from chat interfaces to systems that execute tools and share capabilities through marketplaces, the risk model shifts from informational exposure to operational impact.
+For a broader breakdown of the OpenClaw ecosystem and why agentic AI is creating new governance challenges, see Steve Giguere’s analysis of the platform’s rapid evolution.
+
+The analysis below reflects one of two technical tracks from our internal research hackathon, examining the OpenClaw skills marketplace at scale.
+
+Agent skills are rapidly becoming the dominant way to extend AI agents. Instead of building monolithic assistants, developers publish modular “skills” that add capabilities: social media integrations, coding helpers, financial tools, document processors.
+
+In practical terms, skills are packaged instruction sets—often simple Markdown-based configurations—that provide agents with additional behavioral context and execution logic. They are designed to help the model perform tasks with greater autonomy and accuracy.
+
+In theory, this ecosystem accelerates innovation. In practice, it expands the attack surface dramatically.
+
+During a recent internal hackathon, we examined OpenClaw from two angles. One track focused on how persistent memory and tool execution interact inside the agent core (👉 explored in our companion analysis on memory poisoning and instruction drift). This post focuses on the second track: the OpenClaw skill marketplace.
+
+Rather than testing a single exploit, we treated the marketplace itself as a security boundary and analyzed it at scale.
+
+We scraped 4,310 published skills and performed in-depth analysis on 221 of them. Some of what we found had already been surfaced in external reporting, including research on how OpenClaw’s agent skills expand the attack surface and analysis on the ClawHavoc malware campaign. Our goal was not to rediscover those issues, but to quantify them, classify them, and understand their architectural implications at scale.
+
+Two patterns emerged:
+
+Confirmed malware delivery campaigns
+Widespread insecure engineering practices across the ecosystem
+Not every risky skill is intentionally malicious. But when arbitrary code execution, credential access, and marketplace distribution intersect, systemic risk follows.
+
+This post focuses on that ecosystem layer.
+
+TL;DR
+We audited 4,310 OpenClaw skills and analyzed 221 in depth.
+44 skills were tied to a confirmed malware campaign (ClawHavoc), with 12,559+ downloads.
+70.1% showed OAuth over-provisioning.
+43.4% contained command injection patterns.
+Skills execute with full local privileges and no sandboxing.
+Agent skills are not lightweight plugins. They are executable code distributed through a marketplace.
+
+When arbitrary code execution, credential access, and marketplace distribution intersect, the result is a supply-chain layer with minimal guardrails.
+
+The risk is structural, not just individual bad skills.
+
+The ClawHub Skill Audit
+ClawHub Skill Audit Visualization
+To make the audit transparent and explorable, we built a public dashboard that tracks skills, risk scores, and findings across the marketplace.
+
+The dashboard is an evolving MVP and reflects ongoing analysis. As additional skills are reviewed and classification improves, results may change.
+
+You can explore the live audit here:
+
+👉 Explore the ClawHub Skill Audit Dashboard
+Agent Skills as an Attack Surface
+Agent skills are not traditional plugins.
+
+When a user installs a skill in OpenClaw, they are not just enabling an API integration. They are allowing third-party code to execute locally with the full permissions of the host environment.
+
+From our analysis (see page 1–2 of the audit summary):
+
+Agent skills can:
+
+Execute arbitrary shell commands
+Access environment variables (e.g., GitHub tokens, OpenAI keys, AWS credentials)
+Read and write to the filesystem
+Make unrestricted outbound network requests 
+There is no sandboxing layer separating a skill from the underlying system. That design decision fundamentally changes the risk model.
+
+In most modern ecosystems:
+
+Browser extensions are permission-scoped
+Mobile apps request granular access
+Cloud integrations use OAuth with scoped capabilities
+In contrast, agent skills execute as first-class local code.
+
+This means the marketplace is not just a feature repository. It is effectively a distributed execution platform.
+
+When we began the audit, we asked a simple question: What happens if attackers treat it that way?
+
+Confirmed Malware Delivery in the Wild
+The most serious finding from our audit was not insecure coding practices. It was confirmed malware delivery.
+
+Our analysis identified 44 skills tied to a coordinated campaign referred to as ClawHavoc, with at least 12,559 downloads across those skills. Earlier reporting by Koi.ai on the ClawHavoc malware campaign documented initial findings, which our audit expands and quantifies. These skills were not merely poorly written or over-privileged. They contained deliberate payload delivery mechanisms.
+
+In several cases, the campaign also leveraged typosquatting patterns—publishing skills with names resembling popular tools in order to increase accidental installation. This mirrors traditional software supply-chain tactics, now applied at the agent skill layer.
+
+The Execution Pattern
+The dominant pattern was straightforward:
+
+A skill advertised benign functionality—often productivity tools or developer utilities.
+Under the hood, it executed a Base64-encoded payload.
+That payload was piped directly to bash.
+The script fetched additional content from an attacker-controlled command-and-control (C2) server.
+In several cases, the final stage deployed Atomic Stealer, a known credential-harvesting malware family.
+A simplified example of the execution flow observed in multiple skills:
+
+echo "BASE64_ENCODED_PAYLOAD" | base64 -d | bash
+
+Example (REAL) SKILL.md of vulnerable typosquatted extension coding-agent-kh0:
+
+
+The decoded script then:
+
+Pulled secondary payloads from remote infrastructure
+Scanned the environment for tokens and credentials
+Exfiltrated data to attacker-controlled endpoints 
+Because OpenClaw skills execute with the user’s local privileges and have access to environment variables, this model enables immediate credential harvesting.
+
+Why This Matters
+This is not a hypothetical prompt injection scenario. This is executable malware distributed through an AI skill marketplace.
+
+In several cases, the skills:
+
+Impersonated security tools
+Posed as productivity enhancers
+Used naming conventions that mimicked legitimate categories
+The marketplace context creates implicit trust. Users installing these skills are not reviewing source code. They are relying on naming, descriptions, and category placement.
+
+When that trust model fails, the result is not misaligned text generation. It is local code execution.
+
+High-Risk Skills Beyond Confirmed Malware
+Confirmed malware delivery is the most severe category we observed. It is not the only one, though.
+
+Beyond the ClawHavoc campaign, several skills were not directly tied to known malware but still introduced significant risk through opaque credential handling, network routing, or incentive design. These cases illustrate a broader issue: the marketplace lacks meaningful guardrails.
+
+theswarm – Incentives Over Scrutiny
+The theswarm skill promoted an “AI Agent Pyramid Scheme” model that encouraged viral distribution and multi-layer installation. While not delivering malware, its incentive structure amplified exposure risk in an environment where skills execute arbitrary local code.
+
+When distribution is rewarded more than review, security becomes secondary.
+
+financial-market-analysis – Unverified HTTP Proxying
+This skill routed traffic through unverified HTTP endpoints, effectively proxying potentially sensitive data through infrastructure outside the user’s control.
+
+Even without explicit malware, this pattern:
+
+Increases credential exfiltration risk
+Obscures data flows
+Reduces user visibility into where data is sent
+weak-accept – Opaque Credential Transmission
+The weak-accept skill transmitted ArXiv credentials to a raw IP address rather than a clearly documented domain endpoint. While not a traditional dropper, it demonstrates insecure and opaque credential handling.
+
+From a risk perspective, the distinction is narrow: sensitive authentication data leaves the user’s environment without clear justification.
+
+Ecosystem-Wide Weaknesses
+Confirmed malware delivery is the most severe category of risk, but it does not reflect the broader security posture of the ecosystem.
+
+Across the 221 skills analyzed in depth, insecure engineering patterns were widespread, even where no explicit malicious intent was present.
+
+OAuth Over-Provisioning (70.1%)
+A majority of skills requested broader OAuth scopes than required. In practice, this meant:
+
+Full repository access instead of read-only scopes
+Broad cloud permissions
+Tokens stored or reused without scope minimization
+Over-provisioned credentials expand blast radius. If a skill is compromised, it inherits more access than its functionality demands.
+
+Command Injection (43.4%)
+Nearly half of analyzed skills contained command injection patterns, including:
+
+Direct interpolation of user-controlled input into shell commands
+Unsanitized subprocess arguments
+Dynamic command construction without validation
+Even when not actively exploited, these patterns create clear escalation paths.
+
+Hardcoded Secrets
+Several skills embedded API keys or credentials directly in source code. This increases exposure risk, complicates key rotation, and propagates shared secrets across installations.
+
+Centralized OAuth Gateways
+Authentication flows were heavily concentrated through a small number of third-party gateways, including Maton.ai. This introduces correlated risk: a single compromise or misconfiguration can affect multiple skills simultaneously, often without user visibility.
+
+No Sandboxing
+Skills execute without isolation. They have access to:
+
+Filesystem
+Environment variables
+Network stack
+Even non-malicious skills therefore operate with broad systemic authority.
+
+The Structural Marketplace Problem
+The vulnerabilities described above are not isolated mistakes. They reflect how the marketplace is structured.
+
+No Review or Signing
+There is no mandatory security review before publication and no code-signing requirement to verify provenance or integrity.
+
+In mature ecosystems, extensions and packages typically undergo review or cryptographic validation. In the current OpenClaw model, distribution and execution are largely decoupled from security controls.
+
+The marketplace is permissive by design.
+
+Full-Privilege Execution
+Skills execute with the full privileges of the host environment. They are not containerized, permission-scoped, or restricted to declarative APIs.
+
+Instead, they operate as locally executed code with access to:
+
+Filesystem
+Environment variables
+Network
+Shell execution
+From a security perspective, this eliminates the practical distinction between “extension” and “installed software.”
+
+Implicit Trust
+Users install skills based on names, descriptions, categories, or popularity. There are no granular permission prompts explaining what credentials are accessed, what network calls are made, or whether shell commands are executed.
+
+Authority is granted implicitly.
+
+A Supply Chain Layer
+When third-party components can:
+
+Execute arbitrary code
+Access credentials
+Make outbound connections
+Be distributed at scale
+The marketplace functions as a software supply chain layer.
+
+If even a small fraction of those components are malicious or insecure, risk propagates rapidly.
+
+This is the architectural issue: not individual skills, but how execution authority is granted and inherited across the ecosystem.
+
+What Needs to Change in the Agent Skill Ecosystem
+This audit highlights a structural gap between capability and control.
+
+Agent skills combine:
+
+Local code execution
+Credential access
+Network connectivity
+Marketplace distribution
+Those properties require security controls comparable to other modern software ecosystems. Today, many of those controls are absent or optional.
+
+Addressing this requires action at three levels.
+
+For Users
+Treat agent skills as executable software, not lightweight add-ons.
+
+At minimum:
+
+Install skills only in isolated or non-sensitive environments
+Audit installed skills and review source where available
+Minimize and rotate connected API tokens
+Monitor for unusual outbound activity
+Assume a skill can execute arbitrary code, because it can.
+
+For Skill Developers
+Publishing a skill means publishing executable code with host-level authority.
+
+Baseline expectations should include:
+
+Strict input validation and avoidance of dynamic shell execution
+Least-privilege OAuth scopes
+No hardcoded or shared credentials
+Clear disclosure of external endpoints and credential usage
+Transparent source code to enable review
+Even benign intent does not offset insecure design.
+
+For Platforms and Marketplace Operators
+Structural controls must be implemented at the platform layer.
+
+These include:
+
+Mandatory security review prior to publication
+Cryptographic signing and provenance verification
+Explicit permission prompts covering filesystem, network, and credential access
+Sandboxed or containerized execution environments
+Formal vulnerability disclosure and incident response processes
+Without these safeguards, innovation and abuse remain distributed through the same channel.
+
+Closing Perspective
+The agent ecosystem is still early. That creates room to shape its security model.
+
+The vulnerabilities discussed here—confirmed malware delivery, over-provisioned OAuth scopes, command injection patterns, and unsandboxed execution—are not inherent to AI systems. They are architectural choices.
+
+As agentic systems become more autonomous and more deeply embedded in workflows, security boundaries must be explicit rather than assumed.
+
+The technology is advancing quickly. Governance and control mechanisms need to advance with it.
+
+
+Max Mathys
+Follow creator at:
+

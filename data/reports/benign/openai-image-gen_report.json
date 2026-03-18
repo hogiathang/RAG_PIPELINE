@@ -1,0 +1,213 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "API-KEY-001",
+                            "name": "SensitiveAPIKeyHandling",
+                            "shortDescription": {
+                                "text": "Detects handling of sensitive API keys."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that handles API keys or other sensitive credentials. While the method of handling (e.g., environment variables) might be appropriate, the mere presence and use of such keys introduce a security risk if they are externally mishandled, exposed, or if the execution environment is compromised. This finding highlights the need for secure credential management practices."
+                            },
+                            "helpUri": "https://example.com/api-key-handling-guidance"
+                        },
+                        {
+                            "id": "COST-001",
+                            "name": "PotentialFinancialCost",
+                            "shortDescription": {
+                                "text": "Identifies operations that may incur financial costs."
+                            },
+                            "fullDescription": {
+                                "text": "Flags skill operations that interact with paid services or APIs, potentially leading to financial charges for the user. While often legitimate, users should be explicitly warned and confirm such operations to prevent unexpected costs."
+                            },
+                            "helpUri": "https://example.com/cost-incurrence-guidance"
+                        },
+                        {
+                            "id": "NETWORK-001",
+                            "name": "LegitimateExternalNetworkCommunication",
+                            "shortDescription": {
+                                "text": "Detects legitimate outbound network requests."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies outbound network communication to known, legitimate services. While network activity can be a vector for malicious intent, in this context, it is deemed necessary for the skill's intended functionality and directed at trusted endpoints. This rule notes such activity without implying maliciousness."
+                            },
+                            "helpUri": "https://example.com/network-communication-guidance"
+                        },
+                        {
+                            "id": "FILE-001",
+                            "name": "LegitimateFileSystemOperations",
+                            "shortDescription": {
+                                "text": "Detects legitimate file system operations."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies file system operations such as creating directories or downloading files. These actions are often necessary for a skill's functionality (e.g., saving output, setting up resources) and are considered legitimate when aligned with the skill's stated purpose. This rule notes such activity without implying maliciousness."
+                            },
+                            "helpUri": "https://example.com/file-system-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "API-KEY-001",
+                    "level": "warning",
+                    "message": {
+                        "text": "Threat Intel partially confirmed the legitimate use of OpenAI API keys. This skill handles `OPENAI_API_KEY` (generate.sh, line 17) for authentication. While the script correctly expects the key from an environment variable, the existence and handling of this sensitive credential pose a general security risk if the key is externally mishandled or exposed. No confirmed malicious intent to exfiltrate the key was found."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "generate.sh"
+                                },
+                                "region": {
+                                    "startLine": 17,
+                                    "endLine": 17,
+                                    "snippet": {
+                                        "text": "OPENAI_API_KEY=\"${OPENAI_API_KEY}\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 50,
+                        "confidence": 90,
+                        "evidence_strength": "moderate",
+                        "verification_result": "confirmed",
+                        "threat_category": "Credential Handling",
+                        "skill_url": "N/A"
+                    }
+                },
+                {
+                    "ruleId": "COST-001",
+                    "level": "note",
+                    "message": {
+                        "text": "Threat Intel confirmed the legitimate purpose of an OpenAI image generation skill. The `batch-gothic.sh` script (lines 20-90) orchestrates multiple calls to the OpenAI DALL-E 3 API, which incurs costs. The script explicitly warns the user about potential costs and requires confirmation (batch-gothic.sh, line 13) before proceeding, mitigating the risk. No confirmed malicious intent was found."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "batch-gothic.sh"
+                                },
+                                "region": {
+                                    "startLine": 13,
+                                    "endLine": 13,
+                                    "snippet": {
+                                        "text": "read -p \"This will incur costs. Do you want to proceed? (y/N) \" confirm"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "batch-gothic.sh"
+                                },
+                                "region": {
+                                    "startLine": 20,
+                                    "endLine": 90,
+                                    "snippet": {
+                                        "text": "# Example snippet representing multiple calls to generate.sh\n# ...\n./generate.sh --prompt \"gothic hero\" --output heroes/hero1.png\n# ..."
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 30,
+                        "confidence": 95,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "Financial Impact",
+                        "skill_url": "N/A"
+                    }
+                },
+                {
+                    "ruleId": "NETWORK-001",
+                    "level": "note",
+                    "message": {
+                        "text": "Threat Intel confirmed the legitimate purpose of an OpenAI image generation skill. This skill makes outbound network requests to `api.openai.com` (generate.sh, line 30) for image generation. This behavior is integral to the skill's functionality and is directed at legitimate OpenAI infrastructure. No confirmed malicious intent (e.g., C2, exfiltration) was found."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "generate.sh"
+                                },
+                                "region": {
+                                    "startLine": 30,
+                                    "endLine": 30,
+                                    "snippet": {
+                                        "text": "curl -s -X POST \"https://api.openai.com/v1/images/generations\" \\"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 10,
+                        "confidence": 99,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "Network Activity",
+                        "skill_url": "N/A"
+                    }
+                },
+                {
+                    "ruleId": "FILE-001",
+                    "level": "note",
+                    "message": {
+                        "text": "Threat Intel confirmed the legitimate purpose of an OpenAI image generation skill. This skill performs file system operations by creating directories (batch-gothic.sh, line 19) and downloading generated images (generate.sh, line 49). These actions are standard and necessary for the skill's intended functionality. No confirmed malicious intent (e.g., unauthorized data manipulation or exfiltration) was found."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "batch-gothic.sh"
+                                },
+                                "region": {
+                                    "startLine": 19,
+                                    "endLine": 19,
+                                    "snippet": {
+                                        "text": "mkdir -p backgrounds heroes windows decorative"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "generate.sh"
+                                },
+                                "region": {
+                                    "startLine": 49,
+                                    "endLine": 49,
+                                    "snippet": {
+                                        "text": "wget -O \"$output_file\" \"$image_url\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 10,
+                        "confidence": 99,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "File System Operations",
+                        "skill_url": "N/A"
+                    }
+                }
+            ]
+        }
+    ]
+}

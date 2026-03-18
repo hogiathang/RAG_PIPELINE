@@ -1,0 +1,166 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SHELL-INJ-001",
+                            "name": "ShellInjectionVulnerability",
+                            "shortDescription": {
+                                "text": "Direct interpolation of user input into shell commands can lead to arbitrary code execution."
+                            },
+                            "fullDescription": {
+                                "text": "This vulnerability occurs when user-controlled input is directly inserted into a command executed by a shell without proper sanitization or quoting. An attacker can craft malicious input to execute arbitrary commands on the underlying system, potentially leading to remote code execution (RCE), data exfiltration, or system compromise. While the skill's stated intent is legitimate code analysis, the implementation exposes a critical security risk due to insecure input handling."
+                            },
+                            "help": {
+                                "text": "To mitigate this, ensure all user-provided input passed to shell commands is properly sanitized and quoted. Use parameterized commands or libraries that handle argument escaping automatically. Avoid direct string concatenation for command construction. Consider using safer alternatives to shell execution where possible, or implement a strict allowlist for commands and arguments. For agent skills, carefully review how '$TARGET' or similar user inputs are handled within Bash commands to prevent shell injection."
+                            },
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "rce",
+                                    "shell-injection",
+                                    "input-validation"
+                                ],
+                                "precision": "high"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SHELL-INJ-001",
+                    "message": {
+                        "text": "Threat intelligence strongly confirms the risk of shell injection for patterns involving direct interpolation of user input into shell commands. The skill 'explain' uses the Bash tool and directly interpolates user-provided input (`$TARGET`) into commands like `tokei`, `ast-grep`, `rg`, `fd`, and `xargs` on lines 56, 59, 65, 70, 74, 80, 86, 90, 91, and 159. No confirmed malicious intent by the skill developer was found; the behavior is explainable by legitimate code analysis. However, this direct interpolation without proper sanitization creates a critical shell injection vulnerability, potentially leading to remote code execution (RCE) if an attacker crafts a malicious `$TARGET` value. This constitutes a significant security risk, even if not intentionally malicious."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 56,
+                                    "endLine": 56
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 59,
+                                    "endLine": 59
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 65,
+                                    "endLine": 65
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 70,
+                                    "endLine": 70
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 74,
+                                    "endLine": 74
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 80,
+                                    "endLine": 80
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 86,
+                                    "endLine": 86
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 90,
+                                    "endLine": 90
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 91,
+                                    "endLine": 91
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "skill.py"
+                                },
+                                "region": {
+                                    "startLine": 159,
+                                    "endLine": 159
+                                }
+                            }
+                        }
+                    ],
+                    "level": "warning",
+                    "properties": {
+                        "threat_score": 70,
+                        "confidence": 90,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "Remote Code Execution",
+                        "skill_url": "N/A"
+                    }
+                }
+            ]
+        }
+    ]
+}

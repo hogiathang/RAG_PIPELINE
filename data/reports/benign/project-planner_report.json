@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "DANGEROUS-CAP-001",
+                            "name": "DangerousCapabilityDeclaration",
+                            "shortDescription": {
+                                "text": "Detects skills declaring capabilities that allow arbitrary command execution."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies skills that declare highly privileged capabilities, such as TaskCreate, which can be leveraged to execute arbitrary commands on the host system. While the skill's stated intent may be benign, the presence of such a capability introduces a significant security risk, as it could be exploited if the skill is compromised or maliciously modified. This is a supply chain security concern, as agent skills often inherit high privileges by default, potentially granting shell access and read/write permissions to the file system."
+                            },
+                            "helpUri": "https://example.com/dangerous-capability-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "DANGEROUS-CAP-001",
+                    "level": "warning",
+                    "message": {
+                        "text": "Threat intelligence confirms the legitimate stated purpose of the 'project-planner' skill (monitoring Git activity and suggesting actions) but also highlights the significant security risks associated with agent skills declaring powerful capabilities like `TaskCreate`. No confirmed malicious intent in the skill's current description, which explicitly states 'This skill only suggests, never modifies'. However, the declared `TaskCreate` capability on line 4 grants the ability to execute arbitrary commands, posing a high security risk if exploited or misused. This capability, even if intended for benign operations like running `git` commands, provides a potential remote code execution primitive."
+                    },
+                    "locations": [
+                        {
+                            "artifactLocation": {
+                                "uri": "skill.yaml"
+                            },
+                            "region": {
+                                "startLine": 4,
+                                "endLine": 4,
+                                "snippet": {
+                                    "text": "Source code snippet unavailable as Source_Code input was not provided."
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 65,
+                        "confidence": 90,
+                        "evidence_strength": "strong",
+                        "verification_result": "partially_confirmed",
+                        "threat_category": "Dangerous Capability",
+                        "skill_url": "https://github.com/Dwsy/agent/tree/main/skills/project-planner"
+                    }
+                }
+            ]
+        }
+    ]
+}

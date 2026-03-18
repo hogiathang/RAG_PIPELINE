@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "GIT-001",
+                            "name": "InsecureGitOperations",
+                            "shortDescription": {
+                                "text": "Detects potentially insecure Git commands."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies Git commands that could lead to data loss, repository corruption, or unintended exposure if used improperly, such as `git add .` or `git reset --hard`."
+                            },
+                            "helpUri": "https://example.com/docs/GIT-001"
+                        },
+                        {
+                            "id": "GHCLI-001",
+                            "name": "GitHubCLIMisuse",
+                            "shortDescription": {
+                                "text": "Detects potential misuse of GitHub CLI."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies commands or patterns related to GitHub CLI that could expose sensitive information (e.g., tokens) or perform unintended actions on GitHub repositories."
+                            },
+                            "helpUri": "https://example.com/docs/GHCLI-001"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects potential for remote code execution."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies instructions or code that could lead to the execution of arbitrary code from external or untrusted sources."
+                            },
+                            "helpUri": "https://example.com/docs/RCE-001"
+                        },
+                        {
+                            "id": "EXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects potential data exfiltration attempts."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns where sensitive data might be sent to unauthorized external endpoints."
+                            },
+                            "helpUri": "https://example.com/docs/EXFIL-001"
+                        },
+                        {
+                            "id": "PERSIST-001",
+                            "name": "PersistenceMechanism",
+                            "shortDescription": {
+                                "text": "Detects attempts to establish persistence."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies actions designed to maintain unauthorized access or execution over time, such as modifying startup scripts or creating scheduled tasks."
+                            },
+                            "helpUri": "https://example.com/docs/PERSIST-001"
+                        },
+                        {
+                            "id": "SEC-PRACTICE-001",
+                            "name": "InsecureCodingPractices",
+                            "shortDescription": {
+                                "text": "Detects insecure coding or operational practices."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies practices that, while not directly malicious, can introduce security vulnerabilities or risks, such as storing credentials in plain text or using broad file permissions."
+                            },
+                            "helpUri": "https://example.com/docs/SEC-PRACTICE-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

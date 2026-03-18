@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "MALWARE-001",
+                            "name": "MaliciousCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects attempts to execute arbitrary code or commands."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns indicative of malicious code execution, such as shell command invocation, dynamic code loading, or exploit primitives."
+                            },
+                            "helpUri": "https://example.com/rules/MALWARE-001"
+                        },
+                        {
+                            "id": "EXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects attempts to exfiltrate sensitive data."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns indicative of data exfiltration, such as sending data to suspicious external endpoints, unauthorized file transfers, or credential harvesting."
+                            },
+                            "helpUri": "https://example.com/rules/EXFIL-001"
+                        },
+                        {
+                            "id": "PERSIST-001",
+                            "name": "PersistenceMechanism",
+                            "shortDescription": {
+                                "text": "Detects mechanisms used to maintain persistence on a system."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies techniques like registry modifications, scheduled tasks, or service installations designed to ensure continued execution."
+                            },
+                            "helpUri": "https://example.com/rules/PERSIST-001"
+                        },
+                        {
+                            "id": "INSECURE-PRACTICE-001",
+                            "name": "InsecureCodingPractice",
+                            "shortDescription": {
+                                "text": "Identifies code or instructions that encourage insecure practices."
+                            },
+                            "fullDescription": {
+                                "text": "Flags code or instructions that lead to insecure handling of sensitive data (e.g., hardcoded credentials, manual token extraction), bypass secure authentication, or introduce other security risks, even if not directly malicious."
+                            },
+                            "helpUri": "https://example.com/rules/INSECURE-PRACTICE-001"
+                        },
+                        {
+                            "id": "AGENT-MANIPULATION-001",
+                            "name": "AgentManipulationRisk",
+                            "shortDescription": {
+                                "text": "Identifies potential for AI agent manipulation through skill documentation."
+                            },
+                            "fullDescription": {
+                                "text": "Flags skill documentation that, while appearing benign to humans, might contain instructions or patterns that could manipulate an instruction-following AI agent to act against its user's intent or perform unsafe operations."
+                            },
+                            "helpUri": "https://example.com/rules/AGENT-MANIPULATION-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

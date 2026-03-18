@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "MALWARE-001",
+                            "name": "GeneralMalwareDetection",
+                            "shortDescription": {
+                                "text": "Detects general malicious software characteristics."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns and behaviors indicative of malware, including unauthorized system access, data manipulation, or resource abuse."
+                            },
+                            "helpUri": "https://example.com/malware-guidance"
+                        },
+                        {
+                            "id": "EXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Detects attempts to exfiltrate sensitive data."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code attempting to send sensitive information to external, potentially unauthorized, destinations."
+                            },
+                            "helpUri": "https://example.com/exfil-guidance"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects vulnerabilities or capabilities for remote code execution."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code that could allow an attacker to execute arbitrary commands on the host system remotely."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        },
+                        {
+                            "id": "PERSISTENCE-001",
+                            "name": "PersistenceMechanism",
+                            "shortDescription": {
+                                "text": "Detects mechanisms for maintaining unauthorized access."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies code designed to establish or maintain long-term presence on a system, such as modifying startup entries or creating scheduled tasks."
+                            },
+                            "helpUri": "https://example.com/persistence-guidance"
+                        },
+                        {
+                            "id": "INSECURE-PRACTICE-001",
+                            "name": "InsecureCodingPractice",
+                            "shortDescription": {
+                                "text": "Detects insecure coding practices that could lead to vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies practices such as hardcoded credentials, insecure secret storage, or bypassing secure authentication mechanisms, which can introduce security risks."
+                            },
+                            "helpUri": "https://example.com/insecure-practice-guidance"
+                        },
+                        {
+                            "id": "SUPPLY-CHAIN-001",
+                            "name": "SupplyChainIntegrity",
+                            "shortDescription": {
+                                "text": "Detects potential supply chain integrity issues."
+                            },
+                            "fullDescription": {
+                                "text": "Identifies discrepancies in metadata, conflicting source repositories, or inconsistent file paths that could indicate repackaging, misconfiguration, or an attempt to obscure the true origin of a skill. Such ambiguities can lead to users inadvertently installing a modified or untrusted version of the skill, posing a supply chain risk."
+                            },
+                            "helpUri": "https://example.com/supply-chain-integrity-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}

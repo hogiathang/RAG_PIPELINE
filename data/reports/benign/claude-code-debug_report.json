@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "INSECURE-PRACTICE-001",
+                            "name": "InsecurePractice",
+                            "shortDescription": {
+                                "text": "Identifies practices that, while not directly malicious, introduce security risks or vulnerabilities."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags code or instructions that, even without confirmed malicious intent, could lead to security issues if misused, misinterpreted, or if the execution environment is compromised. This includes suggesting powerful system commands, insecure handling of sensitive data, or encouraging unsafe operational practices."
+                            },
+                            "helpUri": "https://example.com/insecure-practice-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "INSECURE-PRACTICE-001",
+                    "level": "warning",
+                    "message": {
+                        "text": "Threat intelligence refuted confirmed malicious intent for this skill but partially confirmed the security risk. The `SKILL.md` for `claude-code-debug` (lines 59, 62) suggests powerful `bash` commands such as `chmod +x .claude/hooks/my-hook.sh` and `echo '{\"tool_name\":\"Bash\"}' | .claude/hooks/my-hook.sh`. While these are presented as debugging instructions and the skill declares `allowed-tools: \"Bash Read\"`, which should limit its direct execution capabilities, these commands could lead to arbitrary code execution or privilege escalation if a user manually executes them with a malicious or untrusted hook script. External context strongly supports the legitimate purpose of a debugging skill, which often involves such system-level operations. No confirmed malicious intent by the skill itself was identified."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 59,
+                                    "endLine": 62,
+                                    "snippet": {
+                                        "text": "chmod +x .claude/hooks/my-hook.sh\n...\necho '{\"tool_name\":\"Bash\"}' | .claude/hooks/my-hook.sh"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 60,
+                        "confidence": 85,
+                        "evidence_strength": "moderate",
+                        "verification_result": "partially_confirmed",
+                        "threat_category": "Potential Misuse of Debugging Capabilities",
+                        "skill_url": "N/A"
+                    }
+                }
+            ]
+        }
+    ]
+}

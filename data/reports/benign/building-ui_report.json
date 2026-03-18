@@ -1,0 +1,84 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "MAL-001",
+                            "name": "GeneralMalwareDetection",
+                            "shortDescription": {
+                                "text": "Detects general malicious software characteristics and behaviors."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies code or instructions exhibiting characteristics commonly associated with malware, such as unauthorized system access, data exfiltration, or system compromise."
+                            },
+                            "helpUri": "https://example.com/malware-guidance"
+                        },
+                        {
+                            "id": "EXFIL-001",
+                            "name": "DataExfiltration",
+                            "shortDescription": {
+                                "text": "Identifies attempts to exfiltrate sensitive data."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags behaviors indicative of data exfiltration, including sending data to unauthorized external servers, accessing sensitive files, or bypassing security controls to transmit information."
+                            },
+                            "helpUri": "https://example.com/exfil-guidance"
+                        },
+                        {
+                            "id": "RCE-001",
+                            "name": "RemoteCodeExecution",
+                            "shortDescription": {
+                                "text": "Detects potential remote code execution vulnerabilities or attempts."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies patterns that could lead to or are part of a remote code execution attack, allowing an attacker to run arbitrary code on the target system."
+                            },
+                            "helpUri": "https://example.com/rce-guidance"
+                        },
+                        {
+                            "id": "PERSIST-001",
+                            "name": "PersistenceMechanism",
+                            "shortDescription": {
+                                "text": "Flags mechanisms used for maintaining persistence on a system."
+                            },
+                            "fullDescription": {
+                                "text": "This rule detects techniques used by malicious software to ensure continued execution across reboots or after system compromise, such as modifying startup entries or scheduling tasks."
+                            },
+                            "helpUri": "https://example.com/persistence-guidance"
+                        },
+                        {
+                            "id": "INSECURE-PRACTICE-001",
+                            "name": "InsecureDevelopmentPractice",
+                            "shortDescription": {
+                                "text": "Identifies insecure coding or configuration practices."
+                            },
+                            "fullDescription": {
+                                "text": "This rule highlights practices that, while not directly malicious, introduce security risks, such as hardcoding credentials, insecure secret storage, or bypassing secure authentication."
+                            },
+                            "helpUri": "https://example.com/insecure-practice-guidance"
+                        }
+                    ]
+                }
+            },
+            "results": [],
+            "invocations": [
+                {
+                    "executionSuccessful": true,
+                    "toolExecutionNotifications": [
+                        {
+                            "message": {
+                                "text": "Analysis completed. No confirmed malicious intent or security issues found. The content describes standard and legitimate development practices for Expo Router UI."
+                            },
+                            "level": "note"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

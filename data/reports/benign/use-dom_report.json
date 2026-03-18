@@ -1,0 +1,65 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SEC-INSECURE-BRIDGE-001",
+                            "name": "Insecure Native Bridge Potential",
+                            "shortDescription": {
+                                "text": "Identifies documentation or code describing mechanisms for bridging web content with native functionality, which can lead to vulnerabilities if not implemented securely."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags instances where a system describes or implements a bridge between webview content (e.g., JavaScript) and native application functionality. While a legitimate feature for hybrid applications, such bridges are a common attack vector. Insecure implementations can allow untrusted web content to invoke sensitive native APIs, exfiltrate data, or achieve privilege escalation within the native application context. Developers must ensure strict input validation, origin checks, and granular permission models when exposing native functions to webviews."
+                            },
+                            "helpUri": "https://docs.expo.dev/modules/use-dom/",
+                            "properties": {
+                                "tags": [
+                                    "security",
+                                    "webview",
+                                    "native-bridge",
+                                    "insecure-design",
+                                    "hybrid-app"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SEC-INSECURE-BRIDGE-001",
+                    "message": {
+                        "text": "Threat intelligence *confirmed* that 'expo use-dom' is a legitimate library for hybrid application development, as evidenced by official Expo documentation (https://expo.dev/expo-skills) and community discussions (https://www.reddit.com/r/expo/comments/1idxcfy/real_world_expo_dom_component_use_case/). The initial analysis correctly identified no malicious intent within the `SKILL.md` documentation. However, the described mechanism for exposing native functionality to webviews, particularly through passing async functions as props, introduces a significant security risk if not implemented with strict input validation and access controls. This is a common vector for JavaScript-to-native bridge vulnerabilities, potentially leading to unauthorized access to sensitive native APIs or data exfiltration if untrusted web content can invoke these functions. This finding is a document-level observation, as no specific suspicious lines were identified in the `SKILL.md` itself."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/expo/skills/blob/main/plugins/expo-app-design/skills/use-dom/SKILL.md"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 1
+                                }
+                            }
+                        }
+                    ],
+                    "level": "note",
+                    "properties": {
+                        "threat_score": 20,
+                        "confidence": 80,
+                        "evidence_strength": "moderate",
+                        "verification_result": "partially_confirmed",
+                        "threat_category": "Insecure Design/Implementation Risk",
+                        "skill_url": "https://github.com/expo/skills/blob/main/plugins/expo-app-design/skills/use-dom/SKILL.md"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "SDH-001",
+                            "name": "SensitiveDataHandling",
+                            "shortDescription": {
+                                "text": "Identifies tools that process or store sensitive local data, posing a risk of exposure."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags tools that interact with or store potentially sensitive local user data, such as AI agent session logs or command history. While the tool itself may be benign, the nature of the data it handles introduces a security risk. Improper storage, processing, or vulnerabilities within the tool could lead to unauthorized access or exposure of sensitive information like credentials, API keys, or proprietary data. This is classified as a security issue, not malware, but warrants attention due to the potential impact of data compromise."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            },
+                            "properties": {
+                                "security-severity": "5.5"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "SDH-001",
+                    "message": {
+                        "text": "The 'recall' skill, while not confirmed to be malicious, processes local AI agent session data and bash command history. Threat intelligence did not refute the benign nature of this specific skill, as 'recall' was not identified in any known malware campaigns. However, these data sources can contain highly sensitive information such as API keys, credentials, or proprietary code. The local storage and processing of such data, even by a legitimate tool, introduces a security risk if not handled with robust security measures. No specific suspicious lines were identified as part of the initial analysis, but the overall functionality poses a data handling risk. No confirmed malicious intent."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "https://github.com/0xbigboss/recall"
+                                }
+                            }
+                        }
+                    ],
+                    "level": "warning",
+                    "properties": {
+                        "threat_score": 55,
+                        "confidence": 90,
+                        "evidence_strength": "moderate",
+                        "verification_result": "confirmed",
+                        "threat_category": "Sensitive Data Handling",
+                        "skill_url": "https://github.com/0xbigboss/recall"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "rules": [
+                        {
+                            "id": "MAL-001",
+                            "name": "MaliciousCodeExecution",
+                            "shortDescription": {
+                                "text": "Identifies code designed to execute malicious commands or scripts."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags code snippets that appear to execute arbitrary commands, shell scripts, or other potentially harmful operations, indicating malicious intent such as system compromise or data manipulation."
+                            },
+                            "helpUri": "https://example.com/rules/MAL-001"
+                        },
+                        {
+                            "id": "EXFIL-001",
+                            "name": "DataExfiltrationAttempt",
+                            "shortDescription": {
+                                "text": "Detects attempts to send sensitive data to external, unauthorized destinations."
+                            },
+                            "fullDescription": {
+                                "text": "This rule identifies patterns indicative of data exfiltration, such as network requests to suspicious domains, file uploads to unknown servers, or encoding/transfer of sensitive information outside the expected operational boundaries."
+                            },
+                            "helpUri": "https://example.com/rules/EXFIL-001"
+                        },
+                        {
+                            "id": "PERSIST-001",
+                            "name": "PersistenceMechanism",
+                            "shortDescription": {
+                                "text": "Flags code attempting to establish persistence on a system."
+                            },
+                            "fullDescription": {
+                                "text": "This rule looks for mechanisms that allow an attacker to maintain access to a system across reboots or after initial compromise, such as modifying startup scripts, creating scheduled tasks, or injecting into legitimate processes."
+                            },
+                            "helpUri": "https://example.com/rules/PERSIST-001"
+                        },
+                        {
+                            "id": "CRED-001",
+                            "name": "HardcodedCredentials",
+                            "shortDescription": {
+                                "text": "Identifies hardcoded sensitive credentials within the code."
+                            },
+                            "fullDescription": {
+                                "text": "This rule flags instances where API keys, passwords, tokens, or other sensitive authentication material are directly embedded in the source code, posing a significant security risk if exposed."
+                            },
+                            "helpUri": "https://example.com/rules/CRED-001"
+                        },
+                        {
+                            "id": "INFO-001",
+                            "name": "InformationalContent",
+                            "shortDescription": {
+                                "text": "Identifies content that is purely informational or documentation."
+                            },
+                            "fullDescription": {
+                                "text": "This rule is used to classify content that serves as documentation, guidance, or descriptive text without containing any executable code, malicious indicators, or security vulnerabilities."
+                            },
+                            "helpUri": "https://example.com/rules/INFO-001"
+                        }
+                    ]
+                }
+            },
+            "results": []
+        }
+    ]
+}
