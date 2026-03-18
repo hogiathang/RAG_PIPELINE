@@ -8,9 +8,25 @@ from langchain_core.documents import Document
 
 from src.common.embedding_model import EmbeddingModel
 from src.common.qdrant_adapter import QdrantAdapter
-
+from pathlib import Path
 
 INPUT_DIR = "./backup_rag"
+
+def load_checker() -> list:
+
+    checker_file = "./checker.json"
+
+    if not os.path.exists(checker_file):
+        print(f"[INFO] Checker file '{checker_file}' not found. Starting with an empty list.")
+        return []
+
+    try:
+        with open(checker_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data.get("checks", [])
+    except Exception as e:
+        print(f"[ERROR] Failed to load checker file: {e}")
+        return []
 
 
 def load_document(file_path: str):
@@ -88,10 +104,16 @@ def ingest_data():
         chunk_overlap=200
     )
 
+    checked_files = load_checker()
+
     total_vectors = 0
     total_files = 0
 
     for root, dirs, files in os.walk(INPUT_DIR):
+
+        if files in checked_files:
+            print(f"[SKIP] Already ingested files in {root}. Skipping...")
+            continue
 
         for file in files:
 
@@ -140,6 +162,8 @@ def ingest_data():
                 total_files += 1
 
                 print(f"Inserted {len(ids)} vectors from {file}")
+
+                checked_files.append(files)
 
             except Exception as e:
                 print(f"Failed ingest {file_path}: {e}")

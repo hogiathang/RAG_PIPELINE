@@ -59,3 +59,4 @@ Thumbs.db
 models/
 .cache/
 api_tokens/
+checker.json
