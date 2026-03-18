@@ -18,6 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.generation.generation import build_prompt_from_retrieve_similar_documents, build_prompt_from_retrive_similar_documents_for_skills_analysis
 
+SUPPORTED_FILE_TYPES = (".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")
+
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
 ║          RAG-based Malware Analysis System           ║
@@ -93,7 +95,7 @@ def read_package(package_path: str) -> str:
     for file in os.listdir(package_path):
         # Chỉ đọc file .js, .json, .md, .sh,
 
-        if not file.endswith((".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")):
+        if not file.endswith(SUPPORTED_FILE_TYPES):
             continue
 
         content = Path(os.path.join(package_path, file)).read_text(encoding="utf-8")
