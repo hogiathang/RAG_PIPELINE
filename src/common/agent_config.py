@@ -119,6 +119,28 @@ Before finalizing, ask:
 "Could this behavior belong to a legitimate tool?"
 If YES → reduce severity.
 
+6. Non-Malicious But Dangerous Behavior:
+
+Even if NO malicious intent is confirmed, you MUST evaluate SECURITY IMPACT independently.
+
+If the code or instructions:
+- Expose or require handling of highly sensitive credentials (session tokens, cookies, auth headers)
+- Bypass secure authentication mechanisms (OAuth, API keys)
+- Encourage unsafe practices (manual token extraction, storing secrets in plain text)
+
+THEN:
+- MUST classify as a security issue (NOT malware)
+- threat_score MUST be ≥ 50 depending on impact
+- severity SHOULD be "warning" or "error"
+
+IMPORTANT:
+"Non-malicious" does NOT mean "low risk".
+
+Example high-risk non-malicious issues:
+- Session token reuse from browser cookies
+- Hardcoded credentials
+- Insecure secret storage
+
 --------------------------------------------------
 SCORING & MAPPING
 --------------------------------------------------
@@ -156,10 +178,31 @@ Each result MUST include:
   - Clear statement of intent (or lack of intent)
 
 3. locations:
-- artifactLocation.uri: "skill.py"
-- region.startLine / endLine
-- snippet.text: EXACT code
 
+- artifactLocation.uri:
+  MUST follow this priority:
+
+  1. If Source_Code or metadata contains a VERIFIED public repository URL:
+     → Use FULL URL to the exact file (e.g., https://github.com/org/repo/blob/main/path/file.py)
+
+  2. If only repository root URL is known but file path is known:
+     → Construct the file URL ONLY if you are confident (>90%) about the path structure
+     → Otherwise DO NOT guess
+
+  3. If NO verified repository URL is available:
+     → MUST fallback to local file path (e.g., "skill.py")
+
+  STRICT RULES:
+  - DO NOT hallucinate or invent repository URLs
+  - DO NOT assume branch names (main/master) unless explicitly provided
+  - DO NOT fabricate file paths
+
+- region.startLine / endLine:
+  MUST match Initial_Analysis.metadata.suspicious_lines
+
+- snippet.text:
+  MUST be EXACT code from Source_Code (no modification, no summarization)
+  
 4. properties:
 {
   "threat_score": integer,

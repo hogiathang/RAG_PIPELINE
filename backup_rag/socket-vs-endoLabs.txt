@@ -1,0 +1,16 @@
+Socket flagged Endor Labs' CLI Skill as MALWARE with 98% confidence.
+
+Here's what their own scanner description actually says:
+"The skill exhibits coherent alignment with its stated aim... risk is elevated due to supply-chain and credential exposure patterns."
+
+Not malware. Suspicious. Because our CLI installs a binary, handles auth, and manages credentials. Which is what security CLIs do. 
+
+This sits alongside a comparison page they published (https://lnkd.in/ged6Gwkg) riddled with inaccuracies. One example: they show Endor Labs lacking a REST API. Endor is an API-first company - every one of our customers knows this, and our full REST API is publicly documented at https://lnkd.in/g-Xw_uyA. 
+
+That's not a nuanced capability gap. That's just plain wrong!
+
+The malware flag is the more troubling one though. If Socket's scanner hits 98% confidence malware on a well-known security vendor's CLI - one that does exactly what it says on the tin - how are customers actually expected to depend on their malicious package analysis, especially in blocking mode inline? 
+
+False positives at that confidence level erode trust in every real signal. That's the opposite of what enterprise security teams need.
+
+Since I've been building security companies for the last 16 years, I know that competitive marketing is part of the game. But there's a line between positioning and publishing things that are simply deceptive. Remember - TRUST is hard to gain and easy to lose in the cybersecurity community.
