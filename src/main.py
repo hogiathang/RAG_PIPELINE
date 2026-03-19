@@ -91,7 +91,7 @@ def read_package(package_path: str) -> str:
         content = Path(os.path.join(package_path, file)).read_text(encoding="utf-8")
         contents.append(f"[FILE: {file}]\n{content}")
 
-    return 
+    return contents
     
 def parse_directory():
     input_dir  = input("Please enter the input directory path (containing JavaScript/Node.js packages): ").strip()
@@ -124,27 +124,33 @@ def retrieval_pipeline(args) -> None:
     analyzed_packages = get_analyzed_packages(output_dir)
     logger.info(f"Found {len(analyzed_packages)} already analyzed packages. They will be skipped in this run.")
 
-    for package in os.listdir(input_dir):
+    try:
+        for package in os.listdir(input_dir):
+            logger.info(f"Processing package: {package}")
 
-        if package in analyzed_packages:
-            logger.info(f"Package '{package}' already analyzed. Skipping...")
-            continue
+            if package in analyzed_packages:
+                logger.info(f"Package '{package}' already analyzed. Skipping...")
+                continue
 
-        package_path = os.path.join(input_dir, package)
-        contents =  read_package(package_path)
-        
-        report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
-        output_path = os.path.join(output_dir, f"{package}_report.json")
+            package_path = os.path.join(input_dir, package)
+            contents =  read_package(package_path)
+            
+            report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
+            output_path = os.path.join(output_dir, f"{package}_report.json")
 
-        save_report(report, output_path)
+            save_report(report, output_path)
 
-        logger.info(f"Report for package '{package}' saved to: {output_path}")
+            logger.info(f"Report for package '{package}' saved to: {output_path}")
+    
+    except Exception as e:
+        logger.error(f"Error during retrieval pipeline: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
     try:
         args = parse_args()
-        logger.info(BANNER)
+        logger.critical(BANNER)
     
         if args.ingest_data:
             ingest_data()

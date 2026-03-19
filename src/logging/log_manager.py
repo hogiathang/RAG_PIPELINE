@@ -2,6 +2,24 @@ from pathlib import Path
 import logging
 
 
+class ColorFormatter(logging.Formatter):
+    """Custom formatter with colors for console output."""
+
+    COLORS = {
+        logging.DEBUG: "\033[36m",     # Cyan
+        logging.INFO: "\033[32m",      # Green
+        logging.WARNING: "\033[33m",   # Yellow
+        logging.ERROR: "\033[31m",     # Red
+        logging.CRITICAL: "\033[41m",  # Red background
+    }
+    RESET = "\033[0m"
+
+    def format(self, record):
+        color = self.COLORS.get(record.levelno, self.RESET)
+        message = super().format(record)
+        return f"{color}{message}{self.RESET}"
+
+
 class AppLogger:
     """Centralized logger manager for console and file logging."""
 
@@ -26,17 +44,28 @@ class AppLogger:
         root_logger.setLevel(level)
 
         if not root_logger.handlers:
-            formatter = logging.Formatter(
-                "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+            base_format = "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+
+            # Formatter thường (file)
+            file_formatter = logging.Formatter(
+                base_format,
                 datefmt="%Y-%m-%d %H:%M:%S",
             )
 
+            # Formatter có màu (console)
+            color_formatter = ColorFormatter(
+                base_format,
+                datefmt="%Y-%m-%d %H:%M:%S",
+            )
+
+            # Console handler (có màu)
             console_handler = logging.StreamHandler()
-            console_handler.setFormatter(formatter)
+            console_handler.setFormatter(color_formatter)
             root_logger.addHandler(console_handler)
 
+            # File handler (không màu)
             file_handler = logging.FileHandler(log_file, encoding="utf-8")
-            file_handler.setFormatter(formatter)
+            file_handler.setFormatter(file_formatter)
             root_logger.addHandler(file_handler)
 
         cls._configured = True

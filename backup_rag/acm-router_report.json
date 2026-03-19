@@ -1,0 +1,115 @@
+{
+    "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "version": "2.1.0",
+                    "informationUri": "https://github.com/thang-agent-analyzer",
+                    "rules": [
+                        {
+                            "id": "MALWARE-001",
+                            "name": "Malicious Intent Detection",
+                            "shortDescription": {
+                                "text": "Detects evidence of malware, trojans, or intentional malicious behavior"
+                            },
+                            "fullDescription": {
+                                "text": "Identifies exploit primitives (RCE, injection, privilege escalation), credential exfiltration, C2 communication, persistence mechanisms, or obfuscation patterns indicative of malware."
+                            },
+                            "defaultConfiguration": {
+                                "level": "error"
+                            },
+                            "helpUri": "https://github.com/thang-agent-analyzer/docs/malware-detection"
+                        },
+                        {
+                            "id": "CRED-EXPOSURE-001",
+                            "name": "Credential Exposure Risk",
+                            "shortDescription": {
+                                "text": "Detects unsafe handling of authentication tokens, API keys, or session credentials"
+                            },
+                            "fullDescription": {
+                                "text": "Identifies patterns where credentials are extracted, stored insecurely, transmitted without encryption, or exposed in logs/memory."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            },
+                            "helpUri": "https://github.com/thang-agent-analyzer/docs/credential-safety"
+                        },
+                        {
+                            "id": "SUPPLY-CHAIN-001",
+                            "name": "Supply Chain Risk",
+                            "shortDescription": {
+                                "text": "Detects supply chain attack patterns in agent skills"
+                            },
+                            "fullDescription": {
+                                "text": "Identifies hardcoded credentials, trojan payloads, hook injection, or coordinated malware campaigns targeting agent ecosystems."
+                            },
+                            "defaultConfiguration": {
+                                "level": "error"
+                            },
+                            "helpUri": "https://github.com/thang-agent-analyzer/docs/supply-chain"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "MALWARE-001",
+                    "level": "note",
+                    "message": {
+                        "text": "VERIFICATION RESULT: REFUTED - No malicious intent detected. This skill document describes legitimate agent orchestration and routing logic for coding harnesses (Pi, Claude Code, Codex, OpenCode, Gemini, Kimi). Threat Intelligence (2602.06547v2.pdf) documents malicious skills in the same ecosystem (smp_866, smp_413) with hardcoded credentials, hook injection, and exfiltration endpoints. This skill exhibits NONE of these patterns. Instead, it demonstrates security-conscious design: (1) Version pinning enforces local plugin versions over global PATH, reducing supply chain risk. (2) Installation scope restricted to local; explicit user consent required for global installs. (3) Deterministic session naming (e.g., 'oc-<harness>-<conversationId>') prevents cross-session contamination. (4) Error handling procedures documented for common failure scenarios. (5) Explicit prohibitions on unsafe patterns: no subagent runtime for harness control, no PTY scraping when acpx available, no global npm installs without explicit user request. No exploit primitives (RCE, injection, privilege escalation), no credential exfiltration, no C2 communication, no persistence mechanisms, no obfuscation. Confidence: HIGH. This is legitimate agent infrastructure, not malware."
+                    },
+                    "locations": [
+                        {
+                            "artifactLocation": {
+                                "uri": "skill.md",
+                                "description": {
+                                    "text": "Agent skill documentation (no verified repository URL available; local reference)"
+                                }
+                            },
+                            "region": {
+                                "startLine": 1,
+                                "endLine": 1,
+                                "snippet": {
+                                    "text": "Document describes routing mechanism for directing user requests to various coding harnesses through OpenClaw ACP runtime sessions or direct acpx CLI invocation."
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 0,
+                        "confidence": 95,
+                        "evidence_strength": "strong",
+                        "verification_result": "refuted",
+                        "threat_category": "none",
+                        "skill_url": "N/A",
+                        "threat_intel_status": "PARTIALLY_CONFIRMS_ECOSYSTEM_RISK_BUT_REFUTES_THIS_SKILL",
+                        "malicious_indicators_found": 0,
+                        "security_design_elements": [
+                            "version_pinning_policy",
+                            "local_installation_enforcement",
+                            "explicit_user_consent_requirement",
+                            "deterministic_session_naming",
+                            "documented_error_recovery",
+                            "explicit_prohibition_of_unsafe_patterns"
+                        ],
+                        "exploit_primitives_detected": "none",
+                        "credential_handling": "safe",
+                        "persistence_mechanisms": "none",
+                        "c2_communication": "none",
+                        "obfuscation_detected": false
+                    }
+                }
+            ],
+            "properties": {
+                "analysis_timestamp": "2025-01-20T00:00:00Z",
+                "verification_methodology": "threat_intel_reconciliation + exploit_primitive_analysis + security_design_review",
+                "false_positive_assessment": "CONFIRMED_BENIGN",
+                "ecosystem_context": "Agent skill ecosystem contains documented malware (2602.06547v2.pdf); this skill is defensive and legitimate",
+                "analyst_notes": "Initial classification of LIKELY_BENIGN is CORRECT. Threat_Intel references malicious skills with distinct patterns (hardcoded credentials, hook injection, exfiltration). This skill exhibits none of those patterns and demonstrates security-conscious design. No override of initial analysis required. Threat_score remains 0."
+            }
+        }
+    ]
+}

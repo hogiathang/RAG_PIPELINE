@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Thang's Agent Analyzer",
+                    "version": "1.0.0",
+                    "informationUri": "https://example.com/analyzer",
+                    "rules": [
+                        {
+                            "id": "CRED-001",
+                            "name": "SensitiveCredentialHandling",
+                            "shortDescription": {
+                                "text": "Sensitive credential storage and handling in configuration files."
+                            },
+                            "fullDescription": {
+                                "text": "Tool stores sensitive credentials (API keys, tokens, private keys) in local configuration files. While the tool implements file permission restrictions (chmod 600), exposure of the configuration file could grant attackers access to user's Apple Music account and device control. This is a non-malicious but security-relevant finding that requires secure credential management practices."
+                            },
+                            "helpUri": "https://example.com/docs/CRED-001"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "CRED-001",
+                    "level": "note",
+                    "message": {
+                        "text": "VERIFICATION RESULT: CONFIRMED LEGITIMATE TOOL (Non-Malicious). Threat_Intel: NOT APPLICABLE (search results unrelated to clawtunes). The clawtunes Apple Music CLI is a legitimate tool using official Apple MusicKit API with standard OAuth authorization. NO malicious intent detected: no credential exfiltration, no C2 infrastructure, no privilege escalation, no obfuscation. SECURITY NOTE: Tool handles sensitive credentials (developer .p8 key, user authorization tokens) stored in config.json with restricted permissions (chmod 600). While implementation follows security best practices, users should ensure config.json is not accidentally exposed or committed to version control. Recommend: (1) Document credential security best practices in README, (2) Add .gitignore entry for config.json, (3) Consider environment variable support as alternative to file storage."
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "setup.sh"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 50
+                                }
+                            }
+                        },
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "apple-music.sh"
+                                },
+                                "region": {
+                                    "startLine": 1,
+                                    "endLine": 100
+                                }
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "threat_score": 25,
+                        "confidence": 95,
+                        "evidence_strength": "strong",
+                        "verification_result": "confirmed",
+                        "threat_category": "credential_handling",
+                        "classification": "LEGITIMATE_TOOL_WITH_SECURITY_GUIDANCE",
+                        "malicious_intent": false,
+                        "notes": "Initial analysis correctly classified as LIKELY_BENIGN. Verification confirms: (1) Official Apple API usage verified, (2) Standard OAuth implementation, (3) No exfiltration or C2 behavior, (4) Proper error handling and file permissions. Threat score elevated from 5 to 25 solely due to credential sensitivity, not malicious behavior."
+                    }
+                }
+            ],
+            "automationDetails": {
+                "id": "clawtunes-apple-music-cli-verification"
+            }
+        }
+    ]
+}
