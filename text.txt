@@ -5,3 +5,5 @@ source /home/research_jiffylabs_ai/miniconda3/bin/activate rag
 export HF_HOME=/mnt/data/.cache/huggingface
 export TRANSFORMERS_CACHE=/mnt/data/.cache/huggingface
 export HUGGINGFACE_HUB_CACHE=/mnt/data/.cache/huggingface
+
+nohup python -m src.main --ingest-data > ./ingest_data.log 2>&1 &
