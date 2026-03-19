@@ -16,14 +16,14 @@ from src.ingestion.ingest_data import ingest_data
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.generation.generation import build_prompt_from_retrieve_similar_documents, build_prompt_from_retrive_similar_documents_for_skills_analysis
+from src.generation.generation import build_prompt_from_retrive_similar_documents_for_skills_analysis
 
 SUPPORTED_FILE_TYPES = (".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")
 
 BANNER = r"""
 ╔══════════════════════════════════════════════════════╗
 ║          RAG-based Malware Analysis System           ║
-║      JavaScript / Node.js Threat Intelligence        ║
+║           Agent Skills Threat Intelligence           ║
 ╚══════════════════════════════════════════════════════╝
 
 Default: Retrieval Mode.
@@ -72,8 +72,7 @@ def run_pipeline(code: str, is_analyzing_skills: bool = True) -> json:
 
     print("[STEP 1/2] Run RAG Pipeline...")
 
-    report = build_prompt_from_retrieve_similar_documents(code) if \
-        not is_analyzing_skills else build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
+    report = build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
 
     if report is None:
         print("[ERROR] Pipeline returned no result. Check your API tokens and services.", file=sys.stderr)
@@ -129,9 +128,6 @@ def retrieval_pipeline(args) -> None:
         package_path = os.path.join(INPUT_DIR, package)
 
         contents =  read_package(package_path)
-
-        # print(f"[INFO] Processing Package: {package}")
-        # print(f"[INFO] Content Summary: {contents[0][:500]}...")
 
         report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
 

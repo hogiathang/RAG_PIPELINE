@@ -1,3 +1,7 @@
+# Activate ENV
+source /home/research_jiffylabs_ai/miniconda3/bin/activate rag
+
+# Set download directory
 export HF_HOME=/mnt/data/.cache/huggingface
 export TRANSFORMERS_CACHE=/mnt/data/.cache/huggingface
 export HUGGINGFACE_HUB_CACHE=/mnt/data/.cache/huggingface

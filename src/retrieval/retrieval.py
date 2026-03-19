@@ -2,7 +2,7 @@
 Retrieval TOP K SIMILAR FROM VECTOR SEARCH
 """
 
-from src.common.qdrant_adapter import QdrantAdapter
+from RAG_PIPELINE.src.ingestion.qdrant_adapter import QdrantAdapter
 
 TOP_K = 5
 

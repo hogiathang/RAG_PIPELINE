@@ -12,8 +12,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
 # Giả định các module này đã có sẵn
-from src.common.embedding_model import EmbeddingModel
-from src.common.qdrant_adapter import QdrantAdapter
+from RAG_PIPELINE.src.common.model.embedding_model import EmbeddingModel
+from RAG_PIPELINE.src.ingestion.qdrant_adapter import QdrantAdapter
 
 # Cấu hình logging
 logging.basicConfig(level=logging.ERROR) # Giảm log để tránh làm chậm console
@@ -39,7 +39,6 @@ def load_checker() -> set:
         return set()
 
 def update_checker_safe(file_path: str):
-    """Cập nhật checker một cách an toàn giữa các luồng."""
     with checker_lock:
         current_data = load_checker()
         current_data.add(file_path)
@@ -47,7 +46,7 @@ def update_checker_safe(file_path: str):
             with open(CHECKER_FILE, "w", encoding="utf-8") as f:
                 json.dump({"checks": list(current_data)}, f, ensure_ascii=False, indent=4)
         except Exception as e:
-            logger.error(f"Lỗi cập nhật checker: {e}")
+            logger.error(f"Cannot update checker for {file_path}: {e}")
 
 def load_document(file_path: str):
     try:
@@ -62,11 +61,10 @@ def load_document(file_path: str):
             return [Document(page_content=json.dumps(data, ensure_ascii=False), metadata={"source": file_path})]
         return None
     except Exception as e:
-        logger.error(f"Lỗi load {file_path}: {e}")
+        logger.error(f"Failed to load document {file_path}: {e}")
         return None
 
 def process_single_file(file_path_obj, qdrant_db, embedding_model, text_splitter):
-    """Hàm xử lý cho một file duy nhất (Worker)"""
     file_path = str(file_path_obj)
     
     try:
@@ -80,10 +78,8 @@ def process_single_file(file_path_obj, qdrant_db, embedding_model, text_splitter
 
         texts = [doc.page_content for doc in chunks]
         
-        # Gọi API Embedding (đây là bước tốn thời gian nhất)
         vectors = embedding_model.embed(texts)
         
-        # Chuẩn hóa vector
         if hasattr(vectors, "tolist"): vectors = vectors.tolist()
         if isinstance(vectors, list) and len(vectors) > 0 and isinstance(vectors[0], (int, float)):
             vectors = [vectors]
@@ -98,16 +94,14 @@ def process_single_file(file_path_obj, qdrant_db, embedding_model, text_splitter
             for doc in chunks
         ]
 
-        # Insert vào DB
         qdrant_db.insert(ids=ids, vectors=vectors, payloads=payloads)
         
-        # Đánh dấu hoàn thành
         update_checker_safe(file_path)
         
         return len(ids), file_path
 
     except Exception as e:
-        logger.error(f"Thất bại khi xử lý {file_path}: {e}")
+        logger.error(f"Error processing file {file_path}: {e}")
         return -1, file_path
 
 def ingest_data():
@@ -117,17 +111,16 @@ def ingest_data():
     
     processed_files = load_checker()
     
-    # Quét danh sách file cần xử lý
     all_files = [
         f for f in Path(INPUT_DIR).rglob('*') 
         if f.is_file() and str(f) not in processed_files
     ]
     
     if not all_files:
-        print("Không có file mới cần xử lý.")
+        print("No new files to process. All files in the input directory have been ingested.")
         return
 
-    print(f"Bắt đầu xử lý song song {len(all_files)} file với {MAX_WORKERS} luồng...")
+    print(f"Found {len(all_files)} new files to process.")
     
     total_vectors = 0
     success_count = 0
@@ -147,5 +140,4 @@ def ingest_data():
                 total_vectors += vec_count
                 success_count += 1
 
-    print(f"\n[XONG] Đã xử lý thành công {success_count}/{len(all_files)} file.")
-    print(f"Tổng số vector mới: {total_vectors}")
+    print(f"Ingestion completed: {success_count}/{len(all_files)} files processed successfully, total vectors inserted: {total_vectors}.")

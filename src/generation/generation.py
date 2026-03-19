@@ -1,36 +1,6 @@
 from src.retrieval.retrieval import retrieve_similar_documents
-from src.common.gemini_agent import GeminiAgent
+from RAG_PIPELINE.src.common.model.gemini_agent import GeminiAgent
 import json, re
-
-def build_summary_generation(user_prompt: str, documents: list[str]) -> str:
-    gemini_agent = GeminiAgent()
-    
-    final_prompt = f"""[TARGET CODE]:
-        {user_prompt}
-
-        [LOCAL KNOWLEDGE AND WEB SEARCH CONTENT]:
-        {"\n\n".join(documents)}
-    """
-
-    return gemini_agent.execute_task(final_prompt, "summary-generation")
-
-def build_skills_analysis_generation(user_prompt: str, documents: list[str]) -> json:
-    gemini_agent = GeminiAgent()
-    
-    final_prompt = f"""[TARGET CODE]:
-        {user_prompt}
-
-        [LOCAL KNOWLEDGE AND WEB SEARCH CONTENT]:
-        {"\n\n".join(documents)}
-    """
-
-    return gemini_agent.execute_task(final_prompt, "skills-analysis")
-
-def build_prompt_from_retrieve_similar_documents(user_prompt: str):
-    pass
-    # similar_documents = retrieve_similar_documents(build_query_prompt(user_prompt))
-
-    # return build_summary_generation(user_prompt, similar_documents)
 
 def format_json_response(response: str) -> json:
     clean_response = response.strip()
