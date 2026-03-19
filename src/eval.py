@@ -1,8 +1,10 @@
 import os, re
+from src.logging.log_manager import AppLogger
 
 all_files = 0
 malware_file = 0
 
+logger = AppLogger.get_logger(__name__)
 
 def is_malware(file_path:str) -> bool:
     with open(file_path, "r", encoding="utf-8") as f:
@@ -14,7 +16,7 @@ def is_malware(file_path:str) -> bool:
             classification = match.group(1).upper()
             return classification == "MALICIOUS"
         else:
-            print(f"[WARNING] No classification found in {file_path}. Skipping.")
+            logger.warning(f"Could not find classification in file: {file_path}")
             return False
 
 for file in os.listdir("./data/skills/outputs"):
@@ -23,6 +25,6 @@ for file in os.listdir("./data/skills/outputs"):
         if is_malware(os.path.join("./data/skills/outputs", file)):
             malware_file += 1
 
-print(f"Total files: {all_files}")
-print(f"Malware files: {malware_file}")
-print(f"Malware percentage: {malware_file / all_files * 100:.2f}%")
+logger.info(f"Total files: {all_files}")
+logger.info(f"Malware files: {malware_file}")
+logger.info(f"Malware detection rate: {malware_file / all_files * 100:.2f}%")

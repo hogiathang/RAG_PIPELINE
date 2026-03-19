@@ -1,6 +1,9 @@
-from RAG_PIPELINE.src.common.model.gemini_agent import GeminiAgent
+from src.common.model.gemini_agent import GeminiAgent
 from threading import Lock
 import os, re, json, requests
+from src.logging.log_manager import AppLogger
+
+logger = AppLogger.get_logger(__name__)
 
 TOKENS_FILE = "api_tokens/search_engine_api_keys.txt"
 
@@ -86,7 +89,7 @@ class WebSearchEngine:
                 status = response.status_code
 
                 if status == 400:
-                    print(f"[ERROR] Bad request for query '{query}': {error_details}")
+                    logger.error(f"Bad request for query '{query}': {error_details}")
                     return {"results": []}
                 
                 elif status in [401, 429, 432, 433]:
@@ -95,11 +98,11 @@ class WebSearchEngine:
                     attempts += 1
                     continue
                 else:
-                    print(f"[ERROR] Network error for query '{query}': {error_details}")
+                    logger.error(f"Error {status} for query '{query}': {error_details}")
                     return {"results": []}
                 
             except requests.exceptions.RequestException as e:
-                print(f"[ERROR] Exception during web search for query '{query}': {e}")
+                logger.error(f"Request exception for query '{query}': {e}")
                 return {"results": []}
         
     def search(self, query: str) -> list[str]:
@@ -112,7 +115,7 @@ class WebSearchEngine:
 
             web_response = self._execute_web_search(query)
             search_hits = web_response.get("results", [])
-            print(f"[INFO] Web search hits for query '{query}': {search_hits}")
+            logger.info(f"Web search executed for query '{query}'. Number of hits: {len(search_hits)}")
 
             for hit in search_hits:
                 url = hit.get("url")
@@ -130,5 +133,5 @@ class WebSearchEngine:
             return aggregated_search_output
 
         except Exception as error:
-            print(f"[ERROR] Web search execution failed: {error}")
+            logger.error(f"Error during web search execution for query '{query}': {error}")
             return ["Web search execution failed due to an error."]

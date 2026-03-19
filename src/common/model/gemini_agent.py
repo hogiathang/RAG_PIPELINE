@@ -3,10 +3,13 @@ from queue import Queue, Empty
 import concurrent.futures
 from threading import Lock
 from google.genai import Client, types
-from RAG_PIPELINE.src.common.model.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
+from src.common.model.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
 from uuid import uuid4
 from threading import Thread
 import time
+from src.logging.log_manager import AppLogger
+
+logger = AppLogger.get_logger(__name__)
 
 # =========================================================
 # Lớp Worker bên trong (Được khởi tạo 1 lần duy nhất trên mỗi token)
@@ -96,14 +99,15 @@ class GeminiAgent:
             try:
                 self.check_and_invoke_worker()
             except Exception as e:
-                print(f"[ERROR] Worker recovery loop encountered an error: {e}")
+                logger.error("Worker recovery loop error: %s", e)
 
             time.sleep(60)
 
     def _load_tokens(self, token_file_path) -> list:
         tokens = []
         if not os.path.exists(token_file_path):
-            print(f"[WARNING] Token file '{token_file_path}' not found. No workers will be available.")
+            logger.error(f"Token file '{token_file_path}' not found. Please create the file and add your API tokens, one per line.")
+            return tokens
         else:
             with open(token_file_path, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -140,7 +144,9 @@ class GeminiAgent:
                 continue
 
         if recovered:
-            print(f"[INFO] Recovered workers: {', '.join(recovered)}")
+            logger.info(f"[INFO] Recovered Gemini Workers: {', '.join(recovered)}")
+        else:
+            logger.info("[INFO] No Gemini Workers recovered in this cycle.")
 
     def execute_task(self, prompt, task_type="summary-generation"):
         """
@@ -152,7 +158,7 @@ class GeminiAgent:
                 + "summary-generation": Tổng hợp thông tin và tạo báo cáo phân tích
         """
         if task_type not in AGENT_PROMPT:
-            print(f"[ERROR] Unknown task type '{task_type}'. Defaulting to no system prompt.")
+            logger.error(f"Invalid task type '{task_type}'. Please choose from: {', '.join(AGENT_PROMPT.keys())}")
             return None
 
         while True:
@@ -160,7 +166,7 @@ class GeminiAgent:
                 worker: Worker = self.worker_pool.get(timeout=60)
 
                 if self.worker_status.get(worker.id) != "available":
-                    print(f"[WARNING] Worker {worker.id} is marked as unavailable. Skipping.")
+                    logger.info(f"[INFO] Worker {worker.id} is currently unavailable. Skipping...")
                     continue
 
                 system_prompt  = AGENT_PROMPT.get(task_type, "")
@@ -169,7 +175,7 @@ class GeminiAgent:
 
                 if result is None:
                     self.worker_status[worker.id] = "unavailable"
-                    print(f"[ERROR] Worker {worker.id} failed to perform task. Marking as unavailable.")
+                    logger.error(f"[ERROR] Worker {worker.id} failed to perform task. Marking as unavailable.")
                     continue
 
                 self.worker_pool.put(worker)
@@ -181,5 +187,5 @@ class GeminiAgent:
             
             except Exception as e:
                 self.worker_status[worker.id] = "unavailable"
-                print(f"[ERROR] Worker {worker.id} failed during task execution. Marking as unavailable. Error: {e}")
+                logger.error(f"[ERROR] Worker {worker.id} encountered an error: {str(e)}. Marking as unavailable.")
                 continue

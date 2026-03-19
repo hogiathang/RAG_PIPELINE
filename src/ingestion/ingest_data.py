@@ -1,7 +1,6 @@
 import os
 import uuid
 import json
-import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -12,12 +11,13 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
 # Giả định các module này đã có sẵn
-from RAG_PIPELINE.src.common.model.embedding_model import EmbeddingModel
-from RAG_PIPELINE.src.ingestion.qdrant_adapter import QdrantAdapter
+from src.common.model.embedding_model import EmbeddingModel
+from src.ingestion.qdrant_adapter import QdrantAdapter
+from src.logging.log_manager import AppLogger
 
-# Cấu hình logging
-logging.basicConfig(level=logging.ERROR) # Giảm log để tránh làm chậm console
-logger = logging.getLogger(__name__)
+# Giảm log của ingestion để tránh làm chậm console khi xử lý batch lớn
+logger = AppLogger.get_logger(__name__)
+logger.setLevel("ERROR")
 
 # Cấu hình hệ thống
 INPUT_DIR = "./backup_rag"
@@ -120,7 +120,7 @@ def ingest_data():
         print("No new files to process. All files in the input directory have been ingested.")
         return
 
-    print(f"Found {len(all_files)} new files to process.")
+    logger.info(f"Found {len(all_files)} new files to ingest.")
     
     total_vectors = 0
     success_count = 0
@@ -140,4 +140,4 @@ def ingest_data():
                 total_vectors += vec_count
                 success_count += 1
 
-    print(f"Ingestion completed: {success_count}/{len(all_files)} files processed successfully, total vectors inserted: {total_vectors}.")
+    logger.info(f"Ingestion completed: {success_count}/{len(all_files)} files processed successfully, total vectors ingested: {total_vectors}.")

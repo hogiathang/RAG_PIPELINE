@@ -12,9 +12,12 @@ import sys, os, json
 import argparse
 from pathlib import Path
 from src.ingestion.ingest_data import ingest_data
+from src.logging.log_manager import AppLogger
 
 # Đảm bảo chạy được từ root: python -m src.main
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+logger = AppLogger.get_logger(__name__)
 
 from src.generation.generation import build_prompt_from_retrive_similar_documents_for_skills_analysis
 
@@ -41,7 +44,8 @@ SEPARATOR = "=" * 60
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         "prog=rag-malware-analyzer",
-        description="RAG-based JavaScript / Node.js malware threat analysis",
+        description="RAG-based Malware Analysis System with Agent Skills Threat Intelligence",
+        formatter_class=argparse.RawTextHelpFormatter
     )
 
     input_group = parser.add_mutually_exclusive_group()
@@ -86,7 +90,7 @@ def save_report(report: str, output_path: str) -> None:
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(report, encoding="utf-8")
-    print(f"[INFO] Report saved to: {path.resolve()}")
+    logger.info(f"Report saved to: {output_path}")
 
 
 def read_package(package_path: str) -> str:
@@ -108,7 +112,7 @@ def retrieval_pipeline(args) -> None:
     OUTPUT_DIR = input("Please enter the output directory path (to save markdown reports): ").strip()
 
     if not os.path.exists(INPUT_DIR):
-        print(f"[ERROR] Input directory '{INPUT_DIR}' does not exist.", file=sys.stderr)
+        logger.error(f"Input directory '{INPUT_DIR}' does not exist. Please provide a valid path.")
         sys.exit(1)
 
     if not os.path.exists(OUTPUT_DIR):
@@ -122,7 +126,7 @@ def retrieval_pipeline(args) -> None:
     for package in os.listdir(INPUT_DIR):
 
         if package in analyzed_packages:
-            print(f"[SKIP] Package '{package}' already analyzed. Skipping...")
+            logger.info(f"Package '{package}' already analyzed. Skipping...")
             continue
 
         package_path = os.path.join(INPUT_DIR, package)
@@ -134,7 +138,7 @@ def retrieval_pipeline(args) -> None:
         output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=4)
-        print(f"[INFO] Report saved to: {output_path}\n{SEPARATOR}\n")
+        logger.info(f"Report for package '{package}' saved to: {output_path}")
 
     
 def ingest_data_pipeline():
@@ -156,5 +160,5 @@ if __name__ == "__main__":
             retrieval_pipeline(args)
     
     except KeyboardInterrupt:
-        print("\n[INFO] Process interrupted by user. Exiting gracefully.")
+        logger.warning("Process interrupted by user. Exiting...")
         sys.exit(0)

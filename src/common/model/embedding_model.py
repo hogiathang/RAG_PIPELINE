@@ -12,7 +12,6 @@ Singleton Pattern
 
 from threading import Lock
 from sentence_transformers import SentenceTransformer
-import torch
 from typing import List, Union
 
 EMBEDDING_MODEL_CONFIG = {

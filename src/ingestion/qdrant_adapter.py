@@ -1,7 +1,10 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct, Query
-from RAG_PIPELINE.src.common.model.embedding_model import EmbeddingModel
-from RAG_PIPELINE.src.retrieval.web_search_engine import WebSearchEngine
+from src.common.model.embedding_model import EmbeddingModel
+from src.retrieval.web_search_engine import WebSearchEngine
+from src.logging.log_manager import AppLogger
+
+logger = AppLogger.get_logger(__name__)
 
 class QdrantAdapter:
     _instance = None
@@ -40,8 +43,7 @@ class QdrantAdapter:
                 points=batch_points
             )
 
-            print(f"Inserted batch {start} → {min(end, total)}")
-
+            logger.info(f"Inserted points {start} to {min(end, total)} of {total} into Qdrant.")
 
     def _search(self, question , top_k : int = 5) -> list[str]:
         query_vector = self.embedding_model.embed(question)
