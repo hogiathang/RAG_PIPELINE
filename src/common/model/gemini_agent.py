@@ -7,6 +7,7 @@ from src.common.model.agent_config import AGENT_PROMPT, MODEL_NAME, TOKENS_FILE
 from uuid import uuid4
 from threading import Thread
 import time
+from src.common.model.agent_adapter import AgentAdapter
 from src.logging.log_manager import AppLogger
 
 logger = AppLogger.get_logger(__name__)
@@ -49,7 +50,7 @@ class Worker:
 
 # -----------------------------------------
 
-class GeminiAgent:
+class GeminiAgent(AgentAdapter):
     _instance = None
     _lock = Lock()
 

@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 logger = AppLogger.get_logger(__name__)
 
-from src.generation.generation import build_prompt_from_retrive_similar_documents_for_skills_analysis
+from src.generation.generation import generate_report_from_skill_package
 
 SUPPORTED_FILE_TYPES = (".js", ".json", ".md", ".sh", ".txt", ".yaml", ".yml", ".html", ".css", ".ts", ".tsx", ".jsx")
 
@@ -76,7 +76,7 @@ def run_pipeline(code: str, is_analyzing_skills: bool = True) -> json:
 
     print("[STEP 1/2] Run RAG Pipeline...")
 
-    report = build_prompt_from_retrive_similar_documents_for_skills_analysis(code)
+    report = generate_report_from_skill_package(code)
 
     if report is None:
         print("[ERROR] Pipeline returned no result. Check your API tokens and services.", file=sys.stderr)
