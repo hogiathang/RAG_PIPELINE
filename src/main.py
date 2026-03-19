@@ -67,36 +67,23 @@ def parse_args() -> argparse.Namespace:
 
 
 def run_pipeline(code: str, is_analyzing_skills: bool = True) -> json:
+    
     """
-    Thực thi toàn bộ RAG pipeline:
-      Retrieve (Qdrant + Web Search) → Generate (Gemini)
-    Trả về báo cáo dạng Markdown string.
-
+    Running the RAG pipeline
     """
-
-    print("[STEP 1/2] Run RAG Pipeline...")
-
+    logger.info(f"{SEPARATOR}\n[STEP 1/2] Starting RAG Pipeline...\n{SEPARATOR}")
     report = generate_report_from_skill_package(code)
 
     if report is None:
-        print("[ERROR] Pipeline returned no result. Check your API tokens and services.", file=sys.stderr)
-        sys.exit(1)
+        logger.error("Failed to generate report.")
+        return None
 
-    print("[STEP 2/2] Report generation complete.\n")
+    logger.info(f"{SEPARATOR}\n[STEP 2/2] RAG Pipeline Completed.\n{SEPARATOR}")
     return report
-
-def save_report(report: str, output_path: str) -> None:
-    """Lưu báo cáo ra file markdown."""
-    path = Path(output_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(report, encoding="utf-8")
-    logger.info(f"Report saved to: {output_path}")
-
 
 def read_package(package_path: str) -> str:
     contents = []
     for file in os.listdir(package_path):
-        # Chỉ đọc file .js, .json, .md, .sh,
 
         if not file.endswith(SUPPORTED_FILE_TYPES):
             continue
@@ -104,59 +91,66 @@ def read_package(package_path: str) -> str:
         content = Path(os.path.join(package_path, file)).read_text(encoding="utf-8")
         contents.append(f"[FILE: {file}]\n{content}")
 
-    return contents
+    return 
+    
+def parse_directory():
+    input_dir  = input("Please enter the input directory path (containing JavaScript/Node.js packages): ").strip()
+    output_dir = input("Please enter the output directory path (to save markdown reports): ").strip()
 
-def retrieval_pipeline(args) -> None:
-
-    INPUT_DIR = input("Please enter the input directory path (containing JavaScript/Node.js packages): ").strip()
-    OUTPUT_DIR = input("Please enter the output directory path (to save markdown reports): ").strip()
-
-    if not os.path.exists(INPUT_DIR):
-        logger.error(f"Input directory '{INPUT_DIR}' does not exist. Please provide a valid path.")
+    if not os.path.exists(input_dir):
+        logger.error(f"Input directory '{input_dir}' does not exist. Please provide a valid path.")
         sys.exit(1)
 
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR, exist_ok=True)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
 
+    return input_dir, output_dir
+
+def get_analyzed_packages(output_dir: str) -> list:
     analyzed_packages = []
-    for file in os.listdir(OUTPUT_DIR):
+    for file in os.listdir(output_dir):
         if file.endswith("_report.json"):
             analyzed_packages.append(file.replace("_report.json", ""))
+    return analyzed_packages
 
-    for package in os.listdir(INPUT_DIR):
+def save_report(report: json, output_path: str) -> None:
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=4)
+
+
+def retrieval_pipeline(args) -> None:
+    input_dir, output_dir = parse_directory()
+
+    analyzed_packages = get_analyzed_packages(output_dir)
+    logger.info(f"Found {len(analyzed_packages)} already analyzed packages. They will be skipped in this run.")
+
+    for package in os.listdir(input_dir):
 
         if package in analyzed_packages:
             logger.info(f"Package '{package}' already analyzed. Skipping...")
             continue
 
-        package_path = os.path.join(INPUT_DIR, package)
-
+        package_path = os.path.join(input_dir, package)
         contents =  read_package(package_path)
-
+        
         report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
+        output_path = os.path.join(output_dir, f"{package}_report.json")
 
-        output_path = os.path.join(OUTPUT_DIR, f"{package}_report.json")
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(report, f, indent=4)
+        save_report(report, output_path)
+
         logger.info(f"Report for package '{package}' saved to: {output_path}")
 
-    
-def ingest_data_pipeline():
-    ingest_data()
 
 if __name__ == "__main__":
     try:
         args = parse_args()
-        print(BANNER)
+        logger.info(BANNER)
     
         if args.ingest_data:
-            ingest_data_pipeline()
+            ingest_data()
+        
         else:
-            if args.analyze_skills:
-                print("[INFO] Running in Skills Analysis Mode...")
-            else:
-                print("[INFO] Running in Retrieval Mode...")
-
+            logger.info("Running in Retrieval Mode...")
             retrieval_pipeline(args)
     
     except KeyboardInterrupt:
