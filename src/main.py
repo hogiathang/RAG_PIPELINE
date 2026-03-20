@@ -108,9 +108,13 @@ def parse_directory():
 
 def get_analyzed_packages(output_dir: str) -> list:
     analyzed_packages = []
-    for file in os.listdir(output_dir):
-        if file.endswith("_report.json"):
-            analyzed_packages.append(file.replace("_report.json", ""))
+    try:
+        for file in os.listdir(output_dir):
+            if file.endswith("_report.json"):
+                analyzed_packages.append(file.replace("_report.json", ""))
+    except FileNotFoundError:
+        logger.warning(f"Output directory '{output_dir}' does not exist. It will be created after the first report is generated.")
+        return []
     return analyzed_packages
 
 def save_report(report: json, output_path: str) -> None:
@@ -119,32 +123,45 @@ def save_report(report: json, output_path: str) -> None:
 
 
 def retrieval_pipeline(args) -> None:
-    input_dir, output_dir = parse_directory()
+    # input_dir, output_dir = parse_directory()
+    labels = ["benign", "malware"]
 
-    analyzed_packages = get_analyzed_packages(output_dir)
-    logger.info(f"Found {len(analyzed_packages)} already analyzed packages. They will be skipped in this run.")
+    for label in labels:
 
-    try:
-        for package in os.listdir(input_dir):
-            logger.info(f"Processing package: {package}")
+        input_dir = f"../data/samples/{label}"
+        output_dir = f"../reports/{label}"
 
-            if package in analyzed_packages:
-                logger.info(f"Package '{package}' already analyzed. Skipping...")
-                continue
+        analyzed_packages = get_analyzed_packages(output_dir)
+        logger.info(f"Found {len(analyzed_packages)} already analyzed packages. They will be skipped in this run.")
 
-            package_path = os.path.join(input_dir, package)
-            contents =  read_package(package_path)
-            
-            report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
-            output_path = os.path.join(output_dir, f"{package}_report.json")
+        if not os.path.exists(input_dir):
+            logger.error(f"Input directory '{input_dir}' does not exist. Please provide a valid path.")
+            continue
 
-            save_report(report, output_path)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
 
-            logger.info(f"Report for package '{package}' saved to: {output_path}")
-    
-    except Exception as e:
-        logger.error(f"Error during retrieval pipeline: {e}")
-        sys.exit(1)
+        try:
+            for package in os.listdir(input_dir):
+                logger.info(f"Processing package: {package}")
+
+                if package in analyzed_packages:
+                    logger.info(f"Package '{package}' already analyzed. Skipping...")
+                    continue
+
+                package_path = os.path.join(input_dir, package)
+                contents =  read_package(package_path)
+                
+                report = run_pipeline(f"PACKAGE NAME: {package}\n\n" + "\n\n".join(contents), is_analyzing_skills=args.analyze_skills)
+                output_path = os.path.join(output_dir, f"{package}_report.json")
+
+                save_report(report, output_path)
+
+                logger.info(f"Report for package '{package}' saved to: {output_path}")
+        
+        except Exception as e:
+            logger.error(f"Error during retrieval pipeline: {e}")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -162,3 +179,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.warning("Process interrupted by user. Exiting...")
         sys.exit(0)
+
+# nohup python -m src.main > app.txt 2>&1 &

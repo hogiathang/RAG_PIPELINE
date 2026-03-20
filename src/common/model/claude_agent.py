@@ -1,31 +1,27 @@
+import os
+import json
+import time
+from threading import Lock
+from anthropic import Anthropic, APIError, APIStatusError, APITimeoutError
 from src.common.model.agent_adapter import AgentAdapter
 from src.common.model.agent_config import AGENT_PROMPT
-from threading import Lock
 from src.logging.log_manager import AppLogger
-from anthropic import Anthropic, types
-import os
-
-MODEL_NAME= "claude-haiku-4-5-20251001"
-
-SUPPORTED_MODEL=[
-    "claude-opus-4-6",
-    "claude-opus-4-5-20251101",
-    "claude-opus-4-1-20250805",
-    "claude-opus-4-20250514",
-    "claude-sonnet-4-6",
-    "claude-sonnet-4-5-20250929",
-    "claude-sonnet-4-20250514",
-    "claude-haiku-4-5-20251001"
-]
 
 logger = AppLogger.get_logger(__name__)
+
+# Cấu hình chiến lược Retry
+MAX_RETRIES = 3
+RETRY_DELAY_SECONDS = 5  # Giây nghỉ giữa các lần thử lại
+MODEL_MAPPING = {
+    "skills-analysis": "claude-haiku-4-5-20251001",
+    "skills-report-generation": "claude-sonnet-4-6"
+}
 
 class ClaudeAgent(AgentAdapter):
     _instance = None
     _lock = Lock()
     
     def __new__(cls, *args, **kwargs):
-        """Đảm bảo GeminiAgent là Singleton (Thread-safe)"""
         with cls._lock:
             if cls._instance is None:
                 cls._instance = super(ClaudeAgent, cls).__new__(cls)
@@ -33,41 +29,75 @@ class ClaudeAgent(AgentAdapter):
         return cls._instance
 
     def __init__(self):
-        if self._initialized:
-            return
-        
+        if self._initialized: return
         self._initialized = True
-        self.model = self._load_model()
-        self.model_name = MODEL_NAME
+        self.client = self._load_client()
 
-    def _load_model(self):
+    def _load_client(self):
         claude_key = os.environ.get("CLAUDE_API_KEY", "")
-
         if not claude_key:
-            logger.error("Claude API key is not configured. Please set the CLAUDE_API_KEY environment variable.")
-            raise ValueError("Claude API key is not configured.")
+            raise ValueError("CLAUDE_API_KEY environment variable is not set.")
 
-        return Anthropic(api_key=claude_key)
+        return Anthropic(api_key=claude_key, timeout=300.0)
+
+    def _get_tool_definition(self):
+        """Định nghĩa Tool chung để nhận kết quả JSON"""
+        return {
+            "name": "submit_result",
+            "description": "Output the final analysis or report in strict JSON format.",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "output": {
+                        "type": "object",
+                        "description": "The actual JSON data of the task."
+                    }
+                },
+                "required": ["output"]
+            }
+        }
 
     def execute_task(self, prompt, task_type) -> str:
-        try:
-            response = self.model.messages.create(
-                model=self.model_name,
-                system=AGENT_PROMPT.get(task_type, ""),
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                max_tokens=4096,
-                temperature=0.2
-            )
+        """Thực thi task với cơ chế Retry và Safe Fallback"""
+        selected_model = MODEL_MAPPING.get(task_type, "claude-sonnet-4-6")
+        
+        for attempt in range(MAX_RETRIES):
+            try:
+                logger.info(f"Executing {task_type} (Model: {selected_model}) - Attempt {attempt + 1}/{MAX_RETRIES}")
+                
+                response = self.client.messages.create(
+                    model=selected_model,
+                    max_tokens=8192,
+                    temperature=0,
+                    system=[{
+                        "type": "text",
+                        "text": AGENT_PROMPT.get(task_type, ""),
+                        "cache_control": {"type": "ephemeral"}
+                    }],
+                    tools=[self._get_tool_definition()],
+                    tool_choice={"type": "tool", "name": "submit_result"},
+                    messages=[{"role": "user", "content": prompt}]
+                )
 
-            return response.content[0].text
+                for block in response.content:
+                    if block.type == "tool_use":
+                        result_data = block.input.get("output", block.input)
+                        return json.dumps(result_data, ensure_ascii=False)
+                
+                if response.content:
+                    return response.content[0].text
 
-        except Exception as e:
-            logger.error(f"Error executing task with ClaudeAgent: {e}")
-            return None
+            except (APITimeoutError, APIStatusError, APIError) as e:
+                logger.warning(f"Claude API Error (Attempt {attempt + 1}): {e}")
+                if attempt < MAX_RETRIES - 1:
+                    sleep_time = RETRY_DELAY_SECONDS * (attempt + 1)
+                    logger.info(f"Sleeping for {sleep_time} seconds before retry...")
+                    time.sleep(sleep_time)
+                else:
+                    logger.error(f"Max retries reached for {task_type}. Failing gracefully.")
+            
+            except Exception as e:
+                logger.error(f"Unexpected error in ClaudeAgent: {e}")
+                break # Lỗi logic code thì không nên retry
 
-
+        return "{}"

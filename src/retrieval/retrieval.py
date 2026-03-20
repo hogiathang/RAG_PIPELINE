@@ -18,7 +18,7 @@ def retrieve_similar_documents_for_questions(questions : list[str]) -> list[str]
     for question in questions:
         logger.info(f"Retrieving top {TOP_K} similar documents for the question: {question}")
         qdrantDB = QdrantAdapter()
-        similar_docs = qdrantDB._search(question,TOP_K)
+        similar_docs = qdrantDB.search(question, top_k=TOP_K)
         result.extend(similar_docs)
 
     return result

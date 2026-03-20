@@ -9,7 +9,7 @@ import json
 logger = AppLogger.get_logger(__name__)
 
 def generate_report_from_skill_package(skills_contents: str) -> json:
-    analyze_agent: AgentAdapter = GeminiAgent()
+    analyze_agent: AgentAdapter = ClaudeAgent()
     response = analyze_agent.execute_task(skills_contents, "skills-analysis")
 
     logger.info(f"[INFO] Agent Analyzied Skill Raw Response {response}")
